@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  body {
+    background-color: #f8fafc; /* Premium Off-White */
+    color: #1e293b; /* Slate Dark Grey */
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Custom Scrollbar in Mint and Sky Blue colors */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f8fafc;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #bae6fd; /* Sky Blue tint */
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a7f3d0; /* Mint tint */
+  }
+}
+
+/* ----------------------------------------------------
+   LIGHT PREMIUM THEMING CORE OVERRIDES
+   ---------------------------------------------------- */
+
+/* Force Off-White Background on Layout and Pages */
+.bg-\[\#030014\], 
+.bg-\[\#02000c\], 
+.bg-\[\#070420\], 
+.bg-\[\#070420\]\/95, 
+.bg-\[\#070420\]\/80,
+.bg-\[\#0a0624\]\/60,
+.bg-\[\#0a0624\]\/75,
+.bg-\[\#090625\],
+.bg-\[\#030014\]\/65 {
+  background-color: #f8fafc !important;
+}
+
+/* Force dark slate text colors instead of white/light grey */
+.text-white {
+  color: #0f172a !important; /* Dark Slate-900 */
+}
+.text-gray-200 {
+  color: #1e293b !important; /* Slate-800 */
+}
+.text-gray-300 {
+  color: #334155 !important; /* Slate-700 */
+}
+.text-gray-400 {
+  color: #475569 !important; /* Slate-600 */
+}
+.text-gray-500 {
+  color: #64748b !important; /* Slate-500 */
+}
+.text-gray-600 {
+  color: #94a3b8 !important; /* Slate-400 */
+}
+
+/* Glassmorphism Panels (Light & Soft Mint/Sky shadows) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(14, 165, 233, 0.15) !important; /* Soft Sky Blue border */
+  box-shadow: 0 8px 32px rgba(14, 165, 233, 0.05), 0 1px 2px rgba(14, 165, 233, 0.02) !important;
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important; /* Soft Mint border */
+  box-shadow: 0 16px 40px rgba(14, 165, 233, 0.08), 0 0 20px rgba(16, 185, 129, 0.06) !important;
+  transform: translateY(-4px) !important;
+}
+
+/* Inputs, Textareas, Select elements */
+input, select, textarea {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(14, 165, 233, 0.25) !important; /* Sky Blue Border */
+  color: #0f172a !important;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #10b981 !important; /* Mint focus border */
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12) !important;
+}
+input::placeholder, textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Tables and Admin Cells styling */
+table th {
+  color: #475569 !important;
+  border-bottom-color: rgba(16, 185, 129, 0.15) !important;
+}
+table td {
+  color: #1e293b !important;
+}
+tr.hover\:bg-white\/5:hover {
+  background-color: rgba(16, 185, 129, 0.04) !important; /* Mint hover hint */
+}
+.divide-purple-500\/5 > :not([hidden]) ~ :not([hidden]),
+.divide-purple-500\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(16, 185, 129, 0.08) !important;
+}
+
+/* ----------------------------------------------------
+   COLOR ASSIGNMENTS: MINT, SKY BLUE, SOFT PEACH
+   ---------------------------------------------------- */
+
+/* Premium Mint colors */
+.text-purple-400, 
+.text-purple-300 {
+  color: #059669 !important; /* Active Mint text */
+}
+.bg-purple-600 {
+  background-color: #10b981 !important; /* Mint Primary Button */
+}
+.bg-purple-600\/80 {
+  background-color: rgba(16, 185, 129, 0.8) !important;
+}
+.hover\:bg-purple-600:hover {
+  background-color: #059669 !important;
+}
+.bg-purple-600\/15 {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  border-left-color: #10b981 !important;
+}
+.bg-purple-500\/10 {
+  background-color: rgba(16, 185, 129, 0.08) !important;
+}
+.bg-purple-500\/20 {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+}
+.border-purple-500\/30, 
+.border-purple-500\/20, 
+.border-purple-500\/10, 
+.border-purple-500\/15 {
+  border-color: rgba(16, 185, 129, 0.15) !important;
+}
+
+/* Premium Sky Blue colors */
+.text-blue-400, 
+.text-blue-300 {
+  color: #0284c7 !important; /* Active Sky Blue text */
+}
+.bg-blue-500\/10 {
+  background-color: rgba(14, 165, 233, 0.08) !important;
+}
+
+/* Premium Soft Peach colors (highlights, prices, status alerts) */
+.text-rose-400,
+.text-rose-500,
+.text-amber-400,
+.text-rose-300 {
+  color: #ff8a65 !important; /* Soft Peach Text */
+}
+.bg-rose-500\/90, 
+.bg-rose-500\/20,
+.bg-rose-500\/10,
+.bg-amber-500\/20,
+.bg-amber-500\/90 {
+  background-color: rgba(255, 138, 101, 0.12) !important;
+  color: #ff8a65 !important;
+  border: 1px solid rgba(255, 138, 101, 0.25) !important;
+}
+
+/* Glowing text and button shadows in Mint and Sky Blue */
+.neon-glow-purple {
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25), inset 0 0 4px rgba(16, 185, 129, 0.05) !important;
+}
+.neon-glow-blue {
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.25), inset 0 0 4px rgba(14, 165, 233, 0.05) !important;
+}
+
+/* Premium Gradients */
+.text-gradient {
+  background: linear-gradient(135deg, #059669 0%, #0284c7 100%) !important; /* Mint to Sky Blue */
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #059669 0%, #0284c7 50%, #ff8a65 100%) !important; /* Mint to Sky Blue to Soft Peach */
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Background blur rings (Mint & Sky Blue) */
+.bg-purple-900\/10, .bg-purple-600\/10, .bg-violet-500\/60 {
+  background-color: rgba(16, 185, 129, 0.06) !important;
+}
+.bg-blue-900\/10, .bg-blue-600\/10, .bg-indigo-500\/60 {
+  background-color: rgba(14, 165, 233, 0.06) !important;
+}
+
+/* White Tints and Grid background in Light mode */
+.bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(14, 165, 233, 0.15) !important;
+}
+.bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+.border-white\/10, .border-white\/5 {
+  border-color: rgba(14, 165, 233, 0.12) !important;
+}
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+}
+
+/* Custom Overrides for Layout Components */
+nav.fixed {
+  background-color: rgba(248, 250, 252, 0.75) !important; /* Off-White alpha */
+  border-bottom: 1px solid rgba(14, 165, 233, 0.12) !important;
+}
+footer.relative {
+  background-color: #f1f5f9 !important; /* Light Slate grey background for Footer */
+  border-top: 1px solid rgba(16, 185, 129, 0.12) !important;
+}
+
+/* Confetti Z-index */
+.canvas-confetti {
+  z-index: 100 !important;
+}
+
+/* Custom Card details gradient overlays (fade to off-white instead of dark blue) */
+.card-gradient-overlay {
+  background: linear-gradient(to top, rgba(248, 250, 252, 0.98) 0%, rgba(248, 250, 252, 0.4) 60%, transparent 100%) !important;
+}
+
+/* Button override configurations */
+.bg-gradient-to-r.from-purple-600.to-blue-500 {
+  background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%) !important; /* Mint to Sky Blue */
+}
+.bg-gradient-to-tr.from-purple-600.to-blue-500 {
+  background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%) !important;
+}
+.hover\:from-purple-500.hover\:to-blue-400:hover {
+  background: linear-gradient(135deg, #059669 0%, #0284c7 100%) !important;
+}
