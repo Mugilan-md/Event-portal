@@ -91,11 +91,31 @@ export default function Navbar() {
                   Sign Out
                 </button>
               </div>
-            ) : null}
+            ) : (
+              <div className="flex items-center gap-4 border-l border-purple-500/20 pl-6">
+                <Link
+                  to="/admin-login"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500/20 text-xs font-bold transition-all shadow-sm"
+                  title="Admin Portal Access"
+                >
+                  <ShieldAlert className="w-3.5 h-3.5" />
+                  Admin Login
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Mobile toggle button */}
           <div className="md:hidden flex items-center gap-3">
+            {!adminUser && (
+              <Link
+                to="/admin-login"
+                className="p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400"
+                title="Admin Portal Access"
+              >
+                <ShieldAlert className="w-4 h-4" />
+              </Link>
+            )}
             {adminUser && (
               <Link
                 to="/admin-dashboard"
@@ -158,7 +178,18 @@ export default function Navbar() {
                     Sign Out
                   </button>
                 </div>
-              ) : null}
+              ) : (
+                <div className="pt-4 border-t border-purple-500/10 space-y-2">
+                  <Link
+                    to="/admin-login"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 px-3 py-3 rounded-lg text-base font-semibold text-rose-400 bg-rose-500/10 border border-rose-500/20"
+                  >
+                    <ShieldAlert className="w-4 h-4" />
+                    Admin Login
+                  </Link>
+                </div>
+              )}
             </div>
           </motion.div>
         )}
