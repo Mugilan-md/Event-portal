@@ -24,13 +24,13 @@ import {
 // PASTE YOUR FIREBASE CONFIGURATION HERE
 // Replace placeholders with your actual credentials to connect to live Firebase.
 const firebaseConfig = {
-  apiKey: "PLACEHOLDER",
-  authDomain: "event-registration-porta-fb463.firebaseapp.com",
-  projectId: "event-registration-porta-fb463",
-  storageBucket: "event-registration-porta-fb463.firebasestorage.app",
-  messagingSenderId: "313840350352",
-  appId: "1:313840350352:web:43cfd6d4474b7d3a6d5415",
-  measurementId: "G-YCWBNR4B31"
+  apiKey: "AIzaSyC7JeePmrBrXuhvsGFAEEMI_ykawtqBhsY",
+  authDomain: "event-portal-3afc1.firebaseapp.com",
+  projectId: "event-portal-3afc1",
+  storageBucket: "event-portal-3afc1.firebasestorage.app",
+  messagingSenderId: "766961504428",
+  appId: "1:766961504428:web:7fa65f7b8bc91d49368f09",
+  measurementId: "G-ZYPZCFJQ7Z"
 };
 
 // Check if using placeholder configurations
