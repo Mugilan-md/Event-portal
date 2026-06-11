@@ -24,7 +24,7 @@ import {
 // PASTE YOUR FIREBASE CONFIGURATION HERE
 // Replace placeholders with your actual credentials to connect to live Firebase.
 const firebaseConfig = {
-  apiKey: "AIzaSyC7JeePmrBrXuhvsGFAEEMI_ykawtqBhsY",
+  apiKey: "AIzaSyC7JeePmRbrXuHvsGFAEEMI_ykawtqBhsY",
   authDomain: "event-portal-3afc1.firebaseapp.com",
   projectId: "event-portal-3afc1",
   storageBucket: "event-portal-3afc1.firebasestorage.app",
