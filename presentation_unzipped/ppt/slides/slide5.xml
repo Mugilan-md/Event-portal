@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sld xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"><p:cSld><p:spTree><p:nvGrpSpPr><p:cNvPr id="1" name=""><a:extLst><a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}"><a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{F245CB06-0B2B-CE8C-2E4C-0C467DFD629F}"/></a:ext></a:extLst></p:cNvPr><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr><p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr><p:sp><p:nvSpPr><p:cNvPr id="2" name="Slide Number Placeholder 1"><a:extLst><a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}"><a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{0E376B3C-59DF-0639-7FCA-2E2555EB4BBB}"/></a:ext></a:extLst></p:cNvPr><p:cNvSpPr><a:spLocks noGrp="1"/></p:cNvSpPr><p:nvPr><p:ph type="sldNum" sz="quarter" idx="4"/></p:nvPr></p:nvSpPr><p:spPr/><p:txBody><a:bodyPr/><a:lstStyle/><a:p><a:fld id="{507056B1-A0B7-4D25-86D6-B77508A97F45}" type="slidenum"><a:rPr lang="en-US" smtClean="0"/><a:pPr/><a:t>5</a:t></a:fld><a:endParaRPr lang="en-US" dirty="0"><a:solidFill><a:schemeClr val="bg1"/></a:solidFill></a:endParaRPr></a:p></p:txBody></p:sp><p:sp><p:nvSpPr><p:cNvPr id="3" name="TextBox 2"><a:extLst><a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}"><a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{81C35C4D-0173-EF0B-8FA6-7EFF7DD13651}"/></a:ext></a:extLst></p:cNvPr><p:cNvSpPr txBox="1"/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x="-7374" y="24581"/><a:ext cx="5493774" cy="584775"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom><a:noFill/></p:spPr><p:txBody><a:bodyPr wrap="square" rtlCol="0"><a:spAutoFit/></a:bodyPr><a:lstStyle/><a:p><a:r><a:rPr lang="en-US" sz="3200" b="1" dirty="0"/><a:t>Project Specifications</a:t></a:r><a:endParaRPr lang="en-IN" sz="3200" b="1" dirty="0"/></a:p></p:txBody></p:sp><p:sp><p:nvSpPr><p:cNvPr id="5" name="TextBox 4"><a:extLst><a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}"><a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{2CEED1A7-934D-B3B9-1045-6924B4F94109}"/></a:ext></a:extLst></p:cNvPr><p:cNvSpPr txBox="1"/><p:nvPr/></p:nvSpPr><p:spPr><a:xfrm><a:off x="76200" y="1688068"/><a:ext cx="9067800" cy="2031325"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom><a:noFill/></p:spPr><p:txBody><a:bodyPr wrap="square" rtlCol="0"><a:spAutoFit/></a:bodyPr><a:lstStyle/>
+    <a:p>
+      <a:pPr marL="285750" indent="-285750">
+      <a:buFont typeface="Wingdings" panose="05000000000000000000" pitchFamily="2" charset="2"/>
+      <a:buChar char="ü"/>
+    </a:pPr>
+      <a:r>
+        <a:rPr lang="en-US" sz="1500" dirty="0"/>
+        <a:t>Database Synchronization: Real-time Firebase Firestore database listeners reflecting seat availability updates in under 200 milliseconds.</a:t>
+      </a:r>
+    </a:p>
+    <a:p>
+      <a:pPr marL="285750" indent="-285750">
+      <a:buFont typeface="Wingdings" panose="05000000000000000000" pitchFamily="2" charset="2"/>
+      <a:buChar char="ü"/>
+    </a:pPr>
+      <a:r>
+        <a:rPr lang="en-US" sz="1500" dirty="0"/>
+        <a:t>Concurrent Capacity: Designed to process up to 50,000 document writes and reads per month under the Firestore standard free tier.</a:t>
+      </a:r>
+    </a:p>
+    <a:p>
+      <a:pPr marL="285750" indent="-285750">
+      <a:buFont typeface="Wingdings" panose="05000000000000000000" pitchFamily="2" charset="2"/>
+      <a:buChar char="ü"/>
+    </a:pPr>
+      <a:r>
+        <a:rPr lang="en-US" sz="1500" dirty="0"/>
+        <a:t>Security Hashing: Unique 256-bit hash signatures mapping to each participant&apos;s ticket payload to prevent duplicate or forged tickets.</a:t>
+      </a:r>
+    </a:p>
+    <a:p>
+      <a:pPr marL="285750" indent="-285750">
+      <a:buFont typeface="Wingdings" panose="05000000000000000000" pitchFamily="2" charset="2"/>
+      <a:buChar char="ü"/>
+    </a:pPr>
+      <a:r>
+        <a:rPr lang="en-US" sz="1500" dirty="0"/>
+        <a:t>Operational Overhead: Achieved $0 hosting and backend service costs through client-side serverless hosting (Vercel) and API endpoints (EmailJS).</a:t>
+      </a:r>
+    </a:p></p:txBody></p:sp></p:spTree><p:extLst><p:ext uri="{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}"><p14:creationId xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" val="2678798204"/></p:ext></p:extLst></p:cSld><p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr></p:sld>

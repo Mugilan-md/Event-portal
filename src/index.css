@@ -1,45 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @layer base {
   :root {
-    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --bg-ivory: #F9F5EF;
+    --card-white: #FFFFFF;
+    --primary-blue: #1F3C88;
+    --accent-gold: #D4AF37;
+    --text-dark: #1A1A1A;
+    --text-grey: #666666;
+    --border-light: #E0E0E0;
+    --error-red: #D32F2F;
+
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    letter-spacing: -0.025em;
+    font-family: "Cinzel", Georgia, serif;
+    letter-spacing: 0.02em;
+    color: var(--text-dark);
   }
 
   body {
-    background-color: #f8fafc; /* Premium Off-White */
-    color: #1e293b; /* Slate Dark Grey */
+    background-color: var(--bg-ivory);
+    color: var(--text-dark);
     overflow-x: hidden;
     min-height: 100vh;
   }
 
-  /* Custom Scrollbar in Mint and Sky Blue colors */
+  /* Custom Scrollbar in Royal Blue and Gold tints */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #f8fafc;
+    background: var(--bg-ivory);
   }
   ::-webkit-scrollbar-thumb {
-    background: #bae6fd; /* Sky Blue tint */
+    background: #1f3c8833; /* Soft Royal Blue tint */
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #a7f3d0; /* Mint tint */
+    background: var(--primary-blue);
   }
 }
 
 /* ----------------------------------------------------
-   LIGHT PREMIUM THEMING CORE OVERRIDES
+   ROYAL BLUE + GOLD PALETTE CORE OVERRIDES
    ---------------------------------------------------- */
 
-/* Force Off-White Background on Layout and Pages */
+/* Force Light Ivory Background on Layout and Pages */
 .bg-\[\#030014\], 
 .bg-\[\#02000c\], 
 .bg-\[\#070420\], 
@@ -49,212 +58,216 @@
 .bg-\[\#0a0624\]\/75,
 .bg-\[\#090625\],
 .bg-\[\#030014\]\/65 {
-  background-color: #f8fafc !important;
+  background-color: var(--bg-ivory) !important;
 }
 
 /* Force dark slate text colors instead of white/light grey */
 .text-white {
-  color: #0f172a !important; /* Dark Slate-900 */
+  color: var(--text-dark) !important;
 }
 .text-gray-200 {
-  color: #1e293b !important; /* Slate-800 */
+  color: #333333 !important;
 }
 .text-gray-300 {
-  color: #334155 !important; /* Slate-700 */
+  color: var(--text-grey) !important;
 }
 .text-gray-400 {
-  color: #475569 !important; /* Slate-600 */
+  color: #777777 !important;
 }
 .text-gray-500 {
-  color: #64748b !important; /* Slate-500 */
+  color: #888888 !important;
 }
 .text-gray-600 {
-  color: #94a3b8 !important; /* Slate-400 */
+  color: #aaaaaa !important;
 }
 
-/* Glassmorphism Panels (Light & Soft Mint/Sky shadows) */
+/* Glassmorphism Panels (White surface, soft shadows, thin gold borders) */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.75) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(14, 165, 233, 0.15) !important; /* Soft Sky Blue border */
-  box-shadow: 0 8px 32px rgba(14, 165, 233, 0.05), 0 1px 2px rgba(14, 165, 233, 0.02) !important;
+  background: var(--card-white) !important;
+  border: 1px solid rgba(212, 175, 55, 0.15) !important; /* Soft Gold border */
+  box-shadow: 0 10px 30px rgba(31, 60, 136, 0.04), 0 1px 3px rgba(31, 60, 136, 0.02) !important;
 }
 
 .glass-panel-hover {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-panel-hover:hover {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(16, 185, 129, 0.35) !important; /* Soft Mint border */
-  box-shadow: 0 16px 40px rgba(14, 165, 233, 0.08), 0 0 20px rgba(16, 185, 129, 0.06) !important;
+  background: var(--card-white) !important;
+  border-color: var(--accent-gold) !important; /* Gold border */
+  box-shadow: 0 20px 40px rgba(31, 60, 136, 0.08), 0 0 15px rgba(212, 175, 55, 0.1) !important;
   transform: translateY(-4px) !important;
 }
 
 /* Inputs, Textareas, Select elements */
 input, select, textarea {
-  background-color: #ffffff !important;
-  border: 1px solid rgba(14, 165, 233, 0.25) !important; /* Sky Blue Border */
-  color: #0f172a !important;
+  background-color: var(--card-white) !important;
+  border: 1px solid var(--border-light) !important;
+  color: var(--text-dark) !important;
+  font-family: "Poppins", sans-serif !important;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: #10b981 !important; /* Mint focus border */
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12) !important;
+  border-color: var(--primary-blue) !important; /* Royal Blue focus border */
+  box-shadow: 0 0 0 3px rgba(31, 60, 136, 0.12) !important;
+  outline: none !important;
 }
 input::placeholder, textarea::placeholder {
-  color: #94a3b8 !important;
+  color: #999999 !important;
 }
 
 /* Tables and Admin Cells styling */
 table th {
-  color: #475569 !important;
-  border-bottom-color: rgba(16, 185, 129, 0.15) !important;
+  color: var(--text-grey) !important;
+  border-bottom-color: var(--border-light) !important;
+  font-family: "Poppins", sans-serif !important;
 }
 table td {
-  color: #1e293b !important;
+  color: var(--text-dark) !important;
+  font-family: "Poppins", sans-serif !important;
 }
 tr.hover\:bg-white\/5:hover {
-  background-color: rgba(16, 185, 129, 0.04) !important; /* Mint hover hint */
+  background-color: rgba(31, 60, 136, 0.03) !important;
 }
 .divide-purple-500\/5 > :not([hidden]) ~ :not([hidden]),
 .divide-purple-500\/10 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgba(16, 185, 129, 0.08) !important;
+  border-color: var(--border-light) !important;
 }
 
 /* ----------------------------------------------------
-   COLOR ASSIGNMENTS: MINT, SKY BLUE, SOFT PEACH
+   COLOR ASSIGNMENTS: ROYAL BLUE, GOLD, CALM RED
    ---------------------------------------------------- */
 
-/* Premium Mint colors */
+/* Royal Blue accents & highlights */
 .text-purple-400, 
 .text-purple-300 {
-  color: #059669 !important; /* Active Mint text */
+  color: var(--primary-blue) !important;
 }
 .bg-purple-600 {
-  background-color: #10b981 !important; /* Mint Primary Button */
+  background-color: var(--primary-blue) !important; /* Royal Blue Primary */
 }
 .bg-purple-600\/80 {
-  background-color: rgba(16, 185, 129, 0.8) !important;
+  background-color: rgba(31, 60, 136, 0.8) !important;
 }
 .hover\:bg-purple-600:hover {
-  background-color: #059669 !important;
+  background-color: #172d66 !important;
 }
 .bg-purple-600\/15 {
-  background-color: rgba(16, 185, 129, 0.1) !important;
-  border-left-color: #10b981 !important;
+  background-color: rgba(31, 60, 136, 0.05) !important;
+  border-left-color: var(--primary-blue) !important;
 }
 .bg-purple-500\/10 {
-  background-color: rgba(16, 185, 129, 0.08) !important;
+  background-color: rgba(31, 60, 136, 0.06) !important;
 }
 .bg-purple-500\/20 {
-  background-color: rgba(16, 185, 129, 0.15) !important;
+  background-color: rgba(31, 60, 136, 0.12) !important;
 }
 .border-purple-500\/30, 
 .border-purple-500\/20, 
 .border-purple-500\/10, 
 .border-purple-500\/15 {
-  border-color: rgba(16, 185, 129, 0.15) !important;
+  border-color: var(--border-light) !important;
 }
 
-/* Premium Sky Blue colors */
+/* Secondary Gold highlights */
 .text-blue-400, 
 .text-blue-300 {
-  color: #0284c7 !important; /* Active Sky Blue text */
+  color: var(--accent-gold) !important; /* Gold text */
 }
 .bg-blue-500\/10 {
-  background-color: rgba(14, 165, 233, 0.08) !important;
+  background-color: rgba(212, 175, 55, 0.08) !important;
 }
 
-/* Premium Soft Peach colors (highlights, prices, status alerts) */
+/* Error States (Calm Red) */
 .text-rose-400,
 .text-rose-500,
-.text-amber-400,
 .text-rose-300 {
-  color: #ff8a65 !important; /* Soft Peach Text */
+  color: var(--error-red) !important;
 }
 .bg-rose-500\/90, 
 .bg-rose-500\/20,
-.bg-rose-500\/10,
-.bg-amber-500\/20,
-.bg-amber-500\/90 {
-  background-color: rgba(255, 138, 101, 0.12) !important;
-  color: #ff8a65 !important;
-  border: 1px solid rgba(255, 138, 101, 0.25) !important;
+.bg-rose-500\/10 {
+  background-color: rgba(211, 47, 47, 0.08) !important;
+  color: var(--error-red) !important;
+  border: 1px solid rgba(211, 47, 47, 0.2) !important;
 }
 
-/* Glowing text and button shadows in Mint and Sky Blue */
+/* Glowing text and button shadows in Royal Blue and Gold */
 .neon-glow-purple {
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25), inset 0 0 4px rgba(16, 185, 129, 0.05) !important;
+  box-shadow: 0 4px 14px rgba(31, 60, 136, 0.2), inset 0 0 4px rgba(31, 60, 136, 0.05) !important;
 }
 .neon-glow-blue {
-  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.25), inset 0 0 4px rgba(14, 165, 233, 0.05) !important;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2), inset 0 0 4px rgba(212, 175, 55, 0.05) !important;
 }
 
-/* Premium Gradients */
+/* Premium Gradients (Royal Blue to Soft Gold) */
 .text-gradient {
-  background: linear-gradient(135deg, #059669 0%, #0284c7 100%) !important; /* Mint to Sky Blue */
+  background: linear-gradient(135deg, var(--primary-blue) 0%, #4667c4 50%, var(--accent-gold) 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 .text-gradient-purple {
-  background: linear-gradient(135deg, #059669 0%, #0284c7 50%, #ff8a65 100%) !important; /* Mint to Sky Blue to Soft Peach */
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-gold) 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
-/* Background blur rings (Mint & Sky Blue) */
+/* Background blur rings */
 .bg-purple-900\/10, .bg-purple-600\/10, .bg-violet-500\/60 {
-  background-color: rgba(16, 185, 129, 0.06) !important;
+  background-color: rgba(31, 60, 136, 0.04) !important;
 }
 .bg-blue-900\/10, .bg-blue-600\/10, .bg-indigo-500\/60 {
-  background-color: rgba(14, 165, 233, 0.06) !important;
+  background-color: rgba(212, 175, 55, 0.04) !important;
 }
 
 /* White Tints and Grid background in Light mode */
 .bg-white\/5 {
-  background-color: rgba(255, 255, 255, 0.6) !important;
-  border-color: rgba(14, 165, 233, 0.15) !important;
+  background-color: var(--card-white) !important;
+  border-color: var(--border-light) !important;
 }
 .bg-white\/10 {
-  background-color: rgba(255, 255, 255, 0.8) !important;
+  background-color: var(--card-white) !important;
+  border-color: var(--border-light) !important;
 }
 .border-white\/10, .border-white\/5 {
-  border-color: rgba(14, 165, 233, 0.12) !important;
+  border-color: var(--border-light) !important;
 }
 .bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: linear-gradient(to right, rgba(14, 165, 233, 0.03) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(31, 60, 136, 0.02) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(31, 60, 136, 0.02) 1px, transparent 1px);
 }
 
 /* Custom Overrides for Layout Components */
 nav.fixed {
-  background-color: rgba(248, 250, 252, 0.75) !important; /* Off-White alpha */
-  border-bottom: 1px solid rgba(14, 165, 233, 0.12) !important;
+  background-color: rgba(249, 245, 239, 0.8) !important; /* Ivory background */
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important; /* Thin Gold line */
 }
 footer.relative {
-  background-color: #f1f5f9 !important; /* Light Slate grey background for Footer */
-  border-top: 1px solid rgba(16, 185, 129, 0.12) !important;
+  background-color: #f1ebd9 !important; /* Slightly darker ivory for footer */
+  border-top: 1px solid rgba(212, 175, 55, 0.15) !important;
 }
 
-/* Confetti Z-index */
-.canvas-confetti {
-  z-index: 100 !important;
-}
-
-/* Custom Card details gradient overlays (fade to off-white instead of dark blue) */
+/* Custom Card details gradient overlays (fade to Ivory instead of black) */
 .card-gradient-overlay {
-  background: linear-gradient(to top, rgba(248, 250, 252, 0.98) 0%, rgba(248, 250, 252, 0.4) 60%, transparent 100%) !important;
+  background: linear-gradient(to top, rgba(249, 245, 239, 0.98) 0%, rgba(249, 245, 239, 0.4) 60%, transparent 100%) !important;
 }
 
-/* Button override configurations */
+/* Button overrides */
 .bg-gradient-to-r.from-purple-600.to-blue-500 {
-  background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%) !important; /* Mint to Sky Blue */
+  background: var(--primary-blue) !important; /* Solid Royal Blue */
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
 }
 .bg-gradient-to-tr.from-purple-600.to-blue-500 {
-  background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%) !important;
+  background: var(--primary-blue) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
 }
 .hover\:from-purple-500.hover\:to-blue-400:hover {
-  background: linear-gradient(135deg, #059669 0%, #0284c7 100%) !important;
+  background: #172d66 !important;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.25) !important; /* Gold glow on hover */
+}
+.border-blue-500 {
+  border-color: var(--accent-gold) !important;
+}
+.text-rose-500 {
+  color: var(--error-red) !important;
 }
