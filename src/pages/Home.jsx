@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Users, Award, Shield, ArrowRight, Hourglass, Plus, Minus, Send, CheckCircle } from "lucide-react";
+import { Calendar, Users, Award, Shield, ArrowRight, Hourglass, Plus, Minus, Send, CheckCircle, Ticket, QrCode, MessageSquare } from "lucide-react";
 import { getEventsList } from "../firebase/config";
-import heroImg from "../assets/logo.png"; // Placeholder for hero 3D float image
+import heroImg from "../assets/hero-3d.png";
 
 export default function Home() {
   const [events, setEvents] = useState([]);
@@ -140,30 +140,73 @@ export default function Home() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="w-full md:w-1/2 relative flex justify-center perspective-1000"
+            className="w-full md:w-1/2 relative flex justify-center items-center h-[400px] md:h-[500px]"
           >
+            {/* Main Holographic Image Float */}
             <motion.div
-              animate={{ y: [-10, 10, -10] }}
+              animate={{ y: [-15, 15, -15] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              className="relative w-72 h-72 sm:w-96 sm:h-96"
+              className="relative w-full h-full max-w-lg z-10"
             >
-              {/* Decorative rings behind the float */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#1F3C88]/20 to-[#D4AF37]/20 rounded-full blur-3xl transform -rotate-12" />
-              
-              <div className="relative w-full h-full bg-white rounded-3xl shadow-2xl border border-[#D4AF37]/30 overflow-hidden transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                <div className="absolute top-0 w-full h-12 bg-[#1F3C88] flex items-center px-4 gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                </div>
-                <div className="pt-16 p-6 h-full flex flex-col items-center justify-center text-center">
-                   <div className="w-24 h-24 mb-4 rounded-full bg-[#1F3C88]/10 flex items-center justify-center">
-                      <Award className="w-12 h-12 text-[#D4AF37]" />
-                   </div>
-                   <h3 className="text-xl font-bold text-[#1F3C88] font-serif mb-2">QR Pass Generated</h3>
-                   <p className="text-sm text-gray-500">Your secure access to the future of tech.</p>
-                </div>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#1F3C88]/20 to-[#D4AF37]/20 rounded-full blur-[80px] -z-10" />
+              <img 
+                src={heroImg} 
+                alt="3D Holographic Event Dashboard" 
+                className="w-full h-full object-contain drop-shadow-2xl"
+              />
+            </motion.div>
+
+            {/* Orbiting Icons */}
+            {/* Calendar Icon */}
+            <motion.div
+              animate={{ 
+                x: [0, 20, 0, -20, 0],
+                y: [0, -20, 0, 20, 0],
+                rotate: [0, 5, 0, -5, 0]
+              }}
+              transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+              className="absolute top-[10%] left-[15%] w-14 h-14 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#1F3C88]/20 flex items-center justify-center z-20"
+            >
+              <Calendar className="w-6 h-6 text-[#1F3C88]" />
+            </motion.div>
+
+            {/* Chat Bubble Icon */}
+            <motion.div
+              animate={{ 
+                x: [0, -15, 0, 15, 0],
+                y: [0, 15, 0, -15, 0],
+              }}
+              transition={{ repeat: Infinity, duration: 7, ease: "linear", delay: 1 }}
+              className="absolute top-[25%] right-[10%] w-12 h-12 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#D4AF37]/30 flex items-center justify-center z-20"
+            >
+              <MessageSquare className="w-5 h-5 text-[#D4AF37]" />
+            </motion.div>
+
+            {/* Rotating Ticket */}
+            <motion.div
+              animate={{ 
+                rotateY: 360,
+                y: [-5, 5, -5]
+              }}
+              transition={{ 
+                rotateY: { repeat: Infinity, duration: 5, ease: "linear" },
+                y: { repeat: Infinity, duration: 4, ease: "easeInOut" }
+              }}
+              className="absolute bottom-[20%] left-[10%] w-16 h-16 bg-gradient-to-br from-[#1F3C88] to-[#172d66] rounded-xl shadow-[0_0_20px_rgba(31,60,136,0.5)] border border-[#D4AF37]/50 flex items-center justify-center z-20"
+            >
+              <Ticket className="w-7 h-7 text-[#D4AF37]" />
+            </motion.div>
+
+            {/* Floating QR Code */}
+            <motion.div
+              animate={{ 
+                y: [0, -10, 0],
+                rotate: [0, -3, 3, 0]
+              }}
+              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 2 }}
+              className="absolute bottom-[10%] right-[15%] w-16 h-16 bg-white/90 backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200 flex items-center justify-center z-20"
+            >
+              <QrCode className="w-8 h-8 text-[#1A1A1A]" />
             </motion.div>
           </motion.div>
         </div>
