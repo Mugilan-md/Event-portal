@@ -78,7 +78,7 @@ function App() {
           />
 
           {/* Hidden Admin Login Page (No Public Layout to prevent leak of links) */}
-          <Route path="/admin-login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminLogin />} />
 
           {/* Protected Admin Routes with Custom Layout */}
           <Route

@@ -108,17 +108,7 @@ export default function Navbar() {
               );
             })}
 
-            {/* Login Link */}
-            {!adminUser && (
-              <Link
-                to="/admin-login"
-                className={`px-2 py-2 text-xs font-bold uppercase tracking-wider transition-colors duration-300 hover:text-[#1F3C88] ${
-                  isActive("/admin-login") ? "text-[#1F3C88]" : "text-[#666666]"
-                }`}
-              >
-                Login
-              </Link>
-            )}
+            {/* Login Link Removed per user request */}
 
             {/* Sticky/Scroll Register Button */}
             <AnimatePresence>
@@ -238,15 +228,7 @@ export default function Navbar() {
                 );
               })}
 
-              {!adminUser && (
-                <Link
-                  to="/admin-login"
-                  onClick={() => setIsOpen(false)}
-                  className="block px-3 py-3 rounded-lg text-sm font-bold uppercase tracking-wider text-[#666666] hover:bg-[#1F3C88]/5 hover:text-[#1F3C88]"
-                >
-                  Login
-                </Link>
-              )}
+              {/* Login Link Removed per user request */}
 
               {adminUser ? (
                 <div className="pt-4 border-t border-[#D4AF37]/15 space-y-2">

@@ -30,7 +30,7 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (!authenticated) {
-    return <Navigate to="/admin-login" replace />;
+    return <Navigate to="/admin" replace />;
   }
 
   return children;

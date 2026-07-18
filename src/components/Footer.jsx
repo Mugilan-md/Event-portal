@@ -55,9 +55,7 @@ export default function Footer() {
               <li>
                 <Link to="/events" className="text-sm text-[#666666] hover:text-[#1F3C88] transition-colors">Upcoming Events</Link>
               </li>
-              <li>
-                <Link to="/admin-login" className="text-xs text-[#666666] hover:text-[#1F3C88] transition-colors">Admin Login</Link>
-              </li>
+              {/* Admin Login Link Removed per user request */}
             </ul>
           </div>
 
