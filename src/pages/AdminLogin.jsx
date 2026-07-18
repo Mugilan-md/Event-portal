@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Shield, Mail, Lock, UserPlus, LogIn, KeyRound } from "lucide-react";
+import { Shield, Mail, Lock, UserPlus, LogIn, KeyRound, BookOpen, GraduationCap, Scroll, Calendar } from "lucide-react";
+import login3dImg from "../assets/login-3d.png";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, checkAdminExists, registerFirstAdmin } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
 
@@ -92,130 +93,196 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#030014] flex items-center justify-center px-4 overflow-hidden py-16">
-      {/* Glow Rings */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="relative min-h-screen bg-[#F9F5EF] flex flex-col md:flex-row overflow-hidden">
+      {/* Left Hero Section (3D Digital Campus Gate) */}
+      <div className="w-full md:w-1/2 relative flex items-center justify-center bg-[#030014] p-8 min-h-[40vh] md:min-h-screen overflow-hidden">
+        {/* Glow Effects */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#1F3C88]/30 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#D4AF37]/20 rounded-full blur-[80px] pointer-events-none" />
 
-      <div className="max-w-md w-full relative z-10 space-y-6">
-        {/* Shield Icon */}
-        <div className="text-center space-y-2">
-          <div className="inline-flex p-3 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 animate-pulse">
-            <Shield className="w-8 h-8" />
+        {/* 3D Main Graphic */}
+        <motion.div
+          animate={{ y: [-15, 15, -15] }}
+          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+          className="relative w-full max-w-lg z-10 aspect-square"
+        >
+          <img 
+            src={login3dImg} 
+            alt="3D Campus Digital Gateway" 
+            className="w-full h-full object-contain drop-shadow-2xl"
+          />
+
+          {/* Orbiting Icons */}
+          {/* Graduation Cap */}
+          <motion.div
+            animate={{ 
+              x: [0, 20, 0, -20, 0],
+              y: [0, -20, 0, 20, 0],
+              rotate: [0, 10, 0, -10, 0]
+            }}
+            transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+            className="absolute top-[15%] left-[10%] w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl border border-[#D4AF37]/30 flex items-center justify-center z-20"
+          >
+            <GraduationCap className="w-6 h-6 text-[#D4AF37]" />
+          </motion.div>
+
+          {/* Book Open */}
+          <motion.div
+            animate={{ 
+              x: [0, -15, 0, 15, 0],
+              y: [0, 15, 0, -15, 0],
+            }}
+            transition={{ repeat: Infinity, duration: 7, ease: "linear", delay: 1 }}
+            className="absolute top-[30%] right-[10%] w-12 h-12 bg-[#1F3C88]/50 backdrop-blur-md rounded-2xl shadow-xl border border-[#1F3C88]/50 flex items-center justify-center z-20"
+          >
+            <BookOpen className="w-5 h-5 text-white" />
+          </motion.div>
+
+          {/* Scroll */}
+          <motion.div
+            animate={{ 
+              rotateY: 360,
+              y: [-10, 10, -10]
+            }}
+            transition={{ 
+              rotateY: { repeat: Infinity, duration: 6, ease: "linear" },
+              y: { repeat: Infinity, duration: 5, ease: "easeInOut" }
+            }}
+            className="absolute bottom-[25%] left-[15%] w-16 h-16 bg-gradient-to-br from-[#1F3C88] to-[#172d66] rounded-xl shadow-[0_0_20px_rgba(31,60,136,0.5)] border border-[#D4AF37]/50 flex items-center justify-center z-20"
+          >
+            <Scroll className="w-7 h-7 text-[#D4AF37]" />
+          </motion.div>
+
+          {/* Calendar */}
+          <motion.div
+            animate={{ 
+              y: [0, -15, 0],
+              rotate: [0, -5, 5, 0]
+            }}
+            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 2 }}
+            className="absolute bottom-[15%] right-[15%] w-14 h-14 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 flex items-center justify-center z-20"
+          >
+            <Calendar className="w-6 h-6 text-white" />
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Right Form Section */}
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-16 relative z-10">
+        <div className="max-w-md w-full space-y-8">
+          
+          <div className="space-y-3">
+            <div className="inline-flex p-3 rounded-2xl bg-[#1F3C88]/10 border border-[#1F3C88]/20 text-[#1F3C88]">
+              <Shield className="w-8 h-8" />
+            </div>
+            <h1 className="text-3xl font-extrabold text-[#1A1A1A] font-serif">
+              {isAdminSetup ? "Initialize Master Admin" : "Admin Dashboard Login"}
+            </h1>
+            <p className="text-sm text-gray-600">
+              {isAdminSetup 
+                ? "No administrator account detected in Firestore. Set up your master keys below."
+                : "Enter your credentials to access the central campus management portal."
+              }
+            </p>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
-            {isAdminSetup ? "Initialize Master Admin" : "Admin Panel Login"}
-          </h1>
-          <p className="text-xs text-gray-500 max-w-xs mx-auto">
-            {isAdminSetup 
-              ? "No administrator account detected in Firestore. Set up your master keys below."
-              : "Private dashboard control deck. Unauthorized accesses are logged."
-            }
-          </p>
-        </div>
 
-        {/* Card */}
-        <div className="p-6 sm:p-8 rounded-2xl glass-panel border border-purple-500/20 shadow-2xl">
-          {isAdminSetup ? (
-            // Create Admin Form
-            <form onSubmit={handleSetup} className="space-y-5">
-              {/* Email */}
-              <div className="space-y-2">
-                <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-purple-400" /> Admin Email Address
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. administrator@portal.com"
-                  className="w-full px-4 py-3 rounded-xl bg-purple-950/10 border border-purple-500/20 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-purple-500 transition-colors"
-                />
-              </div>
-
-              {/* Password */}
-              <div className="space-y-2">
-                <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest flex items-center gap-1.5">
-                  <Lock className="w-3.5 h-3.5 text-purple-400" /> Choose Secure Password
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Minimum 6 characters"
-                  className="w-full px-4 py-3 rounded-xl bg-purple-950/10 border border-purple-500/20 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-purple-500 transition-colors"
-                />
-              </div>
-
-              {/* Confirm Password */}
-              <div className="space-y-2">
-                <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest flex items-center gap-1.5">
-                  <KeyRound className="w-3.5 h-3.5 text-purple-400" /> Re-enter Password
-                </label>
-                <input
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm password"
-                  className="w-full px-4 py-3 rounded-xl bg-purple-950/10 border border-purple-500/20 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-purple-500 transition-colors"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-500 hover:to-blue-400 text-white font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2"
-              >
-                <UserPlus className="w-4 h-4" /> Create Master Admin
-              </button>
-            </form>
-          ) : (
-            // Standard Sign In Form
-            <form onSubmit={handleLogin} className="space-y-5">
-              {/* Email */}
-              <div className="space-y-2">
-                <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-purple-400" /> Account Email
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter admin email address"
-                  className="w-full px-4 py-3 rounded-xl bg-purple-950/10 border border-purple-500/20 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-purple-500 transition-colors"
-                />
-              </div>
-
-              {/* Password */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest flex items-center gap-1.5">
-                    <Lock className="w-3.5 h-3.5 text-purple-400" /> Account Password
+          {/* Form Card */}
+          <div className="p-8 rounded-3xl bg-white border border-[#D4AF37]/30 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            {isAdminSetup ? (
+              // Create Admin Form
+              <form onSubmit={handleSetup} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
+                    <Mail className="w-3.5 h-3.5 text-[#1F3C88]" /> Admin Email Address
                   </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="e.g. admin@university.edu"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                  />
                 </div>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter account password"
-                  className="w-full px-4 py-3 rounded-xl bg-purple-950/10 border border-purple-500/20 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-purple-500 transition-colors"
-                />
-              </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-500 hover:to-blue-400 text-white font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2"
-              >
-                <LogIn className="w-4 h-4" /> Authenticate Securely
-              </button>
-            </form>
-          )}
-        </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
+                    <Lock className="w-3.5 h-3.5 text-[#1F3C88]" /> Secure Password
+                  </label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Minimum 6 characters"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                  />
+                </div>
 
-        {/* Demo Indicator helper */}
-        <div className="p-3.5 rounded-xl bg-blue-950/20 border border-blue-500/10 text-[10px] text-center text-gray-500 leading-normal">
-          Demo Default Credentials (if mock fallback active): <br />
-          Email: <span className="text-blue-400 font-semibold">admin@portal.com</span> • Password: <span className="text-blue-400 font-semibold">admin123</span>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
+                    <KeyRound className="w-3.5 h-3.5 text-[#1F3C88]" /> Re-enter Password
+                  </label>
+                  <input
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm password"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl bg-[#1F3C88] hover:bg-[#172d66] text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 border border-[#D4AF37]/30"
+                >
+                  <UserPlus className="w-4 h-4 text-[#D4AF37]" /> Initialize Account
+                </button>
+              </form>
+            ) : (
+              // Standard Sign In Form
+              <form onSubmit={handleLogin} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
+                    <Mail className="w-3.5 h-3.5 text-[#1F3C88]" /> Account Email
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter admin email address"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
+                    <Lock className="w-3.5 h-3.5 text-[#1F3C88]" /> Account Password
+                  </label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter account password"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl bg-[#1F3C88] hover:bg-[#172d66] text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 border border-[#D4AF37]/30"
+                >
+                  <LogIn className="w-4 h-4 text-[#D4AF37]" /> Access Portal
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Demo Indicator */}
+          <div className="p-4 rounded-xl bg-[#1F3C88]/5 border border-[#1F3C88]/10 text-xs text-center text-gray-500 leading-relaxed shadow-inner">
+            Authorized Personnel Only. <br />
+            Demo Email: <span className="text-[#1F3C88] font-bold">admin@portal.com</span> • Pass: <span className="text-[#1F3C88] font-bold">admin123</span>
+          </div>
         </div>
       </div>
     </div>
