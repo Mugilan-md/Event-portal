@@ -39,7 +39,11 @@ export default function Home() {
   useEffect(() => {
     if (!featuredEvent) return;
 
-    const targetDate = new Date(`${featuredEvent.date}T${featuredEvent.time || "00:00:00"}`);
+    const tDate = featuredEvent.timerDate || featuredEvent.date;
+    const tTime = featuredEvent.timerTime || featuredEvent.time || "00:00:00";
+    
+    // Replace T with space for reliable parsing of AM/PM formats
+    const targetDate = new Date(`${tDate} ${tTime}`);
 
     const interval = setInterval(() => {
       const now = new Date();

@@ -31,6 +31,8 @@ export default function ManageEvents() {
     category: "Hackathon",
     status: "open",
     totalSeats: 100,
+    timerDate: "",
+    timerTime: "",
     coordinators: [{ name: "", phone: "" }]
   });
 
@@ -72,6 +74,8 @@ export default function ManageEvents() {
       category: "Hackathon",
       status: "open",
       totalSeats: 100,
+      timerDate: "",
+      timerTime: "",
       coordinators: [{ name: "", phone: "" }]
     });
     setIsModalOpen(true);
@@ -95,6 +99,8 @@ export default function ManageEvents() {
       category: event.category || "Hackathon",
       status: event.status || "open",
       totalSeats: event.totalSeats || 100,
+      timerDate: event.timerDate || "",
+      timerTime: event.timerTime || "",
       coordinators: event.coordinators && event.coordinators.length > 0 
         ? event.coordinators 
         : [{ name: "", phone: "" }]
@@ -410,7 +416,7 @@ export default function ManageEvents() {
                     {/* Date / Time */}
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest block">Date</label>
+                        <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest block">Event Date</label>
                         <input
                           type="date"
                           name="date"
@@ -421,7 +427,7 @@ export default function ManageEvents() {
                         />
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest block">Time</label>
+                        <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest block">Event Time</label>
                         <input
                           type="text"
                           name="time"
@@ -431,6 +437,31 @@ export default function ManageEvents() {
                           className="w-full px-4 py-2.5 rounded-xl bg-purple-950/10 border border-purple-500/20 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-purple-500"
                         />
                       </div>
+                    </div>
+
+                    {/* Custom Timer Date / Time */}
+                    <div className="grid grid-cols-2 gap-4 bg-purple-900/10 p-4 rounded-xl border border-purple-500/10">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-purple-300 uppercase tracking-widest flex items-center gap-1"><Hourglass className="w-3 h-3"/> Countdown Timer Date</label>
+                        <input
+                          type="date"
+                          name="timerDate"
+                          value={formData.timerDate}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-2.5 rounded-xl bg-purple-950/20 border border-purple-500/30 text-white text-sm focus:outline-none focus:border-purple-500"
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-purple-300 uppercase tracking-widest flex items-center gap-1"><Hourglass className="w-3 h-3"/> Countdown Timer Time</label>
+                        <input
+                          type="time"
+                          name="timerTime"
+                          value={formData.timerTime}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-2.5 rounded-xl bg-purple-950/20 border border-purple-500/30 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-purple-500"
+                        />
+                      </div>
+                      <p className="col-span-2 text-[10px] text-gray-400">Leave blank to use the standard Event Date & Time for the homepage countdown.</p>
                     </div>
 
                     {/* Fee / Seats */}
