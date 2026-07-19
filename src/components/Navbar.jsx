@@ -72,7 +72,7 @@ export default function Navbar() {
               className="w-[72px] h-[72px] object-contain shrink-0 group-hover:scale-110 transition-transform duration-300"
             />
             <span className="font-extrabold text-2xl sm:text-3xl tracking-tight text-[#1F3C88] font-serif transition-all duration-300">
-              VSB <span className="text-[#DAA520] drop-shadow-[0_0_12px_rgba(218,165,32,0.6)] group-hover:drop-shadow-[0_0_24px_rgba(218,165,32,1)] transition-all duration-300">Portal</span>
+              VSB <span className="text-[#FFD700] drop-shadow-[0_0_14px_rgba(255,215,0,0.7)] group-hover:drop-shadow-[0_0_28px_rgba(255,215,0,1)] transition-all duration-300">Portal</span>
             </span>
           </Link>
 
