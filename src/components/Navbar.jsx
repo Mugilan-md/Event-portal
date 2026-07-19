@@ -130,8 +130,8 @@ export default function Navbar() {
               )}
             </AnimatePresence>
 
-            {/* Admin Controls */}
-            {adminUser && (
+            {/* Admin Controls - Only show on admin routes */}
+            {adminUser && location.pathname.startsWith("/admin") && (
               <div className="flex items-center gap-4 border-l border-[#D4AF37]/20 pl-4">
                 <Link
                   to="/admin-dashboard"
@@ -171,7 +171,7 @@ export default function Navbar() {
               )}
             </AnimatePresence>
 
-            {adminUser && (
+            {adminUser && location.pathname.startsWith("/admin") && (
               <Link
                 to="/admin-dashboard"
                 className="p-2 rounded-lg bg-[#1F3C88]/10 border border-[#1F3C88]/20 text-[#1F3C88]"
@@ -230,7 +230,7 @@ export default function Navbar() {
 
               {/* Login Link Removed per user request */}
 
-              {adminUser ? (
+              {adminUser && location.pathname.startsWith("/admin") ? (
                 <div className="pt-4 border-t border-[#D4AF37]/15 space-y-2">
                   <Link
                     to="/admin-dashboard"
