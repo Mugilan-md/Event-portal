@@ -65,12 +65,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-12 h-12 rounded-xl overflow-hidden group-hover:scale-110 transition-transform shrink-0 border-2 border-[#D4AF37]/40 shadow-md group-hover:shadow-[0_0_12px_rgba(212,175,55,0.4)] duration-300">
-              <img src={logoImg} alt="Logo" className="w-full h-full object-cover" />
-            </div>
-            <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-[#1F3C88] font-serif drop-shadow-[0_0_8px_rgba(31,60,136,0.25)] group-hover:drop-shadow-[0_0_16px_rgba(31,60,136,0.5)] transition-all duration-300">
-              VSB <span className="text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] group-hover:drop-shadow-[0_0_16px_rgba(212,175,55,0.7)]">Portal</span>
+          <Link to="/" className="flex items-center gap-3 group py-2">
+            <img
+              src={logoImg}
+              alt="VSB Logo"
+              className="w-14 h-14 object-contain shrink-0 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_8px_rgba(212,175,55,0.3)] group-hover:drop-shadow-[0_0_14px_rgba(212,175,55,0.6)]"
+            />
+            <span className="font-extrabold text-2xl sm:text-3xl tracking-tight text-[#1F3C88] font-serif transition-all duration-300">
+              VSB <span className="text-[#D4AF37] drop-shadow-[0_0_10px_rgba(212,175,55,0.5)] group-hover:drop-shadow-[0_0_22px_rgba(212,175,55,0.9)] transition-all duration-300">Portal</span>
             </span>
           </Link>
 
@@ -121,7 +123,7 @@ export default function Navbar() {
                 >
                   <Link
                     to="/events"
-                    className="px-5 py-2.5 rounded-lg bg-[#1F3C88] hover:bg-[#172d66] text-white text-xs font-extrabold uppercase tracking-wider transition-all duration-300 shadow-md border border-[#D4AF37]/30 flex items-center gap-1.5"
+                    className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs font-extrabold uppercase tracking-wider transition-all duration-300 shadow-[0_4px_14px_rgba(14,165,233,0.35)] hover:shadow-[0_0_18px_rgba(14,165,233,0.6)] hover:scale-105 border border-sky-400/30 flex items-center gap-1.5"
                   >
                     <Award className="w-3.5 h-3.5 text-[#D4AF37]" />
                     Register Now
@@ -163,7 +165,7 @@ export default function Navbar() {
                 >
                   <Link
                     to="/events"
-                    className="px-3.5 py-2 rounded-lg bg-[#1F3C88] text-white text-[10px] font-extrabold uppercase tracking-wider border border-[#D4AF37]/30"
+                    className="px-3.5 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-[10px] font-extrabold uppercase tracking-wider border border-sky-400/30 hover:shadow-[0_0_12px_rgba(14,165,233,0.5)] transition-all"
                   >
                     Register
                   </Link>
