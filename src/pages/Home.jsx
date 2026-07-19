@@ -127,7 +127,7 @@ export default function Home() {
             >
               <Link
                 to="/events"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#1F3C88] hover:bg-[#172d66] text-white font-bold transition-all duration-300 shadow-[0_4px_14px_rgba(31,60,136,0.3)] hover:shadow-[0_6px_20px_rgba(31,60,136,0.4)] border border-[#D4AF37]/30 group"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold transition-all duration-300 shadow-[0_4px_14px_rgba(14,165,233,0.4)] hover:shadow-[0_6px_20px_rgba(14,165,233,0.6)] border border-[#D4AF37]/30 group"
               >
                 Explore Events
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -249,7 +249,7 @@ export default function Home() {
                 </p>
                 <Link
                   to="/events"
-                  className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#1F3C88] text-white font-bold text-sm transition-all hover:bg-[#172d66] hover:scale-105 shadow-md border border-[#D4AF37]/30"
+                  className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-sky-500 text-white font-bold text-sm transition-all hover:bg-sky-600 hover:scale-105 shadow-md border border-[#D4AF37]/30"
                 >
                   <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
                   Browse Past Events
@@ -286,7 +286,7 @@ export default function Home() {
 
                 <Link
                   to={`/event/${featuredEvent.id}`}
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#1F3C88] text-white font-bold text-sm transition-all hover:bg-[#172d66] hover:scale-105 hover:shadow-[0_0_20px_rgba(31,60,136,0.5)] shadow-md border border-[#D4AF37]/30 group"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-sky-500 text-white font-bold text-sm transition-all hover:bg-sky-600 hover:scale-105 hover:shadow-[0_0_24px_rgba(14,165,233,0.6)] shadow-md border border-[#D4AF37]/30 group"
                 >
                   <Hourglass className="w-4 h-4 text-[#D4AF37] animate-spin group-hover:hidden" />
                   <CheckCircle className="w-4 h-4 text-[#D4AF37] hidden group-hover:block" />
@@ -307,7 +307,7 @@ export default function Home() {
           </div>
           <Link
             to="/events"
-            className="text-sm font-bold text-[#1F3C88] hover:text-[#172d66] flex items-center gap-1 transition-colors"
+            className="text-sm font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1 transition-colors"
           >
             See all events <ArrowRight className="w-4 h-4" />
           </Link>
@@ -367,12 +367,12 @@ export default function Home() {
                         {event.registrationFee === 0 ? "FREE" : `₹${event.registrationFee}`}
                       </div>
                     </div>
-                    <Link
-                      to={`/event/${event.id}`}
-                      className="px-4 py-2 rounded-lg bg-[#1F3C88] hover:bg-[#172d66] text-white font-bold text-xs transition-colors shadow-sm"
-                    >
-                      Details
-                    </Link>
+                  <Link
+                    to={`/event/${event.id}`}
+                    className="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs transition-all shadow-sm hover:shadow-[0_0_12px_rgba(14,165,233,0.5)] hover:scale-105"
+                  >
+                    Details
+                  </Link>
                   </div>
                 </div>
               </motion.div>

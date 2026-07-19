@@ -65,12 +65,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg overflow-hidden group-hover:scale-105 transition-transform shrink-0 border border-[#D4AF37]/20">
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <div className="w-12 h-12 rounded-xl overflow-hidden group-hover:scale-110 transition-transform shrink-0 border-2 border-[#D4AF37]/40 shadow-md group-hover:shadow-[0_0_12px_rgba(212,175,55,0.4)] duration-300">
               <img src={logoImg} alt="Logo" className="w-full h-full object-cover" />
             </div>
-            <span className="font-extrabold text-lg sm:text-xl tracking-tight text-[#1F3C88] font-serif">
-              VSB <span className="text-[#D4AF37]">Portal</span>
+            <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-[#1F3C88] font-serif drop-shadow-[0_0_8px_rgba(31,60,136,0.25)] group-hover:drop-shadow-[0_0_16px_rgba(31,60,136,0.5)] transition-all duration-300">
+              VSB <span className="text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] group-hover:drop-shadow-[0_0_16px_rgba(212,175,55,0.7)]">Portal</span>
             </span>
           </Link>
 
