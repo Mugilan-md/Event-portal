@@ -9,6 +9,7 @@ export default function Home() {
   const [events, setEvents] = useState([]);
   const [featuredEvent, setFeaturedEvent] = useState(null);
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [timerFinished, setTimerFinished] = useState(false);
   const [loading, setLoading] = useState(true);
   const [activeFaq, setActiveFaq] = useState(null);
 
@@ -52,6 +53,7 @@ export default function Home() {
       if (difference <= 0) {
         clearInterval(interval);
         setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setTimerFinished(true);
       } else {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
@@ -223,42 +225,75 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-8 rounded-2xl bg-white border border-[#D4AF37]/20 text-center relative overflow-hidden shadow-xl"
+            whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+            className="p-8 rounded-2xl bg-white border border-[#D4AF37]/20 text-center relative overflow-hidden shadow-xl transition-all duration-300"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#1F3C88]/5 rounded-full blur-2xl pointer-events-none" />
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-[#1F3C88] mb-2">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-[#1F3C88] mb-2 drop-shadow-sm">
               Next Live Event Countdown
             </h3>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A] mb-6 font-serif">
-              {featuredEvent.title}
-            </h2>
+            
+            {timerFinished ? (
+              <div className="py-12 flex flex-col items-center justify-center space-y-4">
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                >
+                  <Hourglass className="w-12 h-12 text-[#D4AF37] mx-auto mb-2" />
+                </motion.div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A] font-serif">
+                  Registrations Closed
+                </h2>
+                <p className="text-[#1F3C88] font-bold text-lg drop-shadow-[0_0_10px_rgba(31,60,136,0.3)]">
+                  Upcoming events will be posted soon. Stay tuned!
+                </p>
+                <Link
+                  to="/events"
+                  className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#1F3C88] text-white font-bold text-sm transition-all hover:bg-[#172d66] hover:scale-105 shadow-md border border-[#D4AF37]/30"
+                >
+                  <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
+                  Browse Past Events
+                </Link>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A] mb-6 font-serif hover:text-[#1F3C88] transition-colors">
+                  {featuredEvent.title}
+                </h2>
 
-            {/* Timer Grid */}
-            <div className="grid grid-cols-4 gap-2 sm:gap-6 max-w-xl mx-auto mb-8">
-              {[
-                { value: countdown.days, label: "Days" },
-                { value: countdown.hours, label: "Hours" },
-                { value: countdown.minutes, label: "Minutes" },
-                { value: countdown.seconds, label: "Seconds" }
-              ].map((time, idx) => (
-                <div key={idx} className="bg-[#F9F5EF] border border-[#1F3C88]/10 p-3 sm:p-5 rounded-xl shadow-inner">
-                  <div className="text-2xl sm:text-4xl font-extrabold text-[#1F3C88] font-mono">
-                    {String(time.value).padStart(2, "0")}
-                  </div>
-                  <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest mt-1">
-                    {time.label}
-                  </div>
+                {/* Timer Grid */}
+                <div className="grid grid-cols-4 gap-2 sm:gap-6 max-w-xl mx-auto mb-8">
+                  {[
+                    { value: countdown.days, label: "Days" },
+                    { value: countdown.hours, label: "Hours" },
+                    { value: countdown.minutes, label: "Minutes" },
+                    { value: countdown.seconds, label: "Seconds" }
+                  ].map((time, idx) => (
+                    <motion.div 
+                      key={idx} 
+                      whileHover={{ scale: 1.05, borderColor: "rgba(212, 175, 55, 0.5)" }}
+                      className="bg-[#F9F5EF] border border-[#1F3C88]/10 p-3 sm:p-5 rounded-xl shadow-inner transition-all duration-300"
+                    >
+                      <div className="text-2xl sm:text-4xl font-extrabold text-[#1F3C88] font-mono drop-shadow-[0_2px_4px_rgba(31,60,136,0.2)]">
+                        {String(time.value).padStart(2, "0")}
+                      </div>
+                      <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest mt-1 font-bold">
+                        {time.label}
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            <Link
-              to={`/event/${featuredEvent.id}`}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#1F3C88] text-white font-bold text-sm transition-all hover:bg-[#172d66] shadow-md border border-[#D4AF37]/30"
-            >
-              <Hourglass className="w-4 h-4 text-[#D4AF37] animate-spin" />
-              Register Now before seats run out
-            </Link>
+                <Link
+                  to={`/event/${featuredEvent.id}`}
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#1F3C88] text-white font-bold text-sm transition-all hover:bg-[#172d66] hover:scale-105 hover:shadow-[0_0_20px_rgba(31,60,136,0.5)] shadow-md border border-[#D4AF37]/30 group"
+                >
+                  <Hourglass className="w-4 h-4 text-[#D4AF37] animate-spin group-hover:hidden" />
+                  <CheckCircle className="w-4 h-4 text-[#D4AF37] hidden group-hover:block" />
+                  <span className="text-white">Register Now before seats run out</span>
+                </Link>
+              </>
+            )}
           </motion.div>
         </section>
       )}
@@ -267,7 +302,7 @@ export default function Home() {
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 gap-4">
           <div>
-            <h2 className="text-3xl font-extrabold text-[#1A1A1A] font-serif">Upcoming Technology Gatherings</h2>
+            <h2 className="text-3xl font-extrabold text-[#1A1A1A] font-serif drop-shadow-sm">Upcoming Technology Gatherings</h2>
             <p className="text-gray-600 mt-2">Handpicked elite technical symposia and competitions</p>
           </div>
           <Link
@@ -350,7 +385,7 @@ export default function Home() {
       <section id="schedule" className="relative z-10 py-16 bg-white border-y border-[#D4AF37]/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-[#1A1A1A] font-serif">Event Schedule Timeline</h2>
+            <h2 className="text-3xl font-extrabold text-[#1A1A1A] font-serif drop-shadow-sm">Event Schedule Timeline</h2>
             <p className="text-gray-600 mt-2">Plan your day with our tentative itinerary</p>
           </div>
 
@@ -378,7 +413,7 @@ export default function Home() {
       {/* Rules & FAQ Accordion */}
       <section id="faqs" className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-[#1A1A1A] font-serif">Rules & FAQs</h2>
+            <h2 className="text-3xl font-extrabold text-[#1A1A1A] font-serif drop-shadow-sm">Rules & FAQs</h2>
             <p className="text-gray-600 mt-2">Everything you need to know before registering</p>
           </div>
 
@@ -455,7 +490,7 @@ export default function Home() {
                       <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Message</label>
                       <textarea rows="4" placeholder="How can we help?" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800"></textarea>
                     </div>
-                    <button type="submit" className="w-full flex items-center justify-center gap-2 bg-[#D4AF37] hover:bg-[#c39b26] text-[#1F3C88] font-bold py-3 px-4 rounded-lg transition-colors shadow-md">
+                    <button type="submit" className="w-full flex items-center justify-center gap-2 bg-[#D4AF37] hover:bg-[#c39b26] hover:scale-[1.02] text-[#1F3C88] font-bold py-3 px-4 rounded-lg transition-all shadow-md">
                       <Send className="w-4 h-4" />
                       Send Message
                     </button>
@@ -469,9 +504,9 @@ export default function Home() {
       <section id="about" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] font-serif">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] font-serif drop-shadow-sm">
               Why Register With <br />
-              <span className="text-[#1F3C88]">VSB Event Portal?</span>
+              <span className="text-[#1F3C88] drop-shadow-[0_0_15px_rgba(31,60,136,0.2)]">VSB Event Portal?</span>
             </h2>
             <p className="text-gray-600 leading-relaxed">
               We provide technical communities with a robust, decentralized, and visually rich management hub. Attendees receive immediate confirmation credentials, unique verification QR codes, and streamlined coordinator supports.
