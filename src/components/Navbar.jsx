@@ -65,14 +65,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group py-2">
+          <Link to="/" className="flex items-center gap-3 group py-1">
             <img
               src={logoImg}
               alt="VSB Logo"
-              className="w-14 h-14 object-contain shrink-0 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_8px_rgba(212,175,55,0.3)] group-hover:drop-shadow-[0_0_14px_rgba(212,175,55,0.6)]"
+              className="w-[72px] h-[72px] object-contain shrink-0 group-hover:scale-110 transition-transform duration-300"
             />
             <span className="font-extrabold text-2xl sm:text-3xl tracking-tight text-[#1F3C88] font-serif transition-all duration-300">
-              VSB <span className="text-[#D4AF37] drop-shadow-[0_0_10px_rgba(212,175,55,0.5)] group-hover:drop-shadow-[0_0_22px_rgba(212,175,55,0.9)] transition-all duration-300">Portal</span>
+              VSB <span className="text-[#DAA520] drop-shadow-[0_0_12px_rgba(218,165,32,0.6)] group-hover:drop-shadow-[0_0_24px_rgba(218,165,32,1)] transition-all duration-300">Portal</span>
             </span>
           </Link>
 
