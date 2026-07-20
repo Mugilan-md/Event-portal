@@ -2,16 +2,45 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Users, Award, Shield, ArrowRight, Hourglass, Plus, Minus, Send, CheckCircle, Ticket, QrCode, MessageSquare } from "lucide-react";
-import { getEventsList } from "../firebase/config";
+import { getEventsList, addContactQuery } from "../firebase/config";
+import { useToast } from "../context/ToastContext";
 import heroImg from "../assets/hero-3d.png";
 
 export default function Home() {
+  const { showToast } = useToast();
   const [events, setEvents] = useState([]);
   const [featuredEvent, setFeaturedEvent] = useState(null);
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [timerFinished, setTimerFinished] = useState(false);
   const [loading, setLoading] = useState(true);
   const [activeFaq, setActiveFaq] = useState(null);
+
+  // Contact Form State
+  const [contactForm, setContactForm] = useState({ name: "", email: "", message: "" });
+  const [sendingQuery, setSendingQuery] = useState(false);
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    if (!contactForm.name.trim() || !contactForm.email.trim() || !contactForm.message.trim()) {
+      showToast("Please fill in all fields.", "error");
+      return;
+    }
+
+    try {
+      setSendingQuery(true);
+      await addContactQuery({
+        name: contactForm.name.trim(),
+        email: contactForm.email.trim(),
+        message: contactForm.message.trim()
+      });
+      showToast("Message sent successfully! The admin will contact you.", "success");
+      setContactForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      showToast("Failed to send message: " + err.message, "error");
+    } finally {
+      setSendingQuery(false);
+    }
+  };
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -477,22 +506,47 @@ export default function Home() {
 
               <div className="bg-white p-8 rounded-2xl shadow-2xl relative">
                  <div className="absolute -top-4 -right-4 w-20 h-20 bg-[#D4AF37] rounded-full blur-2xl opacity-30" />
-                 <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                 <form className="space-y-4" onSubmit={handleContactSubmit}>
                     <div>
                       <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Full Name</label>
-                      <input type="text" placeholder="John Doe" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800" />
+                      <input 
+                        type="text" 
+                        placeholder="John Doe" 
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#1F3C88]/20 focus:border-[#1F3C88]" 
+                        required
+                      />
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Email Address</label>
-                      <input type="email" placeholder="john@university.edu" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800" />
+                      <input 
+                        type="email" 
+                        placeholder="john@university.edu" 
+                        value={contactForm.email}
+                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#1F3C88]/20 focus:border-[#1F3C88]" 
+                        required
+                      />
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Message</label>
-                      <textarea rows="4" placeholder="How can we help?" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800"></textarea>
+                      <textarea 
+                        rows="4" 
+                        placeholder="How can we help?" 
+                        value={contactForm.message}
+                        onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#1F3C88]/20 focus:border-[#1F3C88]"
+                        required
+                      ></textarea>
                     </div>
-                    <button type="submit" className="w-full flex items-center justify-center gap-2 bg-[#D4AF37] hover:bg-[#c39b26] hover:scale-[1.02] text-[#1F3C88] font-bold py-3 px-4 rounded-lg transition-all shadow-md">
+                    <button 
+                      type="submit" 
+                      disabled={sendingQuery}
+                      className="w-full flex items-center justify-center gap-2 bg-[#D4AF37] hover:bg-[#c39b26] hover:scale-[1.02] text-[#1F3C88] font-bold py-3 px-4 rounded-lg transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                       <Send className="w-4 h-4" />
-                      Send Message
+                      {sendingQuery ? "Sending..." : "Send Message"}
                     </button>
                  </form>
               </div>

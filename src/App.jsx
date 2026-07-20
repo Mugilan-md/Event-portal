@@ -15,6 +15,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ManageEvents from "./pages/ManageEvents";
 import ManageRegistrations from "./pages/ManageRegistrations";
+import ManageQueries from "./pages/ManageQueries";
 import NotFound from "./pages/NotFound";
 
 function Layout({ children }) {
@@ -107,6 +108,16 @@ function App() {
               <ProtectedRoute>
                 <Layout>
                   <ManageRegistrations />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/manage-queries"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <ManageQueries />
                 </Layout>
               </ProtectedRoute>
             }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, Users, DollarSign, Heart, ShieldAlert, ArrowRight, UserPlus, Database, ArrowUpRight, BarChart3 } from "lucide-react";
+import { Calendar, Users, DollarSign, Heart, ShieldAlert, ArrowRight, UserPlus, Database, ArrowUpRight, BarChart3, Mail } from "lucide-react";
 import { getEventsList, getRegistrationsList } from "../firebase/config";
 
 export default function AdminDashboard() {
@@ -107,7 +107,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Shortcuts / Fast Management Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Manage Events Link */}
           <Link
             to="/admin/manage-events"
@@ -141,6 +141,24 @@ export default function AdminDashboard() {
             </div>
             <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-300">
               <Users className="w-6 h-6" />
+            </div>
+          </Link>
+
+          {/* Manage Queries Link */}
+          <Link
+            to="/admin/manage-queries"
+            className="p-6 rounded-2xl glass-panel border border-purple-500/15 hover:border-purple-500/35 hover:bg-purple-950/5 transition-all group flex items-center justify-between"
+          >
+            <div className="space-y-2">
+              <h3 className="text-lg font-bold text-white group-hover:text-purple-400 transition-colors flex items-center gap-2">
+                Participant Queries <ArrowUpRight className="w-4 h-4 text-purple-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+              </h3>
+              <p className="text-xs text-gray-400 max-w-sm">
+                Read and respond to messages submitted by participants from the "Get in Touch" contact form.
+              </p>
+            </div>
+            <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-300">
+              <Mail className="w-6 h-6" />
             </div>
           </Link>
         </div>

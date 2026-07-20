@@ -160,6 +160,10 @@ if (isMockMode) {
       setLocalStorageItem("erp_registrations", existingRegs.filter(r => r.email !== "devon@apex.edu"));
     }
   }
+
+  if (!localStorage.getItem("erp_queries")) {
+    setLocalStorageItem("erp_queries", []);
+  }
 }
 
 // Simulated Auth Class
@@ -352,6 +356,25 @@ const mockFirestore = {
     if (idx === -1) throw new Error("Registration not found");
     registrations[idx] = { ...registrations[idx], ...data };
     setLocalStorageItem("erp_registrations", registrations);
+  },
+
+  addQuery: async (data) => {
+    const queries = getLocalStorageItem("erp_queries", []);
+    const newId = "q-" + Math.random().toString(36).substr(2, 9);
+    const newQuery = { ...data, id: newId, timestamp: new Date().toISOString() };
+    queries.push(newQuery);
+    setLocalStorageItem("erp_queries", queries);
+    return { id: newId };
+  },
+
+  getQueries: async () => {
+    return getLocalStorageItem("erp_queries", []);
+  },
+
+  deleteQuery: async (id) => {
+    const queries = getLocalStorageItem("erp_queries", []);
+    const filtered = queries.filter(q => q.id !== id);
+    setLocalStorageItem("erp_queries", filtered);
   }
 };
 
@@ -591,4 +614,37 @@ export const updateRegistrationData = async (id, data) => {
   }
   const docRef = fbDoc(db, "registrations", id);
   await fbUpdateDoc(docRef, data);
+};
+
+// Contact Form Queries Support
+export const addContactQuery = async (data) => {
+  if (isMockMode) {
+    return mockFirestore.addQuery(data);
+  }
+  const docRef = await fbAddDoc(fbCollection(db, "queries"), {
+    ...data,
+    timestamp: new Date().toISOString()
+  });
+  return { id: docRef.id };
+};
+
+export const getContactQueries = async () => {
+  if (isMockMode) {
+    return mockFirestore.getQueries();
+  }
+  try {
+    const snap = await fbGetDocs(fbCollection(db, "queries"));
+    return snap.docs.map(doc => ({ id: doc.id, ...doc.data() })).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  } catch (err) {
+    console.error("Firestore getContactQueries error, using mock:", err);
+    return mockFirestore.getQueries();
+  }
+};
+
+export const deleteContactQuery = async (id) => {
+  if (isMockMode) {
+    return mockFirestore.deleteQuery(id);
+  }
+  const docRef = fbDoc(db, "queries", id);
+  await fbDeleteDoc(docRef);
 };
