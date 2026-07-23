@@ -5,6 +5,7 @@ import { Menu, X, User, ShieldAlert, LogOut, Award } from "lucide-react";
 import logoImg from "../assets/logo.png";
 import { onAuthStateChanged, signOut } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
+import StarButton from "./ui/star-button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -121,13 +122,14 @@ export default function Navbar() {
                   exit={{ opacity: 0, scale: 0.8, x: 20 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Link
+                  <StarButton
                     to="/events"
-                    className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs font-extrabold uppercase tracking-wider transition-all duration-300 shadow-[0_4px_14px_rgba(14,165,233,0.35)] hover:shadow-[0_0_18px_rgba(14,165,233,0.6)] hover:scale-105 border border-sky-400/30 flex items-center gap-1.5"
+                    variant="sky"
+                    className="flex items-center gap-1.5"
                   >
                     <Award className="w-3.5 h-3.5 text-[#D4AF37]" />
                     Register Now
-                  </Link>
+                  </StarButton>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -163,12 +165,13 @@ export default function Navbar() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   className="mr-1"
                 >
-                  <Link
+                  <StarButton
                     to="/events"
-                    className="px-3.5 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-[10px] font-extrabold uppercase tracking-wider border border-sky-400/30 hover:shadow-[0_0_12px_rgba(14,165,233,0.5)] transition-all"
+                    variant="sky"
+                    className="px-3.5 py-2 text-[10px]"
                   >
                     Register
-                  </Link>
+                  </StarButton>
                 </motion.div>
               )}
             </AnimatePresence>

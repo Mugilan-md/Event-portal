@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Users, Award, Shield, ArrowRight, Hourglass, Plus, Minus, Send, CheckCircle, Ticket, QrCode, MessageSquare } from "lucide-react";
 import { getEventsList, addContactQuery } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
+import StarButton from "../components/ui/star-button";
 import heroImg from "../assets/hero-3d.png";
 
 export default function Home() {
@@ -154,13 +155,14 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="flex flex-wrap gap-4 pt-2"
             >
-              <Link
+              <StarButton
                 to="/events"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold transition-all duration-300 shadow-[0_4px_14px_rgba(14,165,233,0.4)] hover:shadow-[0_6px_20px_rgba(14,165,233,0.6)] border border-[#D4AF37]/30 group"
+                variant="sky"
+                className="inline-flex items-center justify-center gap-2"
               >
                 Explore Events
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </StarButton>
               <a
                 href="#about"
                 className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-[#1F3C88] border border-[#1F3C88]/20 font-bold transition-colors duration-300 shadow-sm"
@@ -276,13 +278,14 @@ export default function Home() {
                 <p className="text-[#1F3C88] font-bold text-lg drop-shadow-[0_0_10px_rgba(31,60,136,0.3)]">
                   Upcoming events will be posted soon. Stay tuned!
                 </p>
-                <Link
+                <StarButton
                   to="/events"
-                  className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-sky-500 text-white font-bold text-sm transition-all hover:bg-sky-600 hover:scale-105 shadow-md border border-[#D4AF37]/30"
+                  variant="sky"
+                  className="mt-6 inline-flex items-center gap-2"
                 >
                   <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
                   Browse Past Events
-                </Link>
+                </StarButton>
               </div>
             ) : (
               <>
@@ -313,14 +316,15 @@ export default function Home() {
                   ))}
                 </div>
 
-                <Link
+                <StarButton
                   to={`/event/${featuredEvent.id}`}
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-sky-500 text-white font-bold text-sm transition-all hover:bg-sky-600 hover:scale-105 hover:shadow-[0_0_24px_rgba(14,165,233,0.6)] shadow-md border border-[#D4AF37]/30 group"
+                  variant="sky"
+                  className="inline-flex items-center gap-2"
                 >
                   <Hourglass className="w-4 h-4 text-[#D4AF37] animate-spin group-hover:hidden" />
                   <CheckCircle className="w-4 h-4 text-[#D4AF37] hidden group-hover:block" />
-                  <span className="text-white">Register Now before seats run out</span>
-                </Link>
+                  <span>Register Now before seats run out</span>
+                </StarButton>
               </>
             )}
           </motion.div>
@@ -396,12 +400,13 @@ export default function Home() {
                         {event.registrationFee === 0 ? "FREE" : `₹${event.registrationFee}`}
                       </div>
                     </div>
-                  <Link
-                    to={`/event/${event.id}`}
-                    className="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs transition-all shadow-sm hover:shadow-[0_0_12px_rgba(14,165,233,0.5)] hover:scale-105"
-                  >
-                    Details
-                  </Link>
+                    <StarButton
+                      to={`/event/${event.id}`}
+                      variant="sky"
+                      className="px-4 py-2 text-xs"
+                    >
+                      Details
+                    </StarButton>
                   </div>
                 </div>
               </motion.div>
@@ -540,14 +545,15 @@ export default function Home() {
                         required
                       ></textarea>
                     </div>
-                    <button 
+                    <StarButton 
                       type="submit" 
                       disabled={sendingQuery}
-                      className="w-full flex items-center justify-center gap-2 bg-[#D4AF37] hover:bg-[#c39b26] hover:scale-[1.02] text-[#1F3C88] font-bold py-3 px-4 rounded-lg transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                      variant="gold"
+                      className="w-full flex items-center justify-center gap-2"
                     >
                       <Send className="w-4 h-4" />
                       {sendingQuery ? "Sending..." : "Send Message"}
-                    </button>
+                    </StarButton>
                  </form>
               </div>
            </div>
