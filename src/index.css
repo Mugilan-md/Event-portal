@@ -11,24 +11,23 @@
   --color-brand-success: #10B981;
 }
 
-
 @layer base {
   :root {
-    --bg-ivory: #F9F5EF;
+    --bg-ivory: #FAFAFA; /* Warm Pearl */
     --card-white: #FFFFFF;
-    --primary-blue: #1F3C88;
-    --accent-gold: #D4AF37;
-    --text-dark: #1A1A1A;
-    --text-grey: #666666;
-    --border-light: #E0E0E0;
-    --error-red: #D32F2F;
+    --primary-blue: #4338CA; /* Modern Indigo */
+    --accent-gold: #F59E0B; /* Soft Amber */
+    --text-dark: #111827; /* Deep Charcoal */
+    --text-grey: #6B7280; /* Cool Gray */
+    --border-light: #E5E7EB; /* Subtle Border */
+    --error-red: #EF4444; /* Vibrant Red */
 
     font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Cinzel", Georgia, serif;
-    letter-spacing: 0.02em;
+    font-family: "Inter", "Poppins", sans-serif; /* Modern typography */
+    letter-spacing: -0.02em; /* Sleeker look */
     color: var(--text-dark);
   }
 
@@ -39,7 +38,7 @@
     min-height: 100vh;
   }
 
-  /* Custom Scrollbar in Royal Blue and Gold tints */
+  /* Custom Scrollbar in Indigo and Amber */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -48,7 +47,7 @@
     background: var(--bg-ivory);
   }
   ::-webkit-scrollbar-thumb {
-    background: #1f3c8833; /* Soft Royal Blue tint */
+    background: #4338ca33;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -57,10 +56,10 @@
 }
 
 /* ----------------------------------------------------
-   ROYAL BLUE + GOLD PALETTE CORE OVERRIDES
+   VIBRANT & ACTIVE LEARNING PALETTE CORE OVERRIDES
    ---------------------------------------------------- */
 
-/* Force Light Ivory Background on Layout and Pages */
+/* Force Background on Layout and Pages */
 .bg-\[\#030014\], 
 .bg-\[\#02000c\], 
 .bg-\[\#070420\], 
@@ -78,26 +77,26 @@
   color: var(--text-dark) !important;
 }
 .text-gray-200 {
-  color: #333333 !important;
+  color: #374151 !important;
 }
 .text-gray-300 {
   color: var(--text-grey) !important;
 }
 .text-gray-400 {
-  color: #777777 !important;
+  color: #9CA3AF !important;
 }
 .text-gray-500 {
-  color: #888888 !important;
+  color: #6B7280 !important;
 }
 .text-gray-600 {
-  color: #aaaaaa !important;
+  color: #4B5563 !important;
 }
 
-/* Glassmorphism Panels (White surface, soft shadows, thin gold borders) */
+/* Glassmorphism Panels (White surface, soft shadows) */
 .glass-panel {
   background: var(--card-white) !important;
-  border: 1px solid rgba(212, 175, 55, 0.15) !important; /* Soft Gold border */
-  box-shadow: 0 10px 30px rgba(31, 60, 136, 0.04), 0 1px 3px rgba(31, 60, 136, 0.02) !important;
+  border: 1px solid rgba(245, 158, 11, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(67, 56, 202, 0.05), 0 1px 3px rgba(67, 56, 202, 0.02) !important;
 }
 
 .glass-panel-hover {
@@ -105,8 +104,8 @@
 }
 .glass-panel-hover:hover {
   background: var(--card-white) !important;
-  border-color: var(--accent-gold) !important; /* Gold border */
-  box-shadow: 0 20px 40px rgba(31, 60, 136, 0.08), 0 0 15px rgba(212, 175, 55, 0.1) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  box-shadow: 0 10px 40px rgba(67, 56, 202, 0.08), 0 0 20px rgba(245, 158, 11, 0.08) !important;
   transform: translateY(-4px) !important;
 }
 
@@ -115,29 +114,30 @@ input, select, textarea {
   background-color: var(--card-white) !important;
   border: 1px solid var(--border-light) !important;
   color: var(--text-dark) !important;
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Inter", "Poppins", sans-serif !important;
+  border-radius: 0.5rem !important;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: var(--primary-blue) !important; /* Royal Blue focus border */
-  box-shadow: 0 0 0 3px rgba(31, 60, 136, 0.12) !important;
+  border-color: var(--primary-blue) !important;
+  box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.15) !important;
   outline: none !important;
 }
 input::placeholder, textarea::placeholder {
-  color: #999999 !important;
+  color: #9CA3AF !important;
 }
 
 /* Tables and Admin Cells styling */
 table th {
   color: var(--text-grey) !important;
   border-bottom-color: var(--border-light) !important;
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Inter", "Poppins", sans-serif !important;
 }
 table td {
   color: var(--text-dark) !important;
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Inter", "Poppins", sans-serif !important;
 }
 tr.hover\:bg-white\/5:hover {
-  background-color: rgba(31, 60, 136, 0.03) !important;
+  background-color: rgba(67, 56, 202, 0.04) !important;
 }
 .divide-purple-500\/5 > :not([hidden]) ~ :not([hidden]),
 .divide-purple-500\/10 > :not([hidden]) ~ :not([hidden]) {
@@ -145,32 +145,32 @@ tr.hover\:bg-white\/5:hover {
 }
 
 /* ----------------------------------------------------
-   COLOR ASSIGNMENTS: ROYAL BLUE, GOLD, CALM RED
+   COLOR ASSIGNMENTS: MODERN INDIGO & SOFT AMBER
    ---------------------------------------------------- */
 
-/* Royal Blue accents & highlights */
+/* Primary accents & highlights */
 .text-purple-400, 
 .text-purple-300 {
   color: var(--primary-blue) !important;
 }
 .bg-purple-600 {
-  background-color: var(--primary-blue) !important; /* Royal Blue Primary */
+  background-color: var(--primary-blue) !important;
 }
 .bg-purple-600\/80 {
-  background-color: rgba(31, 60, 136, 0.8) !important;
+  background-color: rgba(67, 56, 202, 0.85) !important;
 }
 .hover\:bg-purple-600:hover {
-  background-color: #172d66 !important;
+  background-color: #312e81 !important; /* Darker indigo for hover */
 }
 .bg-purple-600\/15 {
-  background-color: rgba(31, 60, 136, 0.05) !important;
+  background-color: rgba(67, 56, 202, 0.05) !important;
   border-left-color: var(--primary-blue) !important;
 }
 .bg-purple-500\/10 {
-  background-color: rgba(31, 60, 136, 0.06) !important;
+  background-color: rgba(67, 56, 202, 0.06) !important;
 }
 .bg-purple-500\/20 {
-  background-color: rgba(31, 60, 136, 0.12) !important;
+  background-color: rgba(67, 56, 202, 0.12) !important;
 }
 .border-purple-500\/30, 
 .border-purple-500\/20, 
@@ -179,16 +179,16 @@ tr.hover\:bg-white\/5:hover {
   border-color: var(--border-light) !important;
 }
 
-/* Secondary Gold highlights */
+/* Secondary Amber highlights */
 .text-blue-400, 
 .text-blue-300 {
-  color: var(--accent-gold) !important; /* Gold text */
+  color: var(--accent-gold) !important; 
 }
 .bg-blue-500\/10 {
-  background-color: rgba(212, 175, 55, 0.08) !important;
+  background-color: rgba(245, 158, 11, 0.08) !important;
 }
 
-/* Error States (Calm Red) */
+/* Error States (Vibrant Red) */
 .text-rose-400,
 .text-rose-500,
 .text-rose-300 {
@@ -197,22 +197,22 @@ tr.hover\:bg-white\/5:hover {
 .bg-rose-500\/90, 
 .bg-rose-500\/20,
 .bg-rose-500\/10 {
-  background-color: rgba(211, 47, 47, 0.08) !important;
+  background-color: rgba(239, 68, 68, 0.08) !important;
   color: var(--error-red) !important;
-  border: 1px solid rgba(211, 47, 47, 0.2) !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
 }
 
-/* Glowing text and button shadows in Royal Blue and Gold */
+/* Glowing text and button shadows */
 .neon-glow-purple {
-  box-shadow: 0 4px 14px rgba(31, 60, 136, 0.2), inset 0 0 4px rgba(31, 60, 136, 0.05) !important;
+  box-shadow: 0 4px 14px rgba(67, 56, 202, 0.25), inset 0 0 4px rgba(67, 56, 202, 0.05) !important;
 }
 .neon-glow-blue {
-  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2), inset 0 0 4px rgba(212, 175, 55, 0.05) !important;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25), inset 0 0 4px rgba(245, 158, 11, 0.05) !important;
 }
 
-/* Premium Gradients (Royal Blue to Soft Gold) */
+/* Premium Gradients */
 .text-gradient {
-  background: linear-gradient(135deg, var(--primary-blue) 0%, #4667c4 50%, var(--accent-gold) 100%) !important;
+  background: linear-gradient(135deg, var(--primary-blue) 0%, #6366F1 50%, var(--accent-gold) 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -225,13 +225,13 @@ tr.hover\:bg-white\/5:hover {
 
 /* Background blur rings */
 .bg-purple-900\/10, .bg-purple-600\/10, .bg-violet-500\/60 {
-  background-color: rgba(31, 60, 136, 0.04) !important;
+  background-color: rgba(67, 56, 202, 0.04) !important;
 }
 .bg-blue-900\/10, .bg-blue-600\/10, .bg-indigo-500\/60 {
-  background-color: rgba(212, 175, 55, 0.04) !important;
+  background-color: rgba(245, 158, 11, 0.04) !important;
 }
 
-/* White Tints and Grid background in Light mode */
+/* White Tints and Grid background */
 .bg-white\/5 {
   background-color: var(--card-white) !important;
   border-color: var(--border-light) !important;
@@ -245,37 +245,40 @@ tr.hover\:bg-white\/5:hover {
 }
 .bg-grid-pattern {
   background-size: 50px 50px;
-  background-image: linear-gradient(to right, rgba(31, 60, 136, 0.02) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(31, 60, 136, 0.02) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(67, 56, 202, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(67, 56, 202, 0.04) 1px, transparent 1px);
 }
 
 /* Custom Overrides for Layout Components */
 nav.fixed {
-  background-color: rgba(249, 245, 239, 0.8) !important; /* Ivory background */
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important; /* Thin Gold line */
+  background-color: rgba(250, 250, 250, 0.85) !important; /* Warm Pearl */
+  border-bottom: 1px solid rgba(245, 158, 11, 0.15) !important; 
+  backdrop-filter: blur(12px) !important;
 }
 footer.relative {
-  background-color: #f1ebd9 !important; /* Slightly darker ivory for footer */
-  border-top: 1px solid rgba(212, 175, 55, 0.15) !important;
+  background-color: #F3F4F6 !important; /* Cool grey for depth */
+  border-top: 1px solid rgba(245, 158, 11, 0.15) !important;
 }
 
-/* Custom Card details gradient overlays (fade to Ivory instead of black) */
+/* Custom Card details gradient overlays */
 .card-gradient-overlay {
-  background: linear-gradient(to top, rgba(249, 245, 239, 0.98) 0%, rgba(249, 245, 239, 0.4) 60%, transparent 100%) !important;
+  background: linear-gradient(to top, rgba(250, 250, 250, 0.98) 0%, rgba(250, 250, 250, 0.4) 60%, transparent 100%) !important;
 }
 
 /* Button overrides */
 .bg-gradient-to-r.from-purple-600.to-blue-500 {
-  background: var(--primary-blue) !important; /* Solid Royal Blue */
-  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  background: var(--primary-blue) !important; 
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
 }
 .bg-gradient-to-tr.from-purple-600.to-blue-500 {
   background: var(--primary-blue) !important;
-  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
 }
 .hover\:from-purple-500.hover\:to-blue-400:hover {
-  background: #172d66 !important;
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.25) !important; /* Gold glow on hover */
+  background: #312e81 !important;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35) !important; /* Amber glow */
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
 }
 .border-blue-500 {
   border-color: var(--accent-gold) !important;
