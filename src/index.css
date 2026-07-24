@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-primary: #4338CA;
+  --color-brand-secondary: #6366F1;
+  --color-brand-accent: #F59E0B;
+  --color-brand-background: #FAFAFA;
+  --color-surface-card: #FFFFFF;
+  --color-text-primary: #111827;
+  --color-text-muted: #6B7280;
+  --color-brand-success: #10B981;
+}
+
+
 @layer base {
   :root {
     --bg-ivory: #F9F5EF;

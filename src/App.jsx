@@ -17,6 +17,8 @@ import ManageEvents from "./pages/ManageEvents";
 import ManageRegistrations from "./pages/ManageRegistrations";
 import ManageQueries from "./pages/ManageQueries";
 import NotFound from "./pages/NotFound";
+import StudentDashboard from "./pages/StudentDashboard";
+
 
 function Layout({ children }) {
   return (
@@ -74,6 +76,14 @@ function App() {
             element={
               <Layout>
                 <Success />
+              </Layout>
+            }
+          />
+          <Route
+            path="/student-dashboard"
+            element={
+              <Layout>
+                <StudentDashboard />
               </Layout>
             }
           />
