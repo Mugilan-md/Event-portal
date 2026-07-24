@@ -16,7 +16,7 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center justify-center gap-4">
         {/* Futuristic Spinner */}
         <div className="relative w-16 h-16">
           <div className="absolute inset-0 rounded-full border-t-2 border-r-2 border-purple-500 animate-spin" />

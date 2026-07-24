@@ -62,7 +62,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-40 bg-[#F9F5EF]/90 backdrop-blur-md border-b border-[#D4AF37]/20 shadow-sm transition-all duration-300">
+    <nav className="fixed top-0 left-0 w-full z-40 bg-[#F9F5EF]/90 backdrop-blur-md border-b border-[#F59E0B]/20 shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
@@ -72,7 +72,7 @@ export default function Navbar() {
               alt="VSB Logo"
               className="w-[72px] h-[72px] object-contain shrink-0 group-hover:scale-110 transition-transform duration-300"
             />
-            <span className="font-extrabold text-2xl sm:text-3xl tracking-tight text-[#1F3C88] font-serif transition-all duration-300">
+            <span className="font-extrabold text-2xl sm:text-3xl tracking-tight text-[#4338CA] font-serif transition-all duration-300">
               VSB <span className="text-[#FFD700] drop-shadow-[0_0_14px_rgba(255,215,0,0.7)] group-hover:drop-shadow-[0_0_28px_rgba(255,215,0,1)] transition-all duration-300">Portal</span>
             </span>
           </Link>
@@ -85,8 +85,8 @@ export default function Navbar() {
                 <a
                   key={link.path}
                   href={link.path.substring(1)}
-                  className={`px-2 py-2 text-xs font-bold uppercase tracking-wider transition-colors duration-300 hover:text-[#1F3C88] ${
-                    isActive(link.path) ? "text-[#1F3C88]" : "text-[#666666]"
+                  className={`px-2 py-2 text-xs font-bold uppercase tracking-wider transition-colors duration-300 hover:text-[#4338CA] ${
+                    isActive(link.path) ? "text-[#4338CA]" : "text-[#666666]"
                   }`}
                 >
                   {link.name}
@@ -95,15 +95,15 @@ export default function Navbar() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative px-2 py-2 text-xs font-bold uppercase tracking-wider transition-colors duration-300 hover:text-[#1F3C88] ${
-                    isActive(link.path) ? "text-[#1F3C88]" : "text-[#666666]"
+                  className={`relative px-2 py-2 text-xs font-bold uppercase tracking-wider transition-colors duration-300 hover:text-[#4338CA] ${
+                    isActive(link.path) ? "text-[#4338CA]" : "text-[#666666]"
                   }`}
                 >
                   {link.name}
                   {isActive(link.path) && (
                     <motion.div
                       layoutId="navbar-underline"
-                      className="absolute bottom-0 left-2 right-2 h-[2px] bg-[#D4AF37]"
+                      className="absolute bottom-0 left-2 right-2 h-[2px] bg-[#F59E0B]"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -127,7 +127,7 @@ export default function Navbar() {
                     variant="sky"
                     className="flex items-center gap-1.5"
                   >
-                    <Award className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <Award className="w-3.5 h-3.5 text-[#F59E0B]" />
                     Register Now
                   </StarButton>
                 </motion.div>
@@ -136,10 +136,10 @@ export default function Navbar() {
 
             {/* Admin Controls - Only show on admin routes */}
             {adminUser && location.pathname.startsWith("/admin") && (
-              <div className="flex items-center gap-4 border-l border-[#D4AF37]/20 pl-4">
+              <div className="flex items-center gap-4 border-l border-[#F59E0B]/20 pl-4">
                 <Link
                   to="/admin-dashboard"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1F3C88]/10 border border-[#1F3C88]/20 text-[#1F3C88] hover:bg-[#1F3C88]/20 text-xs font-bold transition-all"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#4338CA]/10 border border-[#4338CA]/20 text-[#4338CA] hover:bg-[#4338CA]/20 text-xs font-bold transition-all"
                 >
                   <User className="w-3.5 h-3.5" />
                   Admin Dashboard
@@ -179,7 +179,7 @@ export default function Navbar() {
             {adminUser && location.pathname.startsWith("/admin") && (
               <Link
                 to="/admin-dashboard"
-                className="p-2 rounded-lg bg-[#1F3C88]/10 border border-[#1F3C88]/20 text-[#1F3C88]"
+                className="p-2 rounded-lg bg-[#4338CA]/10 border border-[#4338CA]/20 text-[#4338CA]"
               >
                 <User className="w-4 h-4" />
               </Link>
@@ -187,7 +187,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-[#666666] hover:text-[#1F3C88] hover:bg-[#1F3C88]/5 transition-colors focus:outline-none"
+              className="p-2 rounded-lg text-[#666666] hover:text-[#4338CA] hover:bg-[#4338CA]/5 transition-colors focus:outline-none"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -203,7 +203,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden border-t border-[#D4AF37]/15 bg-[#F9F5EF] overflow-hidden"
+            className="md:hidden border-t border-[#F59E0B]/15 bg-[#F9F5EF] overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
               {navLinks.map((link) => {
@@ -213,7 +213,7 @@ export default function Navbar() {
                     key={link.path}
                     href={link.path.substring(1)}
                     onClick={() => setIsOpen(false)}
-                    className="block px-3 py-3 rounded-lg text-sm font-bold uppercase tracking-wider text-[#666666] hover:bg-[#1F3C88]/5 hover:text-[#1F3C88]"
+                    className="block px-3 py-3 rounded-lg text-sm font-bold uppercase tracking-wider text-[#666666] hover:bg-[#4338CA]/5 hover:text-[#4338CA]"
                   >
                     {link.name}
                   </a>
@@ -224,8 +224,8 @@ export default function Navbar() {
                     onClick={() => setIsOpen(false)}
                     className={`block px-3 py-3 rounded-lg text-sm font-bold uppercase tracking-wider ${
                       isActive(link.path)
-                        ? "bg-[#1F3C88]/10 border-l-4 border-[#1F3C88] text-[#1F3C88]"
-                        : "text-[#666666] hover:bg-[#1F3C88]/5 hover:text-[#1F3C88]"
+                        ? "bg-[#4338CA]/10 border-l-4 border-[#4338CA] text-[#4338CA]"
+                        : "text-[#666666] hover:bg-[#4338CA]/5 hover:text-[#4338CA]"
                     }`}
                   >
                     {link.name}
@@ -236,11 +236,11 @@ export default function Navbar() {
               {/* Login Link Removed per user request */}
 
               {adminUser && location.pathname.startsWith("/admin") ? (
-                <div className="pt-4 border-t border-[#D4AF37]/15 space-y-2">
+                <div className="pt-4 border-t border-[#F59E0B]/15 space-y-2">
                   <Link
                     to="/admin-dashboard"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm font-bold uppercase tracking-wider text-[#1F3C88] bg-[#1F3C88]/5 border border-[#1F3C88]/10"
+                    className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm font-bold uppercase tracking-wider text-[#4338CA] bg-[#4338CA]/5 border border-[#4338CA]/10"
                   >
                     <User className="w-4 h-4" />
                     Admin Dashboard

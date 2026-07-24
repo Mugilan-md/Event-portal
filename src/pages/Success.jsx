@@ -55,7 +55,7 @@ export default function Success() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030014] pt-28 pb-20 px-4 sm:px-6 lg:px-8 print:bg-white print:text-black print:pt-0 print:pb-0">
+    <div className="relative min-h-screen bg-[#FAFAFA] pt-28 pb-20 px-4 sm:px-6 lg:px-8 print:bg-white print:text-black print:pt-0 print:pb-0">
       {/* Background Blurs */}
       <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-purple-600/5 rounded-full blur-3xl pointer-events-none print:hidden" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none print:hidden" />

@@ -49,7 +49,7 @@ export default function ManageQueries() {
   );
 
   return (
-    <div className="relative min-h-screen bg-[#030014] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-[#FAFAFA] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       {/* Background glow */}
       <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -128,7 +128,7 @@ export default function ManageQueries() {
                     </div>
 
                     {/* Message Area */}
-                    <div className="p-4 rounded-xl bg-[#030014]/60 border border-purple-500/5 text-gray-300 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap flex items-start gap-2.5">
+                    <div className="p-4 rounded-xl bg-[#FAFAFA]/60 border border-purple-500/5 text-gray-300 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap flex items-start gap-2.5">
                       <MessageSquare className="w-4 h-4 text-purple-500 shrink-0 mt-0.5" />
                       <span>{query.message}</span>
                     </div>

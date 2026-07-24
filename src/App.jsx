@@ -22,7 +22,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 
 function Layout({ children }) {
   return (
-    <div className="flex flex-col min-h-screen bg-[#030014]">
+    <div className="flex flex-col min-h-screen bg-[#FAFAFA]">
       {/* Navbar has padding internally and handles floating alignment */}
       <Navbar />
       <main className="flex-grow">

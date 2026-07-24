@@ -5,7 +5,7 @@ import { ShieldAlert, Home, ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="relative min-h-screen bg-[#030014] flex items-center justify-center px-4 overflow-hidden">
+    <div className="relative min-h-screen bg-[#FAFAFA] flex items-center justify-center px-4 overflow-hidden">
       {/* Background Blurs */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl pointer-events-none" />
 

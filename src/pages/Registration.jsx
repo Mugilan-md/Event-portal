@@ -178,12 +178,12 @@ export default function Registration() {
            <motion.div 
              animate={{ rotateY: 360 }}
              transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-             className="w-full h-full bg-white border-2 border-[#1F3C88] rounded-xl flex items-center justify-center shadow-lg"
+             className="w-full h-full bg-white border-2 border-[#4338CA] rounded-xl flex items-center justify-center shadow-lg"
            >
-              <Award className="w-10 h-10 text-[#D4AF37]" />
+              <Award className="w-10 h-10 text-[#F59E0B]" />
            </motion.div>
         </div>
-        <p className="text-[#1F3C88] text-sm font-bold tracking-wider uppercase animate-pulse">
+        <p className="text-[#4338CA] text-sm font-bold tracking-wider uppercase animate-pulse">
           PREPARING SECURE CHECKOUT...
         </p>
       </div>
@@ -195,36 +195,36 @@ export default function Registration() {
   return (
     <div className="relative min-h-screen bg-[#F9F5EF] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       {/* Background Decor */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#1F3C88]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#4338CA]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-3xl mx-auto relative z-10 space-y-6">
         {/* Back navigation */}
         <Link
           to={`/event/${event?.id}`}
-          className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#1F3C88] transition-colors font-bold uppercase tracking-wider"
+          className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#4338CA] transition-colors font-bold uppercase tracking-wider"
         >
           <ChevronLeft className="w-4 h-4" /> Back to Event Details
         </Link>
 
         {/* Form Container */}
-        <div className="p-6 sm:p-10 rounded-2xl bg-white border border-[#D4AF37]/20 space-y-8 shadow-xl">
+        <div className="p-6 sm:p-10 rounded-2xl bg-white border border-[#F59E0B]/20 space-y-8 shadow-xl">
           {/* Header & Progress Bar */}
           <div className="border-b border-gray-100 pb-6">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A] font-serif">Event Registration</h2>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827] font-serif">Event Registration</h2>
             <p className="text-sm text-[#666666] mt-2">
-              Registering for: <span className="font-bold text-[#1F3C88]">{event?.title}</span>
+              Registering for: <span className="font-bold text-[#4338CA]">{event?.title}</span>
             </p>
             
             <div className="mt-6">
                <div className="flex justify-between text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">
-                  <span className={currentStep >= 1 ? "text-[#1F3C88]" : ""}>Personal Info</span>
-                  <span className={currentStep >= 2 ? "text-[#1F3C88]" : ""}>Academic Info</span>
-                  <span className={currentStep >= 3 ? "text-[#1F3C88]" : ""}>Payment & Review</span>
+                  <span className={currentStep >= 1 ? "text-[#4338CA]" : ""}>Personal Info</span>
+                  <span className={currentStep >= 2 ? "text-[#4338CA]" : ""}>Academic Info</span>
+                  <span className={currentStep >= 3 ? "text-[#4338CA]" : ""}>Payment & Review</span>
                </div>
                <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
                   <motion.div 
-                     className="h-full bg-gradient-to-r from-[#1F3C88] to-[#D4AF37]"
+                     className="h-full bg-gradient-to-r from-[#4338CA] to-[#F59E0B]"
                      initial={{ width: 0 }}
                      animate={{ width: `${(currentStep / totalSteps) * 100}%` }}
                      transition={{ duration: 0.3 }}
@@ -249,7 +249,7 @@ export default function Registration() {
                     {/* Full Name */}
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-gray-700 uppercase tracking-widest flex items-center gap-1">
-                        <User className="w-3.5 h-3.5 text-[#D4AF37]" /> Full Name <span className="text-rose-500">*</span>
+                        <User className="w-3.5 h-3.5 text-[#F59E0B]" /> Full Name <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -258,7 +258,7 @@ export default function Registration() {
                         onChange={handleChange}
                         placeholder="Enter your full name"
                         className={`w-full px-4 py-3 rounded-xl bg-gray-50 border ${
-                          formErrors.name ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#1F3C88] focus:ring-[#1F3C88]/20"
+                          formErrors.name ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#4338CA] focus:ring-[#4338CA]/20"
                         } text-gray-800 text-sm focus:outline-none focus:ring-2 transition-all`}
                       />
                       {formErrors.name && <p className="text-xs text-rose-500 mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3"/>{formErrors.name}</p>}
@@ -267,7 +267,7 @@ export default function Registration() {
                     {/* Email */}
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-gray-700 uppercase tracking-widest flex items-center gap-1">
-                        <Mail className="w-3.5 h-3.5 text-[#D4AF37]" /> Email <span className="text-rose-500">*</span>
+                        <Mail className="w-3.5 h-3.5 text-[#F59E0B]" /> Email <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="email"
@@ -276,7 +276,7 @@ export default function Registration() {
                         onChange={handleChange}
                         placeholder="e.g. student@college.edu"
                         className={`w-full px-4 py-3 rounded-xl bg-gray-50 border ${
-                          formErrors.email ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#1F3C88] focus:ring-[#1F3C88]/20"
+                          formErrors.email ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#4338CA] focus:ring-[#4338CA]/20"
                         } text-gray-800 text-sm focus:outline-none focus:ring-2 transition-all`}
                       />
                       {formErrors.email && <p className="text-xs text-rose-500 mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3"/>{formErrors.email}</p>}
@@ -285,7 +285,7 @@ export default function Registration() {
                     {/* Phone */}
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-gray-700 uppercase tracking-widest flex items-center gap-1">
-                        <Phone className="w-3.5 h-3.5 text-[#D4AF37]" /> Phone Number <span className="text-rose-500">*</span>
+                        <Phone className="w-3.5 h-3.5 text-[#F59E0B]" /> Phone Number <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -294,7 +294,7 @@ export default function Registration() {
                         onChange={handleChange}
                         placeholder="Enter phone with code"
                         className={`w-full px-4 py-3 rounded-xl bg-gray-50 border ${
-                          formErrors.phone ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#1F3C88] focus:ring-[#1F3C88]/20"
+                          formErrors.phone ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#4338CA] focus:ring-[#4338CA]/20"
                         } text-gray-800 text-sm focus:outline-none focus:ring-2 transition-all`}
                       />
                       {formErrors.phone && <p className="text-xs text-rose-500 mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3"/>{formErrors.phone}</p>}
@@ -317,7 +317,7 @@ export default function Registration() {
                     {/* College Name */}
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-gray-700 uppercase tracking-widest flex items-center gap-1">
-                        <School className="w-3.5 h-3.5 text-[#D4AF37]" /> College Name <span className="text-rose-500">*</span>
+                        <School className="w-3.5 h-3.5 text-[#F59E0B]" /> College Name <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -326,7 +326,7 @@ export default function Registration() {
                         onChange={handleChange}
                         placeholder="Enter your college/university"
                         className={`w-full px-4 py-3 rounded-xl bg-gray-50 border ${
-                          formErrors.collegeName ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#1F3C88] focus:ring-[#1F3C88]/20"
+                          formErrors.collegeName ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#4338CA] focus:ring-[#4338CA]/20"
                         } text-gray-800 text-sm focus:outline-none focus:ring-2 transition-all`}
                       />
                       {formErrors.collegeName && <p className="text-xs text-rose-500 mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3"/>{formErrors.collegeName}</p>}
@@ -335,7 +335,7 @@ export default function Registration() {
                     {/* Department */}
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-gray-700 uppercase tracking-widest flex items-center gap-1">
-                        <BookOpen className="w-3.5 h-3.5 text-[#D4AF37]" /> Department <span className="text-rose-500">*</span>
+                        <BookOpen className="w-3.5 h-3.5 text-[#F59E0B]" /> Department <span className="text-rose-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -344,7 +344,7 @@ export default function Registration() {
                         onChange={handleChange}
                         placeholder="e.g. Computer Science, IT"
                         className={`w-full px-4 py-3 rounded-xl bg-gray-50 border ${
-                          formErrors.department ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#1F3C88] focus:ring-[#1F3C88]/20"
+                          formErrors.department ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#4338CA] focus:ring-[#4338CA]/20"
                         } text-gray-800 text-sm focus:outline-none focus:ring-2 transition-all`}
                       />
                       {formErrors.department && <p className="text-xs text-rose-500 mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3"/>{formErrors.department}</p>}
@@ -359,7 +359,7 @@ export default function Registration() {
                         name="year"
                         value={formData.year}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 text-sm focus:outline-none focus:border-[#1F3C88] focus:ring-2 focus:ring-[#1F3C88]/20 transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 text-sm focus:outline-none focus:border-[#4338CA] focus:ring-2 focus:ring-[#4338CA]/20 transition-all"
                       >
                         <option value="1st Year">1st Year</option>
                         <option value="2nd Year">2nd Year</option>
@@ -382,7 +382,7 @@ export default function Registration() {
                         onChange={handleChange}
                         rows={3}
                         placeholder={`Enter name, email, and phone of up to ${event.teamSize - 1} other team members (one per line)`}
-                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 text-sm focus:outline-none focus:border-[#1F3C88] focus:ring-2 focus:ring-[#1F3C88]/20 transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 text-sm focus:outline-none focus:border-[#4338CA] focus:ring-2 focus:ring-[#4338CA]/20 transition-all"
                       />
                       <p className="text-xs text-gray-500">
                         This event allows team registrations of up to {event.teamSize} members. You are registered as the Team Leader.
@@ -403,17 +403,17 @@ export default function Registration() {
                  className="space-y-6"
                >
                  <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 text-sm text-gray-700 mb-6 space-y-2">
-                   <p><strong className="text-[#1A1A1A]">Name:</strong> {formData.name}</p>
-                   <p><strong className="text-[#1A1A1A]">Email:</strong> {formData.email}</p>
-                   <p><strong className="text-[#1A1A1A]">College:</strong> {formData.collegeName} ({formData.department}, {formData.year})</p>
+                   <p><strong className="text-[#111827]">Name:</strong> {formData.name}</p>
+                   <p><strong className="text-[#111827]">Email:</strong> {formData.email}</p>
+                   <p><strong className="text-[#111827]">College:</strong> {formData.collegeName} ({formData.department}, {formData.year})</p>
                  </div>
 
                  {/* Payment Portal QR scan & Screenshot upload if Paid */}
                  {event?.registrationFee > 0 ? (
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-sm font-bold text-[#1F3C88] uppercase tracking-wider flex items-center gap-1.5">
-                        <Award className="w-4 h-4 text-[#D4AF37]" /> Payment & Validation
+                      <h3 className="text-sm font-bold text-[#4338CA] uppercase tracking-wider flex items-center gap-1.5">
+                        <Award className="w-4 h-4 text-[#F59E0B]" /> Payment & Validation
                       </h3>
                       <p className="text-xs text-gray-600 mt-1 leading-relaxed">
                         This is a paid event. Scan the portal UPI QR code below to transfer <strong>₹{event.registrationFee}</strong>, then upload the transaction receipt.
@@ -421,7 +421,7 @@ export default function Registration() {
                     </div>
 
                     {/* QR Code Container and Instruction */}
-                    <div className="flex flex-col sm:flex-row gap-6 items-center p-4 rounded-xl bg-white border border-[#D4AF37]/30 shadow-sm">
+                    <div className="flex flex-col sm:flex-row gap-6 items-center p-4 rounded-xl bg-white border border-[#F59E0B]/30 shadow-sm">
                       <div className="w-32 h-32 bg-gray-50 p-2 rounded-lg shrink-0 border border-gray-100">
                         {/* Mock UPI Code using a dynamic image generator */}
                         <img
@@ -431,10 +431,10 @@ export default function Registration() {
                         />
                       </div>
                       <div className="text-xs space-y-1.5 text-gray-600">
-                        <p className="font-bold text-[#1F3C88]">Payment UPI Details:</p>
-                        <p>UPI ID: <strong className="text-[#1F3C88]">eventportal@upi</strong></p>
-                        <p>Payee: <strong className="text-[#1A1A1A]">Event Registration Portal</strong></p>
-                        <p>Amount: <strong className="text-[#1A1A1A]">₹{event.registrationFee}</strong></p>
+                        <p className="font-bold text-[#4338CA]">Payment UPI Details:</p>
+                        <p>UPI ID: <strong className="text-[#4338CA]">eventportal@upi</strong></p>
+                        <p>Payee: <strong className="text-[#111827]">Event Registration Portal</strong></p>
+                        <p>Amount: <strong className="text-[#111827]">₹{event.registrationFee}</strong></p>
                         <p className="text-[10px] text-gray-500 leading-tight italic mt-2">
                           * Save the transaction ID and take a screenshot of the successful transfer status screen.
                         </p>
@@ -446,7 +446,7 @@ export default function Registration() {
                       <label className="text-xs font-bold text-gray-700 uppercase tracking-widest block">
                         Upload Payment Receipt <span className="text-rose-500">*</span>
                       </label>
-                      <div className="relative border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-[#1F3C88]/50 hover:bg-blue-50/50 transition-all bg-gray-50">
+                      <div className="relative border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-[#4338CA]/50 hover:bg-blue-50/50 transition-all bg-gray-50">
                         <input
                           type="file"
                           accept="image/*"
@@ -454,7 +454,7 @@ export default function Registration() {
                           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                         />
                         <div className="space-y-2">
-                          <div className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center mx-auto text-[#1F3C88]">
+                          <div className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center mx-auto text-[#4338CA]">
                             <Upload className="w-5 h-5 animate-bounce" />
                           </div>
                           <div className="text-xs text-gray-600">
@@ -514,7 +514,7 @@ export default function Registration() {
                  <button
                    type="button"
                    onClick={nextStep}
-                   className="px-6 py-3 rounded-lg bg-[#1F3C88] text-white font-bold text-sm hover:bg-[#172d66] transition-colors shadow-md flex items-center gap-2 border border-[#D4AF37]/30"
+                   className="px-6 py-3 rounded-lg bg-[#4338CA] text-white font-bold text-sm hover:bg-[#312e81] transition-colors shadow-md flex items-center gap-2 border border-[#F59E0B]/30"
                  >
                    Continue <ArrowRight className="w-4 h-4" />
                  </button>
@@ -522,11 +522,11 @@ export default function Registration() {
                  <button
                    type="submit"
                    disabled={loading || uploading}
-                   className="px-8 py-3 rounded-lg bg-gradient-to-r from-[#1F3C88] to-[#172d66] text-white font-extrabold text-sm transition-all shadow-[0_4px_14px_rgba(31,60,136,0.3)] hover:shadow-[0_6px_20px_rgba(31,60,136,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 border border-[#D4AF37]/50"
+                   className="px-8 py-3 rounded-lg bg-gradient-to-r from-[#4338CA] to-[#312e81] text-white font-extrabold text-sm transition-all shadow-[0_4px_14px_rgba(31,60,136,0.3)] hover:shadow-[0_6px_20px_rgba(31,60,136,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 border border-[#F59E0B]/50"
                  >
                    {loading ? (
                      <div className="flex items-center gap-2">
-                        <Award className="w-4 h-4 animate-spin text-[#D4AF37]" /> Processing...
+                        <Award className="w-4 h-4 animate-spin text-[#F59E0B]" /> Processing...
                      </div>
                    ) : "CONFIRM & REGISTER"}
                  </button>

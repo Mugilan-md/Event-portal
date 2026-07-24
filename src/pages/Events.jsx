@@ -41,7 +41,7 @@ export default function Events() {
   });
 
   return (
-    <div className="relative min-h-screen bg-[#030014] pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-[#FAFAFA] pt-28 pb-20 px-4 sm:px-6 lg:px-8">
       {/* Background Orbs */}
       <div className="absolute top-10 right-10 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-80 h-80 bg-purple-600/5 rounded-full blur-3xl pointer-events-none" />

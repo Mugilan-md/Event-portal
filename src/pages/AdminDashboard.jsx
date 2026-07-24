@@ -44,7 +44,7 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center justify-center gap-4">
         <div className="relative w-16 h-16">
           <div className="absolute inset-0 rounded-full border-t-2 border-r-2 border-purple-500 animate-spin" />
           <div className="absolute inset-2 rounded-full border-b-2 border-l-2 border-blue-500 animate-spin [animation-direction:reverse]" />
@@ -65,7 +65,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#030014] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-[#FAFAFA] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       {/* Background glow */}
       <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -78,7 +78,7 @@ export default function AdminDashboard() {
             </h1>
             <p className="text-sm text-gray-500 mt-1">Real-time database records and portal statistics.</p>
           </div>
-          <div className="text-xs text-gray-500 bg-[#070420] border border-purple-500/10 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+          <div className="text-xs text-gray-500 bg-[#FAFAFA] border border-purple-500/10 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" /> Connection Stable
           </div>
         </div>

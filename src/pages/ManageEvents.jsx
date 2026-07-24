@@ -225,7 +225,7 @@ export default function ManageEvents() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030014] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-[#FAFAFA] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         
         {/* Breadcrumb & Title */}
@@ -303,7 +303,7 @@ export default function ManageEvents() {
                           <select
                             value={event.status}
                             onChange={(e) => updateStatus(event.id, e.target.value)}
-                            className="bg-[#070420] border border-purple-500/20 text-[11px] font-bold text-purple-300 px-2 py-1 rounded focus:outline-none focus:border-purple-500 cursor-pointer uppercase tracking-wider"
+                            className="bg-[#FAFAFA] border border-purple-500/20 text-[11px] font-bold text-purple-300 px-2 py-1 rounded focus:outline-none focus:border-purple-500 cursor-pointer uppercase tracking-wider"
                           >
                             <option value="open">Open</option>
                             <option value="closed">Closed</option>
@@ -357,7 +357,7 @@ export default function ManageEvents() {
                 className="w-full max-w-4xl bg-[#090625] border border-purple-500/20 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
               >
                 {/* Header */}
-                <div className="flex justify-between items-center px-6 py-4 border-b border-purple-500/10 bg-[#070420]/80">
+                <div className="flex justify-between items-center px-6 py-4 border-b border-purple-500/10 bg-[#FAFAFA]/80">
                   <h3 className="text-lg font-bold text-white">
                     {editingEventId ? "Modify Event Specifications" : "Create New Event Portal"}
                   </h3>
@@ -390,7 +390,7 @@ export default function ManageEvents() {
                         name="category"
                         value={formData.category}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#070420] border border-purple-500/20 text-white text-sm focus:outline-none focus:border-purple-500"
+                        className="w-full px-4 py-2.5 rounded-xl bg-[#FAFAFA] border border-purple-500/20 text-white text-sm focus:outline-none focus:border-purple-500"
                       >
                         <option value="Hackathon">Hackathon</option>
                         <option value="Symposium">Symposium</option>
@@ -568,7 +568,7 @@ export default function ManageEvents() {
                         <span className="text-[10px] text-gray-400">Upload Poster File (Base64 URL, Max 2MB)</span>
                       </div>
                       {posterPreview && (
-                        <div className="w-24 h-16 bg-[#070420] rounded border border-purple-500/10 overflow-hidden relative group shrink-0">
+                        <div className="w-24 h-16 bg-[#FAFAFA] rounded border border-purple-500/10 overflow-hidden relative group shrink-0">
                           <img src={posterPreview} alt="" className="w-full h-full object-cover" />
                         </div>
                       )}

@@ -142,7 +142,7 @@ export default function ManageRegistrations() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030014] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-[#FAFAFA] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         
         {/* Title */}
@@ -172,7 +172,7 @@ export default function ManageRegistrations() {
             <select
               value={selectedEventId}
               onChange={(e) => setSelectedEventId(e.target.value)}
-              className="bg-[#070420] border border-purple-500/20 text-xs font-semibold text-gray-300 px-3 py-2 rounded-xl focus:outline-none focus:border-purple-500 cursor-pointer max-w-xs"
+              className="bg-[#FAFAFA] border border-purple-500/20 text-xs font-semibold text-gray-300 px-3 py-2 rounded-xl focus:outline-none focus:border-purple-500 cursor-pointer max-w-xs"
             >
               <option value="All">All Registered Events</option>
               {events.map((e) => (
@@ -289,14 +289,14 @@ export default function ManageRegistrations() {
                     <X className="w-5 h-5" />
                   </button>
                 </div>
-                <div className="p-6 bg-[#030014] text-center">
+                <div className="p-6 bg-[#FAFAFA] text-center">
                   <img
                     src={activeProofUrl}
                     alt="Receipt Screenshot"
                     className="max-h-[60vh] max-w-full mx-auto rounded-lg border border-purple-500/10 object-contain shadow-inner bg-black"
                   />
                 </div>
-                <div className="px-6 py-4 border-t border-purple-500/10 bg-[#070420] text-right">
+                <div className="px-6 py-4 border-t border-purple-500/10 bg-[#FAFAFA] text-right">
                   <button
                     onClick={() => setActiveProofUrl(null)}
                     className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition-colors"
@@ -324,7 +324,7 @@ export default function ManageRegistrations() {
                 exit={{ scale: 0.95, y: 20 }}
                 className="w-full max-w-lg bg-[#090625] border border-purple-500/20 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
               >
-                <div className="flex justify-between items-center px-6 py-4 border-b border-purple-500/10 bg-[#070420]/80">
+                <div className="flex justify-between items-center px-6 py-4 border-b border-purple-500/10 bg-[#FAFAFA]/80">
                   <h3 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
                     <Edit2 className="w-4 h-4 text-purple-400" /> Edit Registration Details
                   </h3>
@@ -382,7 +382,7 @@ export default function ManageRegistrations() {
                         name="year"
                         value={editFormData.year}
                         onChange={handleEditInputChange}
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#070420] border border-purple-500/20 text-white text-sm focus:outline-none focus:border-purple-500"
+                        className="w-full px-4 py-2.5 rounded-xl bg-[#FAFAFA] border border-purple-500/20 text-white text-sm focus:outline-none focus:border-purple-500"
                       >
                         <option value="1st Year">1st Year</option>
                         <option value="2nd Year">2nd Year</option>

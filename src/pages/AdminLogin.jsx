@@ -80,7 +80,7 @@ export default function AdminLogin() {
 
   if (loading && !email) {
     return (
-      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center justify-center gap-4">
         <div className="relative w-16 h-16">
           <div className="absolute inset-0 rounded-full border-t-2 border-r-2 border-purple-500 animate-spin" />
           <div className="absolute inset-2 rounded-full border-b-2 border-l-2 border-blue-500 animate-spin [animation-direction:reverse]" />
@@ -95,10 +95,10 @@ export default function AdminLogin() {
   return (
     <div className="relative min-h-screen bg-[#F9F5EF] flex flex-col md:flex-row overflow-hidden">
       {/* Left Hero Section (3D Digital Campus Gate) */}
-      <div className="w-full md:w-1/2 relative flex items-center justify-center bg-[#030014] p-8 min-h-[40vh] md:min-h-screen overflow-hidden">
+      <div className="w-full md:w-1/2 relative flex items-center justify-center bg-[#FAFAFA] p-8 min-h-[40vh] md:min-h-screen overflow-hidden">
         {/* Glow Effects */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#1F3C88]/30 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#D4AF37]/20 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#4338CA]/30 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#F59E0B]/20 rounded-full blur-[80px] pointer-events-none" />
 
         {/* 3D Main Graphic */}
         <motion.div
@@ -121,9 +121,9 @@ export default function AdminLogin() {
               rotate: [0, 10, 0, -10, 0]
             }}
             transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
-            className="absolute top-[15%] left-[10%] w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl border border-[#D4AF37]/30 flex items-center justify-center z-20"
+            className="absolute top-[15%] left-[10%] w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl border border-[#F59E0B]/30 flex items-center justify-center z-20"
           >
-            <GraduationCap className="w-6 h-6 text-[#D4AF37]" />
+            <GraduationCap className="w-6 h-6 text-[#F59E0B]" />
           </motion.div>
 
           {/* Book Open */}
@@ -133,7 +133,7 @@ export default function AdminLogin() {
               y: [0, 15, 0, -15, 0],
             }}
             transition={{ repeat: Infinity, duration: 7, ease: "linear", delay: 1 }}
-            className="absolute top-[30%] right-[10%] w-12 h-12 bg-[#1F3C88]/50 backdrop-blur-md rounded-2xl shadow-xl border border-[#1F3C88]/50 flex items-center justify-center z-20"
+            className="absolute top-[30%] right-[10%] w-12 h-12 bg-[#4338CA]/50 backdrop-blur-md rounded-2xl shadow-xl border border-[#4338CA]/50 flex items-center justify-center z-20"
           >
             <BookOpen className="w-5 h-5 text-white" />
           </motion.div>
@@ -148,9 +148,9 @@ export default function AdminLogin() {
               rotateY: { repeat: Infinity, duration: 6, ease: "linear" },
               y: { repeat: Infinity, duration: 5, ease: "easeInOut" }
             }}
-            className="absolute bottom-[25%] left-[15%] w-16 h-16 bg-gradient-to-br from-[#1F3C88] to-[#172d66] rounded-xl shadow-[0_0_20px_rgba(31,60,136,0.5)] border border-[#D4AF37]/50 flex items-center justify-center z-20"
+            className="absolute bottom-[25%] left-[15%] w-16 h-16 bg-gradient-to-br from-[#4338CA] to-[#312e81] rounded-xl shadow-[0_0_20px_rgba(31,60,136,0.5)] border border-[#F59E0B]/50 flex items-center justify-center z-20"
           >
-            <Scroll className="w-7 h-7 text-[#D4AF37]" />
+            <Scroll className="w-7 h-7 text-[#F59E0B]" />
           </motion.div>
 
           {/* Calendar */}
@@ -172,10 +172,10 @@ export default function AdminLogin() {
         <div className="max-w-md w-full space-y-8">
           
           <div className="space-y-3">
-            <div className="inline-flex p-3 rounded-2xl bg-[#1F3C88]/10 border border-[#1F3C88]/20 text-[#1F3C88]">
+            <div className="inline-flex p-3 rounded-2xl bg-[#4338CA]/10 border border-[#4338CA]/20 text-[#4338CA]">
               <Shield className="w-8 h-8" />
             </div>
-            <h1 className="text-3xl font-extrabold text-[#1A1A1A] font-serif">
+            <h1 className="text-3xl font-extrabold text-[#111827] font-serif">
               {isAdminSetup ? "Initialize Master Admin" : "Admin Dashboard Login"}
             </h1>
             <p className="text-sm text-gray-600">
@@ -187,55 +187,55 @@ export default function AdminLogin() {
           </div>
 
           {/* Form Card */}
-          <div className="p-8 rounded-3xl bg-white border border-[#D4AF37]/30 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+          <div className="p-8 rounded-3xl bg-white border border-[#F59E0B]/30 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
             {isAdminSetup ? (
               // Create Admin Form
               <form onSubmit={handleSetup} className="space-y-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-[#1F3C88]" /> Admin Email Address
+                    <Mail className="w-3.5 h-3.5 text-[#4338CA]" /> Admin Email Address
                   </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="e.g. admin@university.edu"
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#111827] placeholder-gray-400 text-sm focus:outline-none focus:border-[#4338CA] focus:bg-white transition-colors"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
-                    <Lock className="w-3.5 h-3.5 text-[#1F3C88]" /> Secure Password
+                    <Lock className="w-3.5 h-3.5 text-[#4338CA]" /> Secure Password
                   </label>
                   <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Minimum 6 characters"
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#111827] placeholder-gray-400 text-sm focus:outline-none focus:border-[#4338CA] focus:bg-white transition-colors"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
-                    <KeyRound className="w-3.5 h-3.5 text-[#1F3C88]" /> Re-enter Password
+                    <KeyRound className="w-3.5 h-3.5 text-[#4338CA]" /> Re-enter Password
                   </label>
                   <input
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Confirm password"
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#111827] placeholder-gray-400 text-sm focus:outline-none focus:border-[#4338CA] focus:bg-white transition-colors"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 rounded-xl bg-[#1F3C88] hover:bg-[#172d66] text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 border border-[#D4AF37]/30"
+                  className="w-full py-4 rounded-xl bg-[#4338CA] hover:bg-[#312e81] text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 border border-[#F59E0B]/30"
                 >
-                  <UserPlus className="w-4 h-4 text-[#D4AF37]" /> Initialize Account
+                  <UserPlus className="w-4 h-4 text-[#F59E0B]" /> Initialize Account
                 </button>
               </form>
             ) : (
@@ -243,45 +243,45 @@ export default function AdminLogin() {
               <form onSubmit={handleLogin} className="space-y-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-[#1F3C88]" /> Account Email
+                    <Mail className="w-3.5 h-3.5 text-[#4338CA]" /> Account Email
                   </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter admin email address"
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#111827] placeholder-gray-400 text-sm focus:outline-none focus:border-[#4338CA] focus:bg-white transition-colors"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
-                    <Lock className="w-3.5 h-3.5 text-[#1F3C88]" /> Account Password
+                    <Lock className="w-3.5 h-3.5 text-[#4338CA]" /> Account Password
                   </label>
                   <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter account password"
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#1A1A1A] placeholder-gray-400 text-sm focus:outline-none focus:border-[#1F3C88] focus:bg-white transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[#111827] placeholder-gray-400 text-sm focus:outline-none focus:border-[#4338CA] focus:bg-white transition-colors"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 rounded-xl bg-[#1F3C88] hover:bg-[#172d66] text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 border border-[#D4AF37]/30"
+                  className="w-full py-4 rounded-xl bg-[#4338CA] hover:bg-[#312e81] text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 border border-[#F59E0B]/30"
                 >
-                  <LogIn className="w-4 h-4 text-[#D4AF37]" /> Access Portal
+                  <LogIn className="w-4 h-4 text-[#F59E0B]" /> Access Portal
                 </button>
               </form>
             )}
           </div>
 
           {/* Demo Indicator */}
-          <div className="p-4 rounded-xl bg-[#1F3C88]/5 border border-[#1F3C88]/10 text-xs text-center text-gray-500 leading-relaxed shadow-inner">
+          <div className="p-4 rounded-xl bg-[#4338CA]/5 border border-[#4338CA]/10 text-xs text-center text-gray-500 leading-relaxed shadow-inner">
             Authorized Personnel Only. <br />
-            Demo Email: <span className="text-[#1F3C88] font-bold">admin@portal.com</span> • Pass: <span className="text-[#1F3C88] font-bold">admin123</span>
+            Demo Email: <span className="text-[#4338CA] font-bold">admin@portal.com</span> • Pass: <span className="text-[#4338CA] font-bold">admin123</span>
           </div>
         </div>
       </div>

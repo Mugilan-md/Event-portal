@@ -113,8 +113,8 @@ export default function Home() {
   return (
     <div className="relative min-h-screen bg-[#F9F5EF] overflow-hidden pt-18">
       {/* Decorative Background Elements */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#1F3C88]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/3 right-10 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#4338CA]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/3 right-10 w-96 h-96 bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Hero Section (Left-Right Layout) */}
       <section className="relative z-10 py-16 px-4 md:py-24 max-w-7xl mx-auto">
@@ -125,7 +125,7 @@ export default function Home() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1F3C88]/10 border border-[#1F3C88]/20 text-[#1F3C88] text-xs font-bold tracking-wider uppercase"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#4338CA]/10 border border-[#4338CA]/20 text-[#4338CA] text-xs font-bold tracking-wider uppercase"
             >
               <Shield className="w-3.5 h-3.5" /> Next-Gen Registration Hub
             </motion.div>
@@ -134,7 +134,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#1A1A1A] font-serif leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#111827] font-serif leading-tight"
             >
               Step into the Future of <br />
               <span className="text-gradient-purple">Collegiate Events</span>
@@ -165,7 +165,7 @@ export default function Home() {
               </StarButton>
               <a
                 href="#about"
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-[#1F3C88] border border-[#1F3C88]/20 font-bold transition-colors duration-300 shadow-sm"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-[#4338CA] border border-[#4338CA]/20 font-bold transition-colors duration-300 shadow-sm"
               >
                 Learn More
               </a>
@@ -185,7 +185,7 @@ export default function Home() {
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               className="relative w-full h-full max-w-lg z-10"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#1F3C88]/20 to-[#D4AF37]/20 rounded-full blur-[80px] -z-10" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#4338CA]/20 to-[#F59E0B]/20 rounded-full blur-[80px] -z-10" />
               <img 
                 src={heroImg} 
                 alt="3D Holographic Event Dashboard" 
@@ -202,9 +202,9 @@ export default function Home() {
                 rotate: [0, 5, 0, -5, 0]
               }}
               transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
-              className="absolute top-[10%] left-[15%] w-14 h-14 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#1F3C88]/20 flex items-center justify-center z-20"
+              className="absolute top-[10%] left-[15%] w-14 h-14 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#4338CA]/20 flex items-center justify-center z-20"
             >
-              <Calendar className="w-6 h-6 text-[#1F3C88]" />
+              <Calendar className="w-6 h-6 text-[#4338CA]" />
             </motion.div>
 
             {/* Chat Bubble Icon */}
@@ -214,9 +214,9 @@ export default function Home() {
                 y: [0, 15, 0, -15, 0],
               }}
               transition={{ repeat: Infinity, duration: 7, ease: "linear", delay: 1 }}
-              className="absolute top-[25%] right-[10%] w-12 h-12 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#D4AF37]/30 flex items-center justify-center z-20"
+              className="absolute top-[25%] right-[10%] w-12 h-12 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#F59E0B]/30 flex items-center justify-center z-20"
             >
-              <MessageSquare className="w-5 h-5 text-[#D4AF37]" />
+              <MessageSquare className="w-5 h-5 text-[#F59E0B]" />
             </motion.div>
 
             {/* Rotating Ticket */}
@@ -229,9 +229,9 @@ export default function Home() {
                 rotateY: { repeat: Infinity, duration: 5, ease: "linear" },
                 y: { repeat: Infinity, duration: 4, ease: "easeInOut" }
               }}
-              className="absolute bottom-[20%] left-[10%] w-16 h-16 bg-gradient-to-br from-[#1F3C88] to-[#172d66] rounded-xl shadow-[0_0_20px_rgba(31,60,136,0.5)] border border-[#D4AF37]/50 flex items-center justify-center z-20"
+              className="absolute bottom-[20%] left-[10%] w-16 h-16 bg-gradient-to-br from-[#4338CA] to-[#312e81] rounded-xl shadow-[0_0_20px_rgba(31,60,136,0.5)] border border-[#F59E0B]/50 flex items-center justify-center z-20"
             >
-              <Ticket className="w-7 h-7 text-[#D4AF37]" />
+              <Ticket className="w-7 h-7 text-[#F59E0B]" />
             </motion.div>
 
             {/* Floating QR Code */}
@@ -243,7 +243,7 @@ export default function Home() {
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 2 }}
               className="absolute bottom-[10%] right-[15%] w-16 h-16 bg-white/90 backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200 flex items-center justify-center z-20"
             >
-              <QrCode className="w-8 h-8 text-[#1A1A1A]" />
+              <QrCode className="w-8 h-8 text-[#111827]" />
             </motion.div>
           </motion.div>
         </div>
@@ -257,10 +257,10 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            className="p-8 rounded-2xl bg-white border border-[#D4AF37]/20 text-center relative overflow-hidden shadow-xl transition-all duration-300"
+            className="p-8 rounded-2xl bg-white border border-[#F59E0B]/20 text-center relative overflow-hidden shadow-xl transition-all duration-300"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#1F3C88]/5 rounded-full blur-2xl pointer-events-none" />
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-[#1F3C88] mb-2 drop-shadow-sm">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#4338CA]/5 rounded-full blur-2xl pointer-events-none" />
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-[#4338CA] mb-2 drop-shadow-sm">
               Next Live Event Countdown
             </h3>
             
@@ -270,12 +270,12 @@ export default function Home() {
                   animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
                   transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                 >
-                  <Hourglass className="w-12 h-12 text-[#D4AF37] mx-auto mb-2" />
+                  <Hourglass className="w-12 h-12 text-[#F59E0B] mx-auto mb-2" />
                 </motion.div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A] font-serif">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827] font-serif">
                   Registrations Closed
                 </h2>
-                <p className="text-[#1F3C88] font-bold text-lg drop-shadow-[0_0_10px_rgba(31,60,136,0.3)]">
+                <p className="text-[#4338CA] font-bold text-lg drop-shadow-[0_0_10px_rgba(31,60,136,0.3)]">
                   Upcoming events will be posted soon. Stay tuned!
                 </p>
                 <StarButton
@@ -283,13 +283,13 @@ export default function Home() {
                   variant="sky"
                   className="mt-6 inline-flex items-center gap-2"
                 >
-                  <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
+                  <ArrowRight className="w-4 h-4 text-[#F59E0B]" />
                   Browse Past Events
                 </StarButton>
               </div>
             ) : (
               <>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A] mb-6 font-serif hover:text-[#1F3C88] transition-colors">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827] mb-6 font-serif hover:text-[#4338CA] transition-colors">
                   {featuredEvent.title}
                 </h2>
 
@@ -304,9 +304,9 @@ export default function Home() {
                     <motion.div 
                       key={idx} 
                       whileHover={{ scale: 1.05, borderColor: "rgba(212, 175, 55, 0.5)" }}
-                      className="bg-[#F9F5EF] border border-[#1F3C88]/10 p-3 sm:p-5 rounded-xl shadow-inner transition-all duration-300"
+                      className="bg-[#F9F5EF] border border-[#4338CA]/10 p-3 sm:p-5 rounded-xl shadow-inner transition-all duration-300"
                     >
-                      <div className="text-2xl sm:text-4xl font-extrabold text-[#1F3C88] font-mono drop-shadow-[0_2px_4px_rgba(31,60,136,0.2)]">
+                      <div className="text-2xl sm:text-4xl font-extrabold text-[#4338CA] font-mono drop-shadow-[0_2px_4px_rgba(31,60,136,0.2)]">
                         {String(time.value).padStart(2, "0")}
                       </div>
                       <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest mt-1 font-bold">
@@ -321,8 +321,8 @@ export default function Home() {
                   variant="sky"
                   className="inline-flex items-center gap-2"
                 >
-                  <Hourglass className="w-4 h-4 text-[#D4AF37] animate-spin group-hover:hidden" />
-                  <CheckCircle className="w-4 h-4 text-[#D4AF37] hidden group-hover:block" />
+                  <Hourglass className="w-4 h-4 text-[#F59E0B] animate-spin group-hover:hidden" />
+                  <CheckCircle className="w-4 h-4 text-[#F59E0B] hidden group-hover:block" />
                   <span>Register Now before seats run out</span>
                 </StarButton>
               </>
@@ -335,7 +335,7 @@ export default function Home() {
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 gap-4">
           <div>
-            <h2 className="text-3xl font-extrabold text-[#1A1A1A] font-serif drop-shadow-sm">Upcoming Technology Gatherings</h2>
+            <h2 className="text-3xl font-extrabold text-[#111827] font-serif drop-shadow-sm">Upcoming Technology Gatherings</h2>
             <p className="text-gray-600 mt-2">Handpicked elite technical symposia and competitions</p>
           </div>
           <Link
@@ -361,7 +361,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8 }}
-                className="rounded-2xl bg-white flex flex-col h-full overflow-hidden border border-[#D4AF37]/20 shadow-lg hover:shadow-2xl transition-all duration-300 group"
+                className="rounded-2xl bg-white flex flex-col h-full overflow-hidden border border-[#F59E0B]/20 shadow-lg hover:shadow-2xl transition-all duration-300 group"
               >
                 {/* Poster */}
                 <div className="h-48 relative overflow-hidden shrink-0">
@@ -372,7 +372,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-md bg-[#1F3C88]/90 text-white text-[10px] font-bold tracking-wider uppercase shadow-md backdrop-blur-sm border border-[#D4AF37]/30">
+                    <span className="px-3 py-1 rounded-md bg-[#4338CA]/90 text-white text-[10px] font-bold tracking-wider uppercase shadow-md backdrop-blur-sm border border-[#F59E0B]/30">
                       {event.category || "General"}
                     </span>
                   </div>
@@ -381,13 +381,13 @@ export default function Home() {
                 {/* Content */}
                 <div className="p-6 flex flex-col justify-between flex-grow relative">
                    <div className="absolute top-0 right-6 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100">
-                      <Calendar className="w-4 h-4 text-[#D4AF37]" />
+                      <Calendar className="w-4 h-4 text-[#F59E0B]" />
                    </div>
                   <div className="space-y-3 pt-2">
-                    <div className="text-xs text-[#1F3C88] font-bold uppercase tracking-wider">
+                    <div className="text-xs text-[#4338CA] font-bold uppercase tracking-wider">
                       {event.date} • {event.time}
                     </div>
-                    <h3 className="text-xl font-bold text-[#1A1A1A] line-clamp-1 font-serif group-hover:text-[#1F3C88] transition-colors">{event.title}</h3>
+                    <h3 className="text-xl font-bold text-[#111827] line-clamp-1 font-serif group-hover:text-[#4338CA] transition-colors">{event.title}</h3>
                     <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed">
                       {event.description}
                     </p>
@@ -396,7 +396,7 @@ export default function Home() {
                   <div className="pt-6 border-t border-gray-100 mt-6 flex items-center justify-between">
                     <div>
                       <div className="text-[10px] text-gray-500 uppercase tracking-widest">Entry Fee</div>
-                      <div className="text-base font-extrabold text-[#1A1A1A]">
+                      <div className="text-base font-extrabold text-[#111827]">
                         {event.registrationFee === 0 ? "FREE" : `₹${event.registrationFee}`}
                       </div>
                     </div>
@@ -416,25 +416,25 @@ export default function Home() {
       </section>
 
       {/* Schedule Accordion Timeline */}
-      <section id="schedule" className="relative z-10 py-16 bg-white border-y border-[#D4AF37]/20">
+      <section id="schedule" className="relative z-10 py-16 bg-white border-y border-[#F59E0B]/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-[#1A1A1A] font-serif drop-shadow-sm">Event Schedule Timeline</h2>
+            <h2 className="text-3xl font-extrabold text-[#111827] font-serif drop-shadow-sm">Event Schedule Timeline</h2>
             <p className="text-gray-600 mt-2">Plan your day with our tentative itinerary</p>
           </div>
 
-          <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[#D4AF37]/30 before:to-transparent">
+          <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[#F59E0B]/30 before:to-transparent">
             {schedule.map((item, idx) => (
               <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                 {/* Timeline Icon */}
-                <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-[#1F3C88] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-[#4338CA] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
                    <span className="text-xs font-bold">{idx + 1}</span>
                 </div>
                 {/* Content Card */}
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 bg-[#F9F5EF] shadow-sm group-hover:border-[#D4AF37]/50 transition-colors">
+                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 bg-[#F9F5EF] shadow-sm group-hover:border-[#F59E0B]/50 transition-colors">
                   <div className="flex items-center justify-between mb-1">
-                    <h3 className="font-bold text-[#1F3C88] text-lg">{item.event}</h3>
-                    <span className="text-xs font-bold text-[#D4AF37] px-2 py-1 bg-white rounded shadow-sm">{item.time}</span>
+                    <h3 className="font-bold text-[#4338CA] text-lg">{item.event}</h3>
+                    <span className="text-xs font-bold text-[#F59E0B] px-2 py-1 bg-white rounded shadow-sm">{item.time}</span>
                   </div>
                   <p className="text-sm text-gray-600">{item.desc}</p>
                 </div>
@@ -447,7 +447,7 @@ export default function Home() {
       {/* Rules & FAQ Accordion */}
       <section id="faqs" className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-[#1A1A1A] font-serif drop-shadow-sm">Rules & FAQs</h2>
+            <h2 className="text-3xl font-extrabold text-[#111827] font-serif drop-shadow-sm">Rules & FAQs</h2>
             <p className="text-gray-600 mt-2">Everything you need to know before registering</p>
           </div>
 
@@ -458,9 +458,9 @@ export default function Home() {
                    onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
                    className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none"
                  >
-                   <span className="font-bold text-[#1A1A1A]">{faq.question}</span>
+                   <span className="font-bold text-[#111827]">{faq.question}</span>
                    {activeFaq === idx ? (
-                     <Minus className="w-5 h-5 text-[#1F3C88]" />
+                     <Minus className="w-5 h-5 text-[#4338CA]" />
                    ) : (
                      <Plus className="w-5 h-5 text-gray-400" />
                    )}
@@ -485,7 +485,7 @@ export default function Home() {
       </section>
 
       {/* Contact Form Mockup */}
-      <section id="contact" className="relative z-10 bg-[#1F3C88] text-white py-20 border-t border-[#D4AF37]/30">
+      <section id="contact" className="relative z-10 bg-[#4338CA] text-white py-20 border-t border-[#F59E0B]/30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
@@ -495,22 +495,22 @@ export default function Home() {
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#D4AF37]" />
+                    <CheckCircle className="w-5 h-5 text-[#F59E0B]" />
                     <span className="text-sm">24/7 Support Response</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#D4AF37]" />
+                    <CheckCircle className="w-5 h-5 text-[#F59E0B]" />
                     <span className="text-sm">Direct Organizer Contact</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#D4AF37]" />
+                    <CheckCircle className="w-5 h-5 text-[#F59E0B]" />
                     <span className="text-sm">Registration Assistance</span>
                   </div>
                 </div>
               </div>
 
               <div className="bg-white p-8 rounded-2xl shadow-2xl relative">
-                 <div className="absolute -top-4 -right-4 w-20 h-20 bg-[#D4AF37] rounded-full blur-2xl opacity-30" />
+                 <div className="absolute -top-4 -right-4 w-20 h-20 bg-[#F59E0B] rounded-full blur-2xl opacity-30" />
                  <form className="space-y-4" onSubmit={handleContactSubmit}>
                     <div>
                       <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Full Name</label>
@@ -519,7 +519,7 @@ export default function Home() {
                         placeholder="John Doe" 
                         value={contactForm.name}
                         onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#1F3C88]/20 focus:border-[#1F3C88]" 
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#4338CA]/20 focus:border-[#4338CA]" 
                         required
                       />
                     </div>
@@ -530,7 +530,7 @@ export default function Home() {
                         placeholder="john@university.edu" 
                         value={contactForm.email}
                         onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#1F3C88]/20 focus:border-[#1F3C88]" 
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#4338CA]/20 focus:border-[#4338CA]" 
                         required
                       />
                     </div>
@@ -541,7 +541,7 @@ export default function Home() {
                         placeholder="How can we help?" 
                         value={contactForm.message}
                         onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#1F3C88]/20 focus:border-[#1F3C88]"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#4338CA]/20 focus:border-[#4338CA]"
                         required
                       ></textarea>
                     </div>
@@ -564,25 +564,25 @@ export default function Home() {
       <section id="about" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] font-serif drop-shadow-sm">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] font-serif drop-shadow-sm">
               Why Register With <br />
-              <span className="text-[#1F3C88] drop-shadow-[0_0_15px_rgba(31,60,136,0.2)]">VSB Event Portal?</span>
+              <span className="text-[#4338CA] drop-shadow-[0_0_15px_rgba(31,60,136,0.2)]">VSB Event Portal?</span>
             </h2>
             <p className="text-gray-600 leading-relaxed">
               We provide technical communities with a robust, decentralized, and visually rich management hub. Attendees receive immediate confirmation credentials, unique verification QR codes, and streamlined coordinator supports.
             </p>
             <div className="grid grid-cols-2 gap-6 pt-4">
               <div className="flex gap-3">
-                <Users className="w-10 h-10 text-[#1F3C88] shrink-0" />
+                <Users className="w-10 h-10 text-[#4338CA] shrink-0" />
                 <div>
-                  <h4 className="font-bold text-[#1A1A1A] text-sm">4,000+ Students</h4>
+                  <h4 className="font-bold text-[#111827] text-sm">4,000+ Students</h4>
                   <p className="text-xs text-gray-500 mt-0.5">Registered across multiple hackathons.</p>
                 </div>
               </div>
               <div className="flex gap-3">
-                <Award className="w-10 h-10 text-[#D4AF37] shrink-0" />
+                <Award className="w-10 h-10 text-[#F59E0B] shrink-0" />
                 <div>
-                  <h4 className="font-bold text-[#1A1A1A] text-sm">₹10 Lakhs+ Prizes</h4>
+                  <h4 className="font-bold text-[#111827] text-sm">₹10 Lakhs+ Prizes</h4>
                   <p className="text-xs text-gray-500 mt-0.5">Awarded to symposium winners.</p>
                 </div>
               </div>
@@ -592,15 +592,15 @@ export default function Home() {
           {/* Stats Cards Dashboard Graphic */}
           <div className="grid grid-cols-2 gap-4">
             {[
-              { title: "Hackathons", value: "24+", color: "text-[#1F3C88]" },
-              { title: "Colleges", value: "150+", color: "text-[#D4AF37]" },
-              { title: "Symposiums", value: "48+", color: "text-[#1F3C88]" },
-              { title: "Active Admins", value: "10+", color: "text-[#D4AF37]" }
+              { title: "Hackathons", value: "24+", color: "text-[#4338CA]" },
+              { title: "Colleges", value: "150+", color: "text-[#F59E0B]" },
+              { title: "Symposiums", value: "48+", color: "text-[#4338CA]" },
+              { title: "Active Admins", value: "10+", color: "text-[#F59E0B]" }
             ].map((stat, idx) => (
               <motion.div
                 key={idx}
                 whileHover={{ scale: 1.02 }}
-                className="p-6 rounded-xl bg-white border border-[#D4AF37]/20 flex flex-col justify-center align-middle text-center shadow-sm hover:shadow-md transition-shadow"
+                className="p-6 rounded-xl bg-white border border-[#F59E0B]/20 flex flex-col justify-center align-middle text-center shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className={`text-3xl font-extrabold ${stat.color} font-mono`}>
                   {stat.value}

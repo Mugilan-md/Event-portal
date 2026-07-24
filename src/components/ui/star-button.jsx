@@ -34,9 +34,9 @@ export default function StarButton({
       starColor: "#0ea5e9"
     },
     royal: {
-      bg: "bg-[#1F3C88] border-[#1F3C88] text-white",
-      hover: "hover:text-[#1F3C88] hover:shadow-[0_0_25px_rgba(31,60,136,0.55)]",
-      starColor: "#1F3C88"
+      bg: "bg-[#4338CA] border-[#4338CA] text-white",
+      hover: "hover:text-[#4338CA] hover:shadow-[0_0_25px_rgba(31,60,136,0.55)]",
+      starColor: "#4338CA"
     }
   };
 

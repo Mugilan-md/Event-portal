@@ -25,7 +25,7 @@ export default function EventDetails() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center justify-center gap-4">
         <div className="relative w-16 h-16">
           <div className="absolute inset-0 rounded-full border-t-2 border-r-2 border-purple-500 animate-spin" />
           <div className="absolute inset-2 rounded-full border-b-2 border-l-2 border-blue-500 animate-spin [animation-direction:reverse]" />
@@ -39,7 +39,7 @@ export default function EventDetails() {
 
   if (!event) {
     return (
-      <div className="min-h-screen bg-[#030014] flex flex-col items-center justify-center text-center px-4">
+      <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center justify-center text-center px-4">
         <ShieldAlert className="w-16 h-16 text-rose-500 mb-4 animate-bounce" />
         <h1 className="text-3xl font-extrabold text-white">Event Not Found</h1>
         <p className="text-gray-400 mt-2 max-w-sm">
@@ -61,7 +61,7 @@ export default function EventDetails() {
   const canRegister = event.status === "open" && event.seatsAvailable > 0;
 
   return (
-    <div className="relative min-h-screen bg-[#030014] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-[#FAFAFA] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       {/* Background Glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl pointer-events-none" />
@@ -83,7 +83,7 @@ export default function EventDetails() {
               alt={event.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#030014]/80 hidden md:block" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#FAFAFA]/80 hidden md:block" />
           </div>
 
           {/* Core Info */}
