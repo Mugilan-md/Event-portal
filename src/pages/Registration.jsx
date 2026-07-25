@@ -16,10 +16,6 @@ export default function Registration() {
   const [uploading, setUploading] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
 
-  const participantCount = 1 + (formData.member1Name?.trim() ? 1 : 0) + (formData.member2Name?.trim() ? 1 : 0);
-  const isPaidEvent = event?.registrationFee > 0;
-  const calculatedFee = isPaidEvent ? (participantCount * 200) : 0;
-
   const [formData, setFormData] = useState({
     name: "",
     collegeName: "",
@@ -39,6 +35,10 @@ export default function Registration() {
   });
 
   const [formErrors, setFormErrors] = useState({});
+
+  const participantCount = 1 + (formData.member1Name?.trim() ? 1 : 0) + (formData.member2Name?.trim() ? 1 : 0);
+  const isPaidEvent = event?.registrationFee > 0;
+  const calculatedFee = isPaidEvent ? (participantCount * 200) : 0;
 
   useEffect(() => {
     const fetchEvent = async () => {
