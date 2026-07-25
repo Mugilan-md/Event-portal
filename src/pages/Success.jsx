@@ -187,8 +187,35 @@ export default function Success() {
                   Scan QR code at the check-in venue desk to confirm attendance entry.
                 </p>
               </div>
-              <div className="p-3 rounded-2xl shadow-md shrink-0" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
-                <QRCodeSVG value={qrPayload} size={96} bgColor="#FFFFFF" fgColor="#0F172A" level="Q" />
+              <div className="relative group shrink-0 print:shadow-none">
+                {/* 3D Glow Backplate */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-r from-[#6366F1] to-[#06B6D4] rounded-2xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity duration-300 print:hidden" 
+                  style={{ transform: "translateY(4px)" }}
+                />
+                
+                {/* Animated 3D Floating QR container */}
+                <motion.div
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+                  className="relative p-3.5 rounded-2xl bg-white border border-gray-100 shadow-[0_12px_24px_rgba(9,13,22,0.08),_0_0_0_1px_rgba(99,102,241,0.02)] hover:shadow-[0_20px_35px_rgba(99,102,241,0.18)] transition-all duration-300 print:shadow-none print:border-gray-200"
+                >
+                  <QRCodeSVG 
+                    value={qrPayload} 
+                    size={104} 
+                    bgColor="#FFFFFF" 
+                    fgColor="#0F172A" 
+                    level="H" 
+                    imageSettings={{
+                      src: vsbLogo,
+                      x: undefined,
+                      y: undefined,
+                      height: 24,
+                      width: 24,
+                      excavate: true,
+                    }}
+                  />
+                </motion.div>
               </div>
             </div>
           </div>
