@@ -116,11 +116,11 @@ export default function Home() {
       <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#4338CA]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 right-10 w-96 h-96 bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Hero Section (Left-Right Layout) */}
+      {/* Hero Section (Centered Layout) */}
       <section className="relative z-10 py-16 px-4 md:py-24 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          {/* Left Content */}
-          <div className="w-full md:w-1/2 space-y-6 text-left">
+        <div className="flex flex-col items-start gap-8 max-w-3xl">
+          {/* Left Content - now full width */}
+          <div className="w-full space-y-6 text-left">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -170,50 +170,6 @@ export default function Home() {
                 Learn More
               </a>
             </motion.div>
-          </div>
-
-          {/* Right 3D Graphics (Static) */}
-          <div className="w-full md:w-1/2 relative flex justify-center items-center h-[400px] md:h-[500px]">
-            {/* Main Holographic Image */}
-            <div
-              className="relative w-full h-full max-w-lg z-10"
-            >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#4338CA]/20 to-[#F59E0B]/20 rounded-full blur-[80px] -z-10" />
-              <img 
-                src={heroImg} 
-                alt="3D Holographic Event Dashboard" 
-                className="w-full h-full object-contain drop-shadow-2xl"
-              />
-            </div>
-
-            {/* Orbiting Icons */}
-            {/* Calendar Icon */}
-            <div
-              className="absolute top-[10%] left-[15%] w-14 h-14 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#4338CA]/20 flex items-center justify-center z-20"
-            >
-              <Calendar className="w-6 h-6 text-[#4338CA]" />
-            </div>
-
-            {/* Chat Bubble Icon */}
-            <div
-              className="absolute top-[25%] right-[10%] w-12 h-12 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#F59E0B]/30 flex items-center justify-center z-20"
-            >
-              <MessageSquare className="w-5 h-5 text-[#F59E0B]" />
-            </div>
-
-            {/* Rotating Ticket */}
-            <div
-              className="absolute bottom-[20%] left-[10%] w-16 h-16 bg-gradient-to-br from-[#4338CA] to-[#312e81] rounded-xl shadow-[0_0_20px_rgba(31,60,136,0.5)] border border-[#F59E0B]/50 flex items-center justify-center z-20"
-            >
-              <Ticket className="w-7 h-7 text-[#F59E0B]" />
-            </div>
-
-            {/* Floating QR Code */}
-            <div
-              className="absolute bottom-[10%] right-[15%] w-16 h-16 bg-white/90 backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200 flex items-center justify-center z-20"
-            >
-              <QrCode className="w-8 h-8 text-[#111827]" />
-            </div>
           </div>
         </div>
       </section>
