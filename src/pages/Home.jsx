@@ -172,17 +172,10 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right 3D Float Animation */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="w-full md:w-1/2 relative flex justify-center items-center h-[400px] md:h-[500px]"
-          >
-            {/* Main Holographic Image Float */}
-            <motion.div
-              animate={{ y: [-15, 15, -15] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+          {/* Right 3D Graphics (Static) */}
+          <div className="w-full md:w-1/2 relative flex justify-center items-center h-[400px] md:h-[500px]">
+            {/* Main Holographic Image */}
+            <div
               className="relative w-full h-full max-w-lg z-10"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-[#4338CA]/20 to-[#F59E0B]/20 rounded-full blur-[80px] -z-10" />
@@ -191,61 +184,37 @@ export default function Home() {
                 alt="3D Holographic Event Dashboard" 
                 className="w-full h-full object-contain drop-shadow-2xl"
               />
-            </motion.div>
+            </div>
 
             {/* Orbiting Icons */}
             {/* Calendar Icon */}
-            <motion.div
-              animate={{ 
-                x: [0, 20, 0, -20, 0],
-                y: [0, -20, 0, 20, 0],
-                rotate: [0, 5, 0, -5, 0]
-              }}
-              transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+            <div
               className="absolute top-[10%] left-[15%] w-14 h-14 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#4338CA]/20 flex items-center justify-center z-20"
             >
               <Calendar className="w-6 h-6 text-[#4338CA]" />
-            </motion.div>
+            </div>
 
             {/* Chat Bubble Icon */}
-            <motion.div
-              animate={{ 
-                x: [0, -15, 0, 15, 0],
-                y: [0, 15, 0, -15, 0],
-              }}
-              transition={{ repeat: Infinity, duration: 7, ease: "linear", delay: 1 }}
+            <div
               className="absolute top-[25%] right-[10%] w-12 h-12 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-[#F59E0B]/30 flex items-center justify-center z-20"
             >
               <MessageSquare className="w-5 h-5 text-[#F59E0B]" />
-            </motion.div>
+            </div>
 
             {/* Rotating Ticket */}
-            <motion.div
-              animate={{ 
-                rotateY: 360,
-                y: [-5, 5, -5]
-              }}
-              transition={{ 
-                rotateY: { repeat: Infinity, duration: 5, ease: "linear" },
-                y: { repeat: Infinity, duration: 4, ease: "easeInOut" }
-              }}
+            <div
               className="absolute bottom-[20%] left-[10%] w-16 h-16 bg-gradient-to-br from-[#4338CA] to-[#312e81] rounded-xl shadow-[0_0_20px_rgba(31,60,136,0.5)] border border-[#F59E0B]/50 flex items-center justify-center z-20"
             >
               <Ticket className="w-7 h-7 text-[#F59E0B]" />
-            </motion.div>
+            </div>
 
             {/* Floating QR Code */}
-            <motion.div
-              animate={{ 
-                y: [0, -10, 0],
-                rotate: [0, -3, 3, 0]
-              }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 2 }}
+            <div
               className="absolute bottom-[10%] right-[15%] w-16 h-16 bg-white/90 backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200 flex items-center justify-center z-20"
             >
               <QrCode className="w-8 h-8 text-[#111827]" />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
