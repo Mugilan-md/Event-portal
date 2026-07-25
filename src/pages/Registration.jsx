@@ -477,7 +477,7 @@ export default function Registration() {
                                 value={formData.member1Name}
                                 onChange={handleChange}
                                 placeholder="Name"
-                                className="w-full px-3 py-2 text-xs rounded-lg"
+                                className="w-full px-3 py-2 text-xs rounded-lg border border-gray-200 bg-white focus:outline-none focus:border-[#6366F1] transition-all"
                               />
                             </div>
                             <div className="space-y-1">
@@ -526,7 +526,7 @@ export default function Registration() {
                                 value={formData.member2Name}
                                 onChange={handleChange}
                                 placeholder="Name"
-                                className="w-full px-3 py-2 text-xs rounded-lg"
+                                className="w-full px-3 py-2 text-xs rounded-lg border border-gray-200 bg-white focus:outline-none focus:border-[#6366F1] transition-all"
                               />
                             </div>
                             <div className="space-y-1">
