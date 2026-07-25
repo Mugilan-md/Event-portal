@@ -92,18 +92,17 @@ export default function Success() {
           <div className="p-6 sm:p-8 space-y-6">
             {/* College Organizer Header */}
             <div className="flex items-center gap-5 pb-5" style={{ borderBottom: "1px solid #F1F5F9" }}>
-              <div className="w-20 h-20 shrink-0 flex items-center justify-center rounded-xl overflow-hidden" style={{ background: "#090D16" }}>
+              <div className="w-20 h-20 shrink-0 flex items-center justify-center">
                 <img
                   src={vsbLogo}
-                  alt="V.S.B. College of Engineering Technical Campus Logo"
+                  alt="V.S.B. Engineering College Logo"
                   className="w-full h-full object-contain"
-                  style={{ mixBlendMode: "screen" }}
                 />
               </div>
               <div>
                 <span className="text-[10px] uppercase tracking-widest block font-bold" style={{ color: "#6366F1" }}>Organized By</span>
                 <span className="text-lg sm:text-xl font-extrabold block print:text-black font-serif leading-tight mt-1" style={{ color: "#0F172A" }}>
-                  V.S.B. College of Engineering Technical Campus, Coimbatore
+                  V.S.B. Engineering College, Karur
                 </span>
               </div>
             </div>

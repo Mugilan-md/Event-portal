@@ -77,7 +77,7 @@ export default function Navbar() {
             <div
               className="w-16 h-16 shrink-0 transition-all duration-300 group-hover:scale-110 flex items-center justify-center"
             >
-              <img src={logoImg} alt="VSB Logo" className="w-full h-full object-contain" style={{ mixBlendMode: "screen" }} />
+              <img src={logoImg} alt="VSB Logo" className="w-full h-full object-contain" />
             </div>
             <span
               className="font-extrabold text-xl sm:text-2xl tracking-tight font-serif transition-all duration-300"

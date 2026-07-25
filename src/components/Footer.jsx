@@ -26,10 +26,9 @@ export default function Footer() {
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2.5 group">
               <div
-                className="w-12 h-12 rounded-xl overflow-hidden shrink-0 transition-all duration-300 group-hover:scale-105 flex items-center justify-center"
-                style={{ background: "#090D16", border: "1px solid rgba(99,102,241,0.2)", boxShadow: "0 0 12px rgba(9,13,22,0.1)" }}
+                className="w-12 h-12 shrink-0 transition-all duration-300 group-hover:scale-105 flex items-center justify-center"
               >
-                <img src={logoImg} alt="Logo" className="w-full h-full object-contain" style={{ mixBlendMode: "screen" }} />
+                <img src={logoImg} alt="Logo" className="w-full h-full object-contain" />
               </div>
               <span className="font-extrabold text-lg tracking-tight font-serif" style={{ color: "#0F172A" }}>
                 VSB{" "}
