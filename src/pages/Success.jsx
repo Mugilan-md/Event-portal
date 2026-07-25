@@ -91,15 +91,17 @@ export default function Success() {
 
           <div className="p-6 sm:p-8 space-y-6">
             {/* College Organizer Header */}
-            <div className="flex items-center gap-4 pb-4" style={{ borderBottom: "1px solid #F1F5F9" }}>
-              <img
-                src={vsbLogo}
-                alt="V.S.B. Engineering College Logo"
-                className="w-12 h-12 object-contain rounded-full border border-gray-100 shadow-sm bg-white"
-              />
+            <div className="flex items-center gap-5 pb-5" style={{ borderBottom: "1px solid #F1F5F9" }}>
+              <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-100 shadow-md bg-white flex items-center justify-center shrink-0">
+                <img
+                  src={vsbLogo}
+                  alt="V.S.B. Engineering College Logo"
+                  className="w-full h-full object-cover scale-[1.18]"
+                />
+              </div>
               <div>
-                <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>Organized By</span>
-                <span className="text-xs sm:text-sm font-bold block print:text-black" style={{ color: "#0F172A" }}>
+                <span className="text-[10px] uppercase tracking-widest block font-bold" style={{ color: "#6366F1" }}>Organized By</span>
+                <span className="text-lg sm:text-xl font-extrabold block print:text-black font-serif leading-tight mt-1" style={{ color: "#0F172A" }}>
                   V.S.B. Engineering College, Karur
                 </span>
               </div>
@@ -146,8 +148,10 @@ export default function Success() {
 
               {registration.teamName && (
                 <div className="col-span-2 pt-2 border-t border-dashed border-gray-100">
-                  <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>Team Name</span>
-                  <span className="text-sm font-bold block print:text-black" style={{ color: "#0F172A" }}>{registration.teamName}</span>
+                  <span className="text-[10px] uppercase tracking-widest block font-bold text-[#6366F1]">Team Name</span>
+                  <span className="text-3xl block print:text-black font-normal mt-2 leading-none text-[#6366F1]" style={{ fontFamily: "'Great Vibes', cursive" }}>
+                    {registration.teamName}
+                  </span>
                 </div>
               )}
 
