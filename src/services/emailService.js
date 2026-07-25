@@ -23,17 +23,27 @@ export const sendConfirmationEmail = async (details, event) => {
     throw new Error("EmailJS keys are not configured in environment variables.");
   }
 
-  // Map fields matching the request template
+  // Map fields matching the request template with comprehensive fallbacks
   const templateParams = {
     participant_name: details.recipientName || details.name,
+    name: details.recipientName || details.name,
+    to_name: details.recipientName || details.name,
+    recipient_name: details.recipientName || details.name,
+    
     event_name: details.eventTitle,
     registration_id: details.registrationId,
     event_date: event?.date || "TBD",
     event_venue: event?.venue || "TBD",
     college_name: details.collegeName,
     department: details.department,
+    
     phone_number: details.recipientPhone || details.phone,
-    to_email: details.recipientEmail || details.email, // Address destination for EmailJS dashboard setting
+    phone: details.recipientPhone || details.phone,
+    
+    to_email: details.recipientEmail || details.email, 
+    email: details.recipientEmail || details.email,
+    recipient_email: details.recipientEmail || details.email,
+    
     from_name: "V.S.B. Engineering College, Karur",
     reply_to: "no-reply@vsb.edu"
   };
