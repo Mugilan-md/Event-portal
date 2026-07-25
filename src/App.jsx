@@ -18,6 +18,7 @@ import ManageRegistrations from "./pages/ManageRegistrations";
 import ManageQueries from "./pages/ManageQueries";
 import NotFound from "./pages/NotFound";
 import StudentDashboard from "./pages/StudentDashboard";
+import VerifyTicket from "./pages/VerifyTicket";
 
 
 function Layout({ children }) {
@@ -84,6 +85,14 @@ function App() {
             element={
               <Layout>
                 <StudentDashboard />
+              </Layout>
+            }
+          />
+          <Route
+            path="/verify/:id"
+            element={
+              <Layout>
+                <VerifyTicket />
               </Layout>
             }
           />

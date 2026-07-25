@@ -648,3 +648,23 @@ export const deleteContactQuery = async (id) => {
   const docRef = fbDoc(db, "queries", id);
   await fbDeleteDoc(docRef);
 };
+
+export const getRegistrationByRegistrationId = async (registrationId) => {
+  if (isMockMode) {
+    const registrations = getLocalStorageItem("erp_registrations", []);
+    return registrations.find(r => r.registrationId === registrationId) || null;
+  }
+  try {
+    const q = fbQuery(fbCollection(db, "registrations"), fbWhere("registrationId", "==", registrationId));
+    const snap = await fbGetDocs(q);
+    if (!snap.empty) {
+      const doc = snap.docs[0];
+      return { id: doc.id, ...doc.data() };
+    }
+    return null;
+  } catch (err) {
+    console.error("Firestore getRegistrationByRegistrationId error:", err);
+    const registrations = getLocalStorageItem("erp_registrations", []);
+    return registrations.find(r => r.registrationId === registrationId) || null;
+  }
+};

@@ -32,13 +32,7 @@ export default function Success() {
 
   if (!registration) return <Navigate to="/events" replace />;
 
-  const qrPayload = JSON.stringify({
-    registrationId: registration.registrationId,
-    name: registration.name,
-    eventTitle: registration.eventTitle,
-    college: registration.collegeName,
-    phone: registration.phone
-  });
+  const qrPayload = `${window.location.origin}/verify/${registration.registrationId}`;
 
   return (
     <div className="relative min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 print:bg-white print:pt-0" style={{ background: "#FAFAFC" }}>
