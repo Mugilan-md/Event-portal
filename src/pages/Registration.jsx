@@ -16,7 +16,10 @@ export default function Registration() {
   const [uploading, setUploading] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
 
-  // Form Fields
+  const participantCount = 1 + (formData.member1Name?.trim() ? 1 : 0) + (formData.member2Name?.trim() ? 1 : 0);
+  const isPaidEvent = event?.registrationFee > 0;
+  const calculatedFee = isPaidEvent ? (participantCount * 200) : 0;
+
   const [formData, setFormData] = useState({
     name: "",
     collegeName: "",
@@ -24,6 +27,13 @@ export default function Registration() {
     year: "1st Year",
     email: "",
     phone: "",
+    teamName: "",
+    member1Name: "",
+    member1Email: "",
+    member1Phone: "",
+    member2Name: "",
+    member2Email: "",
+    member2Phone: "",
     teamMembers: "",
     paymentScreenshot: ""
   });
@@ -102,6 +112,33 @@ export default function Registration() {
     } else if (step === 2) {
       if (!formData.collegeName.trim()) errors.collegeName = "College name is required";
       if (!formData.department.trim()) errors.department = "Department is required";
+      
+      if (event?.teamSize > 1) {
+        if (!formData.teamName.trim()) {
+          errors.teamName = "Team name is required";
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[0-9+\-\s()]{8,15}$/;
+
+        if (formData.member1Name.trim()) {
+          if (formData.member1Email.trim() && !emailRegex.test(formData.member1Email)) {
+            errors.member1Email = "Enter a valid email address";
+          }
+          if (formData.member1Phone.trim() && !phoneRegex.test(formData.member1Phone)) {
+            errors.member1Phone = "Enter a valid phone number";
+          }
+        }
+
+        if (formData.member2Name.trim()) {
+          if (formData.member2Email.trim() && !emailRegex.test(formData.member2Email)) {
+            errors.member2Email = "Enter a valid email address";
+          }
+          if (formData.member2Phone.trim() && !phoneRegex.test(formData.member2Phone)) {
+            errors.member2Phone = "Enter a valid phone number";
+          }
+        }
+      }
     } else if (step === 3) {
       if (event && event.registrationFee > 0 && !formData.paymentScreenshot) {
         errors.paymentScreenshot = "Payment screenshot upload is required for paid events";
@@ -134,6 +171,11 @@ export default function Registration() {
       // Generate a unique 6 digit alphanumeric registration ID
       const regId = "ERP-" + Math.floor(100000 + Math.random() * 900000);
       
+      const teamMembersList = [
+        formData.member1Name.trim() && `${formData.member1Name.trim()} (${formData.member1Email.trim() || "No Email"}, ${formData.member1Phone.trim() || "No Phone"})`,
+        formData.member2Name.trim() && `${formData.member2Name.trim()} (${formData.member2Email.trim() || "No Email"}, ${formData.member2Phone.trim() || "No Phone"})`
+      ].filter(Boolean).join("\n");
+
       const payload = {
         registrationId: regId,
         eventId: event.id,
@@ -144,7 +186,16 @@ export default function Registration() {
         year: formData.year,
         email: formData.email,
         phone: formData.phone,
-        teamMembers: formData.teamMembers,
+        teamName: event?.teamSize > 1 ? formData.teamName : "",
+        member1Name: formData.member1Name,
+        member1Email: formData.member1Email,
+        member1Phone: formData.member1Phone,
+        member2Name: formData.member2Name,
+        member2Email: formData.member2Email,
+        member2Phone: formData.member2Phone,
+        teamMembers: teamMembersList,
+        calculatedFee: calculatedFee,
+        participantCount: participantCount,
         paymentScreenshot: formData.paymentScreenshot
       };
 
@@ -370,23 +421,145 @@ export default function Registration() {
                     </div>
                   </div>
 
-                  {/* Team size additional details */}
+                  {/* Team Details */}
                   {event?.teamSize > 1 && (
-                    <div className="space-y-2 border-t border-gray-100 pt-4 mt-2">
-                      <label className="text-xs font-bold text-gray-700 uppercase tracking-widest block">
-                        Team Members <span className="text-gray-400 font-normal">(Optional)</span>
-                      </label>
-                      <textarea
-                        name="teamMembers"
-                        value={formData.teamMembers}
-                        onChange={handleChange}
-                        rows={3}
-                        placeholder={`Enter name, email, and phone of up to ${event.teamSize - 1} other team members (one per line)`}
-                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 text-sm focus:outline-none focus:border-[#4338CA] focus:ring-2 focus:ring-[#4338CA]/20 transition-all"
-                      />
-                      <p className="text-xs text-gray-500">
-                        This event allows team registrations of up to {event.teamSize} members. You are registered as the Team Leader.
-                      </p>
+                    <div className="space-y-6 border-t border-gray-100 pt-6 mt-4">
+                      {/* Team Name Input */}
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-gray-700 uppercase tracking-widest flex items-center gap-1">
+                          Team Name <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="teamName"
+                          value={formData.teamName}
+                          onChange={handleChange}
+                          placeholder="Enter your team name"
+                          className={`w-full px-4 py-3 rounded-xl bg-gray-50 border ${
+                            formErrors.teamName ? "border-rose-500 focus:border-rose-500 focus:ring-rose-200" : "border-gray-200 focus:border-[#6366F1] focus:ring-[#6366F1]/20"
+                          } text-gray-800 text-sm focus:outline-none focus:ring-2 transition-all`}
+                        />
+                        {formErrors.teamName && (
+                          <p className="text-xs text-rose-500 mt-1 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3"/>{formErrors.teamName}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Team Members Structured Fields */}
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center flex-wrap gap-2">
+                          <label className="text-xs font-bold text-gray-700 uppercase tracking-widest block">
+                            Team Members
+                          </label>
+                          <span className="text-[10px] text-gray-500 font-bold bg-gray-100 px-2 py-1 rounded">
+                            Maximum Team Size: 3 (including Team Leader)
+                          </span>
+                        </div>
+
+                        {/* Note explaining leader status */}
+                        <div className="p-3.5 rounded-xl text-xs text-gray-600 bg-gray-50 border border-gray-200">
+                          ℹ️ You ({formData.name || "Leader"}) are automatically registered as the <strong>Team Leader</strong>.
+                        </div>
+
+                        {/* Member 1 Fields */}
+                        <div className="p-4 rounded-xl border border-gray-100 bg-[#FAFAFC] space-y-4">
+                          <div className="flex justify-between items-center">
+                            <h4 className="text-xs font-bold text-[#6366F1] uppercase tracking-wider">Member 2 Details</h4>
+                            <span className="text-[10px] text-gray-400 font-semibold uppercase">Optional</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Name</label>
+                              <input
+                                type="text"
+                                name="member1Name"
+                                value={formData.member1Name}
+                                onChange={handleChange}
+                                placeholder="Name"
+                                className="w-full px-3 py-2 text-xs rounded-lg"
+                              />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Email</label>
+                              <input
+                                type="email"
+                                name="member1Email"
+                                value={formData.member1Email}
+                                onChange={handleChange}
+                                placeholder="Email"
+                                className={`w-full px-3 py-2 text-xs rounded-lg border ${
+                                  formErrors.member1Email ? "border-rose-500" : "border-gray-200"
+                                }`}
+                              />
+                              {formErrors.member1Email && <p className="text-[9px] text-rose-500 mt-0.5">{formErrors.member1Email}</p>}
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Phone</label>
+                              <input
+                                type="text"
+                                name="member1Phone"
+                                value={formData.member1Phone}
+                                onChange={handleChange}
+                                placeholder="Phone"
+                                className={`w-full px-3 py-2 text-xs rounded-lg border ${
+                                  formErrors.member1Phone ? "border-rose-500" : "border-gray-200"
+                                }`}
+                              />
+                              {formErrors.member1Phone && <p className="text-[9px] text-rose-500 mt-0.5">{formErrors.member1Phone}</p>}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Member 2 Fields */}
+                        <div className="p-4 rounded-xl border border-gray-100 bg-[#FAFAFC] space-y-4">
+                          <div className="flex justify-between items-center">
+                            <h4 className="text-xs font-bold text-[#6366F1] uppercase tracking-wider">Member 3 Details</h4>
+                            <span className="text-[10px] text-gray-400 font-semibold uppercase">Optional</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Name</label>
+                              <input
+                                type="text"
+                                name="member2Name"
+                                value={formData.member2Name}
+                                onChange={handleChange}
+                                placeholder="Name"
+                                className="w-full px-3 py-2 text-xs rounded-lg"
+                              />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Email</label>
+                              <input
+                                type="email"
+                                name="member2Email"
+                                value={formData.member2Email}
+                                onChange={handleChange}
+                                placeholder="Email"
+                                className={`w-full px-3 py-2 text-xs rounded-lg border ${
+                                  formErrors.member2Email ? "border-rose-500" : "border-gray-200"
+                                }`}
+                              />
+                              {formErrors.member2Email && <p className="text-[9px] text-rose-500 mt-0.5">{formErrors.member2Email}</p>}
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Phone</label>
+                              <input
+                                type="text"
+                                name="member2Phone"
+                                value={formData.member2Phone}
+                                onChange={handleChange}
+                                placeholder="Phone"
+                                className={`w-full px-3 py-2 text-xs rounded-lg border ${
+                                  formErrors.member2Phone ? "border-rose-500" : "border-gray-200"
+                                }`}
+                              />
+                              {formErrors.member2Phone && <p className="text-[9px] text-rose-500 mt-0.5">{formErrors.member2Phone}</p>}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   )}
                  </motion.div>
@@ -402,44 +575,85 @@ export default function Registration() {
                  transition={{ duration: 0.2 }}
                  className="space-y-6"
                >
-                 <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 text-sm text-gray-700 mb-6 space-y-2">
-                   <p><strong className="text-[#111827]">Name:</strong> {formData.name}</p>
-                   <p><strong className="text-[#111827]">Email:</strong> {formData.email}</p>
-                   <p><strong className="text-[#111827]">College:</strong> {formData.collegeName} ({formData.department}, {formData.year})</p>
-                 </div>
-
-                 {/* Payment Portal QR scan & Screenshot upload if Paid */}
-                 {event?.registrationFee > 0 ? (
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-sm font-bold text-[#4338CA] uppercase tracking-wider flex items-center gap-1.5">
-                        <Award className="w-4 h-4 text-[#F59E0B]" /> Payment & Validation
-                      </h3>
-                      <p className="text-xs text-gray-600 mt-1 leading-relaxed">
-                        This is a paid event. Scan the portal UPI QR code below to transfer <strong>₹{event.registrationFee}</strong>, then upload the transaction receipt.
-                      </p>
-                    </div>
-
-                    {/* QR Code Container and Instruction */}
-                    <div className="flex flex-col sm:flex-row gap-6 items-center p-4 rounded-xl bg-white border border-[#F59E0B]/30 shadow-sm">
-                      <div className="w-32 h-32 bg-gray-50 p-2 rounded-lg shrink-0 border border-gray-100">
-                        {/* Mock UPI Code using a dynamic image generator */}
-                        <img
-                          src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=upi://pay?pa=eventportal@upi%26pn=EventPortal%26am=${event.registrationFee}%26cu=INR`}
-                          alt="Payment QR"
-                          className="w-full h-full mix-blend-multiply"
-                        />
+                  {/* Registration Summary Card */}
+                  <div
+                    className="p-6 rounded-2xl space-y-4"
+                    style={{
+                      background: "#FFFFFF",
+                      border: "1px solid #E2E8F0",
+                      boxShadow: "0 4px 6px -1px rgba(9,13,22,0.05)"
+                    }}
+                  >
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#6366F1]">
+                      Registration Summary
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-[#0F172A]">
+                      {event?.teamSize > 1 && (
+                        <div>
+                          <span className="text-[10px] text-gray-500 uppercase tracking-widest block">Team Name</span>
+                          <span className="font-semibold">{formData.teamName || "Not Specified"}</span>
+                        </div>
+                      )}
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase tracking-widest block">Team Leader</span>
+                        <span className="font-semibold">{formData.name}</span>
                       </div>
-                      <div className="text-xs space-y-1.5 text-gray-600">
-                        <p className="font-bold text-[#4338CA]">Payment UPI Details:</p>
-                        <p>UPI ID: <strong className="text-[#4338CA]">eventportal@upi</strong></p>
-                        <p>Payee: <strong className="text-[#111827]">Event Registration Portal</strong></p>
-                        <p>Amount: <strong className="text-[#111827]">₹{event.registrationFee}</strong></p>
-                        <p className="text-[10px] text-gray-500 leading-tight italic mt-2">
-                          * Save the transaction ID and take a screenshot of the successful transfer status screen.
-                        </p>
+                      {event?.teamSize > 1 && (
+                        <div className="sm:col-span-2">
+                          <span className="text-[10px] text-gray-500 uppercase tracking-widest block">Team Members</span>
+                          <span className="font-semibold">
+                            {[formData.member1Name, formData.member2Name].filter(Boolean).join(", ") || "None"}
+                          </span>
+                        </div>
+                      )}
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase tracking-widest block">Total Participants</span>
+                        <span className="font-semibold">{participantCount}</span>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gray-500 uppercase tracking-widest block">Total Fee</span>
+                        <span className="font-bold text-[#6366F1]">₹{calculatedFee}</span>
                       </div>
                     </div>
+                  </div>
+
+                  {/* Payment Portal QR scan & Screenshot upload if Paid */}
+                  {event?.registrationFee > 0 ? (
+                   <div className="space-y-6">
+                     <div>
+                       <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-1.5 text-[#6366F1]">
+                         <Award className="w-4 h-4 text-[#F59E0B]" /> Payment & Validation
+                       </h3>
+                       <p className="text-xs text-[#64748B] mt-1 leading-relaxed">
+                         This is a paid event. Scan the portal UPI QR code below to transfer <strong>₹{calculatedFee}</strong>, then upload the transaction receipt.
+                       </p>
+                     </div>
+
+                     {/* QR Code Container and Instruction */}
+                     <div className="flex flex-col sm:flex-row gap-6 items-center p-4 rounded-xl bg-white border border-[#F59E0B]/30 shadow-sm">
+                       <div className="w-32 h-32 bg-gray-50 p-2 rounded-lg shrink-0 border border-gray-100">
+                         {/* Mock UPI Code using a dynamic image generator */}
+                         <img
+                           src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=upi://pay?pa=eventportal@upi%26pn=EventPortal%26am=${calculatedFee}%26cu=INR`}
+                           alt="Payment QR"
+                           className="w-full h-full mix-blend-multiply"
+                         />
+                       </div>
+                       <div className="text-xs space-y-1.5 text-[#64748B]">
+                         <p className="font-bold text-[#6366F1]">Payment UPI Details:</p>
+                         <p>UPI ID: <strong className="text-[#6366F1]">eventportal@upi</strong></p>
+                         <p>Payee: <strong className="text-[#0F172A]">Event Registration Portal</strong></p>
+                         <p>Amount: <strong className="text-[#0F172A]">₹{calculatedFee}</strong></p>
+                         {event?.teamSize > 1 && (
+                           <p className="text-[#6366F1] font-semibold mt-1">
+                             "The Team Leader pays the total registration fee for the entire team."
+                           </p>
+                         )}
+                         <p className="text-[10px] text-gray-500 leading-tight italic mt-2">
+                           * Save the transaction ID and take a screenshot of the successful transfer status screen.
+                         </p>
+                       </div>
+                     </div>
 
                     {/* Receipt attachment area */}
                     <div className="space-y-2">
