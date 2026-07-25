@@ -12,82 +12,89 @@ const Star = ({ color }) => (
   </svg>
 );
 
-export default function StarButton({ 
-  children, 
-  onClick, 
-  to, 
-  variant = "sky", 
-  className = "", 
+export default function StarButton({
+  children,
+  onClick,
+  to,
+  variant = "violet",
+  className = "",
   type = "button",
   disabled = false
 }) {
-  // Theme color maps matching VSB Event Portal
+  // Premium SaaS color themes
   const themes = {
+    violet: {
+      bg: "bg-[#6366F1] border-[#6366F1] text-white",
+      hover: "hover:text-[#6366F1] hover:shadow-[0_8px_25px_rgba(99,102,241,0.45)]",
+      starColor: "#818CF8"
+    },
+    cyan: {
+      bg: "bg-[#06B6D4] border-[#06B6D4] text-white",
+      hover: "hover:text-[#06B6D4] hover:shadow-[0_8px_25px_rgba(6,182,212,0.45)]",
+      starColor: "#22D3EE"
+    },
     gold: {
-      bg: "bg-[#FFD700] border-[#FFD700] text-[#181818]",
-      hover: "hover:text-[#FFD700] hover:shadow-[0_0_25px_rgba(255,215,0,0.55)]",
-      starColor: "#FFD700"
+      bg: "bg-[#F59E0B] border-[#F59E0B] text-[#0F172A]",
+      hover: "hover:text-[#F59E0B] hover:shadow-[0_8px_25px_rgba(245,158,11,0.45)]",
+      starColor: "#FCD34D"
     },
     sky: {
-      bg: "bg-sky-500 border-sky-500 text-white",
-      hover: "hover:text-sky-500 hover:shadow-[0_0_25px_rgba(14,165,233,0.55)]",
-      starColor: "#0ea5e9"
+      // Legacy alias → Royal Violet
+      bg: "bg-[#6366F1] border-[#6366F1] text-white",
+      hover: "hover:text-[#6366F1] hover:shadow-[0_8px_25px_rgba(99,102,241,0.45)]",
+      starColor: "#818CF8"
     },
     royal: {
-      bg: "bg-[#4338CA] border-[#4338CA] text-white",
-      hover: "hover:text-[#4338CA] hover:shadow-[0_0_25px_rgba(31,60,136,0.55)]",
-      starColor: "#4338CA"
+      bg: "bg-[#4F46E5] border-[#4F46E5] text-white",
+      hover: "hover:text-[#4F46E5] hover:shadow-[0_8px_25px_rgba(79,70,229,0.45)]",
+      starColor: "#6366F1"
+    },
+    dark: {
+      bg: "bg-[#090D16] border-white/20 text-white",
+      hover: "hover:text-white hover:shadow-[0_8px_25px_rgba(9,13,22,0.5)] hover:border-[#6366F1]/50",
+      starColor: "#6366F1"
     }
   };
 
-  const theme = themes[variant] || themes.sky;
+  const theme = themes[variant] || themes.violet;
 
   const content = (
     <>
       <span className="relative z-10 flex items-center justify-center gap-2">{children}</span>
 
-      {/* Star 1 */}
-      <div className="absolute top-[20%] left-[20%] w-[18px] z-[-5] transition-all duration-[1000ms] ease-[cubic-bezier(0.05,0.83,0.43,0.96)] group-hover:top-[-80%] group-hover:left-[-35%] group-hover:z-20">
+      {/* Animated stars on hover */}
+      <div className="absolute top-[20%] left-[20%] w-[18px] z-[-5] transition-all duration-[900ms] ease-[cubic-bezier(0.05,0.83,0.43,0.96)] group-hover:top-[-80%] group-hover:left-[-35%] group-hover:z-20">
         <Star color={theme.starColor} />
       </div>
-
-      {/* Star 2 */}
-      <div className="absolute top-[45%] left-[45%] w-[12px] z-[-5] transition-all duration-[1000ms] ease-[cubic-bezier(0,0.4,0,1.01)] group-hover:top-[-45%] group-hover:left-[10%] group-hover:z-20">
+      <div className="absolute top-[45%] left-[45%] w-[12px] z-[-5] transition-all duration-[900ms] ease-[cubic-bezier(0,0.4,0,1.01)] group-hover:top-[-45%] group-hover:left-[10%] group-hover:z-20">
         <Star color={theme.starColor} />
       </div>
-
-      {/* Star 3 */}
-      <div className="absolute top-[40%] left-[40%] w-[6px] z-[-5] transition-all duration-[1000ms] ease-[cubic-bezier(0,0.4,0,1.01)] group-hover:top-[65%] group-hover:left-[15%] group-hover:z-20">
+      <div className="absolute top-[40%] left-[40%] w-[6px] z-[-5] transition-all duration-[900ms] ease-[cubic-bezier(0,0.4,0,1.01)] group-hover:top-[65%] group-hover:left-[15%] group-hover:z-20">
         <Star color={theme.starColor} />
       </div>
-
-      {/* Star 4 */}
-      <div className="absolute top-[20%] left-[40%] w-[8px] z-[-5] transition-all duration-[800ms] ease-[cubic-bezier(0,0.4,0,1.01)] group-hover:top-[15%] group-hover:left-[90%] group-hover:z-20">
+      <div className="absolute top-[20%] left-[40%] w-[8px] z-[-5] transition-all duration-[700ms] ease-[cubic-bezier(0,0.4,0,1.01)] group-hover:top-[15%] group-hover:left-[90%] group-hover:z-20">
         <Star color={theme.starColor} />
       </div>
-
-      {/* Star 5 */}
-      <div className="absolute top-[25%] left-[45%] w-[12px] z-[-5] transition-all duration-[600ms] ease-[cubic-bezier(0,0.4,0,1.01)] group-hover:top-[15%] group-hover:left-[110%] group-hover:z-20">
+      <div className="absolute top-[25%] left-[45%] w-[12px] z-[-5] transition-all duration-[550ms] ease-[cubic-bezier(0,0.4,0,1.01)] group-hover:top-[15%] group-hover:left-[110%] group-hover:z-20">
         <Star color={theme.starColor} />
       </div>
-
-      {/* Star 6 */}
-      <div className="absolute top-[5%] left-[50%] w-[6px] z-[-5] transition-all duration-[800ms] ease-in-out group-hover:top-[-15%] group-hover:left-[65%] group-hover:z-20">
+      <div className="absolute top-[5%] left-[50%] w-[6px] z-[-5] transition-all duration-[750ms] ease-in-out group-hover:top-[-15%] group-hover:left-[65%] group-hover:z-20">
         <Star color={theme.starColor} />
       </div>
     </>
   );
 
   const baseClass = `
-    group relative px-6 py-2.5 
-    text-sm font-bold uppercase tracking-wider 
-    border-2 rounded-xl 
-    shadow-[0_0_0_transparent] 
-    transition-all duration-300 ease-in-out 
+    group relative px-6 py-2.5
+    text-sm font-semibold tracking-wide
+    border-2 rounded-xl
+    shadow-[0_1px_2px_rgba(0,0,0,0.08)]
+    transition-all duration-[250ms] ease-in-out
     cursor-pointer
     active:scale-95
     hover:bg-transparent
-    disabled:opacity-50 disabled:cursor-not-allowed
+    hover:-translate-y-[2px]
+    disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
     ${theme.bg} ${theme.hover} ${className}
   `;
 

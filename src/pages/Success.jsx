@@ -12,36 +12,25 @@ export default function Success() {
 
   useEffect(() => {
     if (registration) {
-      // Fire confetti celebration
       const duration = 3 * 1000;
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
-
       const randomInRange = (min, max) => Math.random() * (max - min) + min;
 
       const interval = setInterval(() => {
         const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
-
+        if (timeLeft <= 0) return clearInterval(interval);
         const particleCount = 50 * (timeLeft / duration);
-        // since particles fall down, start a bit higher than random
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+        confetti({ ...defaults, particleCount, colors: ["#6366F1", "#06B6D4", "#F59E0B", "#818CF8"], origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+        confetti({ ...defaults, particleCount, colors: ["#6366F1", "#06B6D4", "#F59E0B", "#818CF8"], origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
       }, 250);
 
       return () => clearInterval(interval);
     }
   }, [registration]);
 
-  // If no registration state is present, redirect back to events list
-  if (!registration) {
-    return <Navigate to="/events" replace />;
-  }
+  if (!registration) return <Navigate to="/events" replace />;
 
-  // QR Code Payload
   const qrPayload = JSON.stringify({
     registrationId: registration.registrationId,
     name: registration.name,
@@ -50,67 +39,67 @@ export default function Success() {
     phone: registration.phone
   });
 
-  const handlePrint = () => {
-    window.print();
-  };
-
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA] pt-28 pb-20 px-4 sm:px-6 lg:px-8 print:bg-white print:text-black print:pt-0 print:pb-0">
-      {/* Background Blurs */}
-      <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-purple-600/5 rounded-full blur-3xl pointer-events-none print:hidden" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none print:hidden" />
+    <div className="relative min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 print:bg-white print:pt-0" style={{ background: "#FAFAFC" }}>
+      {/* Orbs */}
+      <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full blur-3xl pointer-events-none print:hidden" style={{ background: "rgba(99,102,241,0.06)" }} />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl pointer-events-none print:hidden" style={{ background: "rgba(6,182,212,0.05)" }} />
 
       <div className="max-w-xl mx-auto space-y-8 relative z-10 text-center">
-        {/* Success Icon */}
+
+        {/* Success Icon & heading */}
         <div className="print:hidden">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="w-20 h-20 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/20"
+            className="w-20 h-20 rounded-full flex items-center justify-center mx-auto shadow-lg"
+            style={{ background: "linear-gradient(135deg, #10B981, #059669)", boxShadow: "0 8px 24px rgba(16,185,129,0.3)" }}
           >
             <Check className="w-10 h-10 text-white stroke-[3px]" />
           </motion.div>
-          
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mt-6">
-            Registration <span className="text-gradient">Confirmed!</span>
+
+          <h1 className="text-3xl sm:text-4xl font-extrabold mt-6 font-serif" style={{ color: "#0F172A" }}>
+            Registration <span className="text-gradient-purple">Confirmed!</span>
           </h1>
-          <p className="text-gray-400 mt-2 text-sm">
+          <p className="mt-2 text-sm" style={{ color: "#64748B" }}>
             Your seat is successfully reserved. Save this pass for entry.
           </p>
+
           {location.state?.emailSent !== false ? (
-            <p className="text-emerald-500 font-semibold text-xs mt-3 print:hidden bg-emerald-500/10 py-1.5 px-3 rounded-full inline-block border border-emerald-500/20">
-              ✓ Confirmation email has been sent to {registration.email}
+            <p className="text-xs mt-3 py-1.5 px-4 rounded-full inline-block font-semibold" style={{ background: "rgba(16,185,129,0.08)", color: "#10B981", border: "1px solid rgba(16,185,129,0.2)" }}>
+              ✓ Confirmation email sent to {registration.email}
             </p>
           ) : (
-            <p className="text-amber-500 font-semibold text-xs mt-3 print:hidden bg-amber-500/10 py-1.5 px-3 rounded-full inline-block border border-amber-500/20">
+            <p className="text-xs mt-3 py-1.5 px-4 rounded-full inline-block font-semibold" style={{ background: "rgba(245,158,11,0.08)", color: "#F59E0B", border: "1px solid rgba(245,158,11,0.2)" }}>
               ⚠ Email delivery failed, but your seat is reserved.
             </p>
           )}
         </div>
 
-        {/* The Pass / Ticket */}
+        {/* Ticket Pass */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="rounded-3xl glass-panel border border-purple-500/20 text-left overflow-hidden relative shadow-2xl print:border-none print:shadow-none print:bg-white"
+          className="rounded-3xl text-left overflow-hidden relative shadow-2xl print:shadow-none print:border-none print:bg-white"
+          style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}
         >
-          {/* Hologram Gradient Top Banner */}
-          <div className="h-3 bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-500 print:hidden" />
+          {/* Top gradient banner */}
+          <div className="h-1.5 print:hidden" style={{ background: "linear-gradient(90deg, #6366F1, #06B6D4, #F59E0B)" }} />
 
           <div className="p-6 sm:p-8 space-y-6">
-            {/* Logo and registration ID */}
-            <div className="flex justify-between items-start border-b border-purple-500/10 pb-6 print:border-black/10">
+            {/* Header row */}
+            <div className="flex justify-between items-start pb-5" style={{ borderBottom: "1px solid #F1F5F9" }}>
               <div>
-                <span className="font-extrabold text-lg tracking-tight text-white print:text-black">
-                  EVENT<span className="text-purple-400 print:text-indigo-600">PASS</span>
+                <span className="font-extrabold text-lg tracking-tight print:text-black" style={{ color: "#0F172A" }}>
+                  EVENT<span style={{ color: "#6366F1" }}>PASS</span>
                 </span>
-                <p className="text-[10px] text-gray-500 mt-0.5 print:text-black/60">Official Attendee Credential</p>
+                <p className="text-[10px] mt-0.5" style={{ color: "#94A3B8" }}>Official Attendee Credential</p>
               </div>
               <div className="text-right">
-                <span className="text-xs text-purple-400 font-extrabold tracking-widest uppercase print:text-indigo-600">ID CODE</span>
-                <p className="text-lg font-mono font-bold text-white tracking-wider print:text-black">
+                <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#06B6D4" }}>ID CODE</span>
+                <p className="text-lg font-mono font-bold tracking-wider print:text-black" style={{ color: "#0F172A" }}>
                   {registration.registrationId}
                 </p>
               </div>
@@ -118,81 +107,78 @@ export default function Success() {
 
             {/* Event Name */}
             <div>
-              <span className="text-[9px] text-gray-500 uppercase tracking-widest block">Registered Event</span>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white leading-tight mt-1 print:text-black">
+              <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>Registered Event</span>
+              <h2 className="text-xl sm:text-2xl font-extrabold leading-tight mt-1 font-serif print:text-black" style={{ color: "#0F172A" }}>
                 {registration.eventTitle}
               </h2>
             </div>
 
-            {/* Student details */}
-            <div className="grid grid-cols-2 gap-4 border-t border-b border-purple-500/10 py-5 print:border-black/10">
+            {/* Attendee details */}
+            <div className="grid grid-cols-2 gap-4 py-5" style={{ borderTop: "1px solid #F1F5F9", borderBottom: "1px solid #F1F5F9" }}>
               <div>
-                <span className="text-[9px] text-gray-500 uppercase tracking-widest block">Attendee</span>
-                <span className="text-sm font-bold text-gray-200 mt-0.5 block print:text-black">{registration.name}</span>
-                <span className="text-xs text-gray-400 block print:text-black/60">{registration.collegeName}</span>
+                <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>Attendee</span>
+                <span className="text-sm font-bold mt-0.5 block print:text-black" style={{ color: "#0F172A" }}>{registration.name}</span>
+                <span className="text-xs block print:text-black/60" style={{ color: "#64748B" }}>{registration.collegeName}</span>
               </div>
               <div>
-                <span className="text-[9px] text-gray-500 uppercase tracking-widest block">Department & Year</span>
-                <span className="text-sm font-semibold text-gray-200 mt-0.5 block print:text-black">{registration.department}</span>
-                <span className="text-xs text-gray-400 block print:text-black/60">{registration.year}</span>
+                <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>Department & Year</span>
+                <span className="text-sm font-semibold mt-0.5 block print:text-black" style={{ color: "#0F172A" }}>{registration.department}</span>
+                <span className="text-xs block print:text-black/60" style={{ color: "#64748B" }}>{registration.year}</span>
               </div>
             </div>
 
-            {/* Quick Specs */}
+            {/* Event specs */}
             <div className="grid grid-cols-2 gap-4 text-xs">
               <div className="flex gap-2">
-                <Calendar className="w-4 h-4 text-purple-400 shrink-0 print:text-indigo-600" />
+                <Calendar className="w-4 h-4 shrink-0" style={{ color: "#6366F1" }} />
                 <div>
-                  <span className="text-gray-400 block print:text-black/60">Date & Time</span>
-                  <span className="font-semibold text-gray-200 print:text-black">{event?.date || "TBD"}</span>
+                  <span className="block" style={{ color: "#94A3B8" }}>Date & Time</span>
+                  <span className="font-semibold print:text-black" style={{ color: "#0F172A" }}>{event?.date || "TBD"}</span>
                 </div>
               </div>
               <div className="flex gap-2">
-                <MapPin className="w-4 h-4 text-purple-400 shrink-0 print:text-indigo-600" />
+                <MapPin className="w-4 h-4 shrink-0" style={{ color: "#06B6D4" }} />
                 <div>
-                  <span className="text-gray-400 block print:text-black/60">Venue</span>
-                  <span className="font-semibold text-gray-200 print:text-black line-clamp-1">{event?.venue || "TBD"}</span>
+                  <span className="block" style={{ color: "#94A3B8" }}>Venue</span>
+                  <span className="font-semibold line-clamp-1 print:text-black" style={{ color: "#0F172A" }}>{event?.venue || "TBD"}</span>
                 </div>
               </div>
             </div>
 
-            {/* QR Code and verified stamp */}
-            <div className="flex flex-col sm:flex-row items-center gap-6 justify-between pt-6 border-t border-purple-500/10 print:border-black/10">
+            {/* QR Code */}
+            <div className="flex flex-col sm:flex-row items-center gap-6 justify-between pt-5" style={{ borderTop: "1px solid #F1F5F9" }}>
               <div className="space-y-2 text-center sm:text-left">
-                <div className="flex items-center gap-1 text-emerald-400 font-bold text-xs uppercase tracking-wider justify-center sm:justify-start">
+                <div className="flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider justify-center sm:justify-start" style={{ color: "#10B981" }}>
                   <ShieldCheck className="w-4 h-4 stroke-[2.5px]" /> Secured Credential
                 </div>
-                <p className="text-[10px] text-gray-500 leading-relaxed max-w-[240px] print:text-black/60">
+                <p className="text-[10px] leading-relaxed max-w-[240px] print:text-black/60" style={{ color: "#64748B" }}>
                   Scan QR code at the check-in venue desk to confirm attendance entry.
                 </p>
               </div>
-
-              {/* QR Code SVG */}
-              <div className="p-3 bg-white rounded-2xl shadow-lg border border-purple-500/15 shrink-0 print:border-black/10">
-                <QRCodeSVG
-                  value={qrPayload}
-                  size={96}
-                  bgColor="#FFFFFF"
-                  fgColor="#000000"
-                  level="Q"
-                />
+              <div className="p-3 rounded-2xl shadow-md shrink-0" style={{ background: "#FFFFFF", border: "1px solid #E2E8F0" }}>
+                <QRCodeSVG value={qrPayload} size={96} bgColor="#FFFFFF" fgColor="#0F172A" level="Q" />
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Download Ticket and Navigation buttons */}
+        {/* Action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center print:hidden">
           <button
-            onClick={handlePrint}
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold text-sm transition-all"
+            onClick={() => window.print()}
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-250"
+            style={{ background: "#FFFFFF", color: "#0F172A", border: "1px solid #E2E8F0" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(99,102,241,0.3)"; e.currentTarget.style.color = "#6366F1"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "#E2E8F0"; e.currentTarget.style.color = "#0F172A"; }}
           >
             <Printer className="w-4 h-4" /> Print Ticket
           </button>
-          
           <Link
             to="/events"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-500 hover:to-blue-400 text-white font-bold text-sm transition-all shadow-md group"
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-250 group"
+            style={{ background: "#6366F1", boxShadow: "0 4px 14px rgba(99,102,241,0.3)" }}
+            onMouseEnter={e => { e.currentTarget.style.background = "#4F46E5"; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(99,102,241,0.4)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#6366F1"; e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 4px 14px rgba(99,102,241,0.3)"; }}
           >
             Explore More Events <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </Link>

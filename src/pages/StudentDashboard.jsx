@@ -28,7 +28,7 @@ export default function StudentDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-brand-background text-text-primary p-6 md:p-12">
+    <div className="min-h-screen p-6 md:p-12" style={{ background: "#FAFAFC", color: "#0F172A" }}>
       <div className="max-w-6xl mx-auto space-y-8 mt-24">
         {/* Header Section */}
         <StudentDashboardHeader studentName="Alex" />
@@ -37,10 +37,15 @@ export default function StudentDashboard() {
         <div className="space-y-4">
           <div className="flex justify-between items-end">
             <div>
-              <h2 className="text-2xl font-bold text-text-primary">Your Courses</h2>
-              <p className="text-text-muted mt-1 text-sm">Pick up where you left off</p>
+              <h2 className="text-2xl font-bold font-serif" style={{ color: "#0F172A" }}>Your Courses</h2>
+              <p className="mt-1 text-sm" style={{ color: "#64748B" }}>Pick up where you left off</p>
             </div>
-            <button className="text-brand-primary text-sm font-semibold hover:text-brand-secondary transition-colors">
+            <button
+              className="text-sm font-semibold transition-colors duration-200"
+              style={{ color: "#6366F1" }}
+              onMouseEnter={e => { e.currentTarget.style.color = "#4F46E5"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "#6366F1"; }}
+            >
               View All
             </button>
           </div>
