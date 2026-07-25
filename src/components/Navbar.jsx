@@ -75,10 +75,10 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group py-1">
             <div
-              className="w-10 h-10 rounded-xl overflow-hidden shrink-0 transition-all duration-300 group-hover:scale-110"
-              style={{ border: "1px solid rgba(99,102,241,0.3)", boxShadow: "0 0 12px rgba(99,102,241,0.2)" }}
+              className="w-14 h-14 rounded-full overflow-hidden shrink-0 transition-all duration-300 group-hover:scale-110 flex items-center justify-center bg-white"
+              style={{ border: "2px solid rgba(99,102,241,0.5)", boxShadow: "0 0 16px rgba(99,102,241,0.3)" }}
             >
-              <img src={logoImg} alt="VSB Logo" className="w-full h-full object-contain" />
+              <img src={logoImg} alt="VSB Logo" className="w-full h-full object-cover scale-[1.18]" />
             </div>
             <span
               className="font-extrabold text-xl sm:text-2xl tracking-tight font-serif transition-all duration-300"

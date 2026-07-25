@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import { QRCodeSVG } from "qrcode.react";
 import { Check, Calendar, MapPin, Printer, ArrowRight, ShieldCheck } from "lucide-react";
-import vsbLogo from "../assets/vsb_logo.jpg";
+import vsbLogo from "../assets/vsb_logo.png";
 
 export default function Success() {
   const location = useLocation();
