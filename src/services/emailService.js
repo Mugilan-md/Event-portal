@@ -23,6 +23,10 @@ export const sendConfirmationEmail = async (details, event) => {
     throw new Error("EmailJS keys are not configured in environment variables.");
   }
 
+  const origin = window.location.origin || "https://event-portal-tan.vercel.app";
+  const verifyLink = `${origin}/verify/${details.registrationId}`;
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(verifyLink)}`;
+
   // Map fields matching the request template with comprehensive fallbacks
   const templateParams = {
     participant_name: details.recipientName || details.name,
@@ -43,6 +47,13 @@ export const sendConfirmationEmail = async (details, event) => {
     to_email: details.recipientEmail || details.email, 
     email: details.recipientEmail || details.email,
     recipient_email: details.recipientEmail || details.email,
+    
+    qr_code_url: qrCodeUrl,
+    qr_code: qrCodeUrl,
+    qrcode: qrCodeUrl,
+    qr: qrCodeUrl,
+    verification_link: verifyLink,
+    verify_link: verifyLink,
     
     from_name: "V.S.B. Engineering College, Karur",
     reply_to: "no-reply@vsb.edu"
