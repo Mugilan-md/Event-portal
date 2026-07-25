@@ -203,11 +203,46 @@ export default function Registration() {
       
       let emailSent = false;
       try {
-        await sendConfirmationEmail(payload, event);
+        // Send to Team Leader (Primary Participant)
+        await sendConfirmationEmail({
+          ...payload,
+          recipientName: payload.name,
+          recipientEmail: payload.email,
+          recipientPhone: payload.phone
+        }, event);
         emailSent = true;
-        showToast("Registration successful. Confirmation email has been sent.", "success");
+
+        // Send to Member 2 if email provided
+        if (payload.member1Email?.trim()) {
+          try {
+            await sendConfirmationEmail({
+              ...payload,
+              recipientName: payload.member1Name,
+              recipientEmail: payload.member1Email,
+              recipientPhone: payload.member1Phone
+            }, event);
+          } catch (m1Err) {
+            console.error("Failed to send email to Member 2:", m1Err);
+          }
+        }
+
+        // Send to Member 3 if email provided
+        if (payload.member2Email?.trim()) {
+          try {
+            await sendConfirmationEmail({
+              ...payload,
+              recipientName: payload.member2Name,
+              recipientEmail: payload.member2Email,
+              recipientPhone: payload.member2Phone
+            }, event);
+          } catch (m2Err) {
+            console.error("Failed to send email to Member 3:", m2Err);
+          }
+        }
+
+        showToast("Registration successful. Confirmation emails sent.", "success");
       } catch (emailErr) {
-        console.error("EmailJS dispatch failed:", emailErr);
+        console.error("EmailJS dispatch failed for Team Leader:", emailErr);
         const errMsg = emailErr.text || emailErr.message || "Connection refused";
         showToast(`Email error: ${errMsg}`, "error");
       }

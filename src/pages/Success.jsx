@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import { QRCodeSVG } from "qrcode.react";
 import { Check, Calendar, MapPin, Printer, ArrowRight, ShieldCheck } from "lucide-react";
+import vsbLogo from "../assets/vsb_logo.jpg";
 
 export default function Success() {
   const location = useLocation();
@@ -89,6 +90,21 @@ export default function Success() {
           <div className="h-1.5 print:hidden" style={{ background: "linear-gradient(90deg, #6366F1, #06B6D4, #F59E0B)" }} />
 
           <div className="p-6 sm:p-8 space-y-6">
+            {/* College Organizer Header */}
+            <div className="flex items-center gap-4 pb-4" style={{ borderBottom: "1px solid #F1F5F9" }}>
+              <img
+                src={vsbLogo}
+                alt="V.S.B. Engineering College Logo"
+                className="w-12 h-12 object-contain rounded-full border border-gray-100 shadow-sm bg-white"
+              />
+              <div>
+                <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>Organized By</span>
+                <span className="text-xs sm:text-sm font-bold block print:text-black" style={{ color: "#0F172A" }}>
+                  V.S.B. Engineering College, Karur
+                </span>
+              </div>
+            </div>
+
             {/* Header row */}
             <div className="flex justify-between items-start pb-5" style={{ borderBottom: "1px solid #F1F5F9" }}>
               <div>
@@ -116,7 +132,9 @@ export default function Success() {
             {/* Attendee details */}
             <div className="grid grid-cols-2 gap-4 py-5" style={{ borderTop: "1px solid #F1F5F9", borderBottom: "1px solid #F1F5F9" }}>
               <div>
-                <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>Attendee</span>
+                <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>
+                  {registration.teamName ? "Team Leader" : "Attendee"}
+                </span>
                 <span className="text-sm font-bold mt-0.5 block print:text-black" style={{ color: "#0F172A" }}>{registration.name}</span>
                 <span className="text-xs block print:text-black/60" style={{ color: "#64748B" }}>{registration.collegeName}</span>
               </div>
@@ -125,6 +143,22 @@ export default function Success() {
                 <span className="text-sm font-semibold mt-0.5 block print:text-black" style={{ color: "#0F172A" }}>{registration.department}</span>
                 <span className="text-xs block print:text-black/60" style={{ color: "#64748B" }}>{registration.year}</span>
               </div>
+
+              {registration.teamName && (
+                <div className="col-span-2 pt-2 border-t border-dashed border-gray-100">
+                  <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>Team Name</span>
+                  <span className="text-sm font-bold block print:text-black" style={{ color: "#0F172A" }}>{registration.teamName}</span>
+                </div>
+              )}
+
+              {(registration.member1Name || registration.member2Name) && (
+                <div className="col-span-2 pt-2 border-t border-dashed border-gray-100">
+                  <span className="text-[9px] uppercase tracking-widest block" style={{ color: "#94A3B8" }}>Team Members</span>
+                  <span className="text-sm font-semibold block print:text-black" style={{ color: "#0F172A" }}>
+                    {[registration.member1Name, registration.member2Name].filter(Boolean).join(", ")}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Event specs */}

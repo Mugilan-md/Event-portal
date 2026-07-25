@@ -25,15 +25,16 @@ export const sendConfirmationEmail = async (details, event) => {
 
   // Map fields matching the request template
   const templateParams = {
-    participant_name: details.name,
+    participant_name: details.recipientName || details.name,
     event_name: details.eventTitle,
     registration_id: details.registrationId,
     event_date: event?.date || "TBD",
     event_venue: event?.venue || "TBD",
     college_name: details.collegeName,
     department: details.department,
-    phone_number: details.phone,
-    to_email: details.email, // Address destination for EmailJS dashboard setting
+    phone_number: details.recipientPhone || details.phone,
+    to_email: details.recipientEmail || details.email, // Address destination for EmailJS dashboard setting
+    from_name: "V.S.B. Engineering College, Karur",
     reply_to: "no-reply@vsb.edu"
   };
 
