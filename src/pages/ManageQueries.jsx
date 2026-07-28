@@ -59,11 +59,11 @@ export default function ManageQueries() {
           <div className="flex items-center gap-4">
             <Icon3D icon={MessageSquare} size="lg" color="gold" />
             <div className="space-y-1">
-              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-indigo-600 font-bold hover:underline transition-colors">
+              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-[#FFDBBB] font-bold hover:underline transition-colors">
                 <ChevronLeft className="w-4 h-4" /> Back to Dashboard
               </Link>
-              <h1 className="text-3xl font-extrabold text-slate-900 font-syne tracking-tight">Participant Queries</h1>
-              <p className="text-xs text-slate-500">Read and respond to inquiries submitted by attendees.</p>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#FFDBBB] font-syne tracking-tight drop-shadow-[0_2px_10px_rgba(255,219,187,0.3)]">Participant Queries</h1>
+              <p className="text-xs text-[#CCBEB1] font-medium">Read and respond to inquiries submitted by attendees.</p>
             </div>
           </div>
           

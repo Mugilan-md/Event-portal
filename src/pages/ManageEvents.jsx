@@ -233,13 +233,13 @@ export default function ManageEvents() {
         {/* Breadcrumb & Title */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex items-center gap-4">
-            <Icon3D icon={Calendar} size="lg" color="violet" />
+            <Icon3D icon={Calendar} size="lg" color="gold" />
             <div className="space-y-1">
-              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-indigo-600 font-bold hover:underline transition-colors">
+              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-[#FFDBBB] font-bold hover:underline transition-colors">
                 <ChevronLeft className="w-4 h-4" /> Back to Dashboard
               </Link>
-              <h1 className="text-3xl font-extrabold text-slate-900 font-syne tracking-tight">Manage Events</h1>
-              <p className="text-xs text-slate-500">Add, edit, or terminate event entries in the database.</p>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#FFDBBB] font-syne tracking-tight drop-shadow-[0_2px_10px_rgba(255,219,187,0.3)]">Manage Events</h1>
+              <p className="text-xs text-[#CCBEB1] font-medium">Add, edit, or terminate event entries in the database.</p>
             </div>
           </div>
           

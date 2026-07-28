@@ -71,16 +71,16 @@ export default function AdminDashboard() {
         {/* Title */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex items-center gap-4">
-            <Icon3D icon={BarChart3} size="lg" color="violet" />
+            <Icon3D icon={BarChart3} size="lg" color="gold" />
             <div>
-              <h1 className="text-3xl font-extrabold text-slate-900 flex items-center gap-2 font-syne tracking-tight">
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#FFDBBB] flex items-center gap-2 font-syne tracking-tight drop-shadow-[0_2px_10px_rgba(255,219,187,0.3)]">
                 Admin Console Dashboard
               </h1>
-              <p className="text-sm text-slate-500 mt-0.5">Real-time database records, telemetry & portal analytics.</p>
+              <p className="text-sm text-[#CCBEB1] mt-1 font-medium">Real-time database records, telemetry & portal analytics.</p>
             </div>
           </div>
-          <div className="text-xs text-emerald-600 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-full font-bold flex items-center gap-2 shadow-sm backdrop-blur-md">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" /> Connection Stable
+          <div className="text-xs text-[#FFDBBB] bg-[#FFDBBB]/10 border border-[#FFDBBB]/30 px-4 py-2 rounded-full font-bold flex items-center gap-2 shadow-sm backdrop-blur-md">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" /> Connection Stable
           </div>
         </div>
 
@@ -88,10 +88,10 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, idx) => (
             <Card3D key={idx} depth={20} maxTilt={10}>
-              <div className="p-6 rounded-3xl backdrop-blur-xl bg-white/80 border border-white/40 shadow-xl relative overflow-hidden flex justify-between items-start">
+              <div className="p-6 rounded-3xl backdrop-blur-xl bg-[#1E1914]/90 border border-[#FFDBBB]/25 shadow-2xl relative overflow-hidden flex justify-between items-start">
                 <div>
-                  <span className="text-[10px] text-slate-400 uppercase tracking-widest block font-bold">{stat.title}</span>
-                  <span className="text-2xl sm:text-3xl font-mono font-extrabold text-slate-900 mt-2 block">
+                  <span className="text-[10px] text-[#CCBEB1] uppercase tracking-widest block font-bold">{stat.title}</span>
+                  <span className="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-2 block drop-shadow-[0_2px_8px_rgba(255,219,187,0.2)]">
                     {stat.value}
                   </span>
                 </div>
@@ -107,13 +107,13 @@ export default function AdminDashboard() {
           <Card3D depth={18} maxTilt={8}>
             <Link
               to="/admin/manage-events"
-              className="p-6 rounded-3xl backdrop-blur-xl bg-slate-900/85 border border-white/10 shadow-2xl hover:border-indigo-400/40 transition-all group flex items-center justify-between h-full"
+              className="p-6 rounded-3xl backdrop-blur-xl bg-[#1E1914]/90 border border-[#FFDBBB]/25 shadow-2xl hover:border-[#FFDBBB]/50 transition-all group flex items-center justify-between h-full"
             >
               <div className="space-y-2">
-                <h3 className="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors flex items-center gap-2 font-serif">
-                  Manage Events <ArrowUpRight className="w-4 h-4 text-indigo-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                <h3 className="text-xl font-bold text-white group-hover:text-[#FFDBBB] transition-colors flex items-center gap-2 font-syne">
+                  Manage Events <ArrowUpRight className="w-4 h-4 text-[#FFDBBB] opacity-80 group-hover:opacity-100 transition-opacity" />
                 </h3>
-                <p className="text-xs text-slate-300 max-w-sm leading-relaxed">
+                <p className="text-xs text-[#CCBEB1] max-w-sm leading-relaxed">
                   Add new hackathons, edit coordinator contact details, set deadlines, and manage registration status fields.
                 </p>
               </div>
@@ -125,13 +125,13 @@ export default function AdminDashboard() {
           <Card3D depth={18} maxTilt={8}>
             <Link
               to="/admin/manage-registrations"
-              className="p-6 rounded-3xl backdrop-blur-xl bg-slate-900/85 border border-white/10 shadow-2xl hover:border-cyan-400/40 transition-all group flex items-center justify-between h-full"
+              className="p-6 rounded-3xl backdrop-blur-xl bg-[#1E1914]/90 border border-[#FFDBBB]/25 shadow-2xl hover:border-[#FFDBBB]/50 transition-all group flex items-center justify-between h-full"
             >
               <div className="space-y-2">
-                <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center gap-2 font-serif">
-                  Manage Registrations <ArrowUpRight className="w-4 h-4 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                <h3 className="text-xl font-bold text-white group-hover:text-[#FFDBBB] transition-colors flex items-center gap-2 font-syne">
+                  Manage Registrations <ArrowUpRight className="w-4 h-4 text-[#FFDBBB] opacity-80 group-hover:opacity-100 transition-opacity" />
                 </h3>
-                <p className="text-xs text-slate-300 max-w-sm leading-relaxed">
+                <p className="text-xs text-[#CCBEB1] max-w-sm leading-relaxed">
                   View student lists, download Excel/CSV files, and audit uploaded payment confirmation proofs.
                 </p>
               </div>
@@ -143,13 +143,13 @@ export default function AdminDashboard() {
           <Card3D depth={18} maxTilt={8}>
             <Link
               to="/admin/manage-queries"
-              className="p-6 rounded-3xl backdrop-blur-xl bg-slate-900/85 border border-white/10 shadow-2xl hover:border-amber-400/40 transition-all group flex items-center justify-between h-full"
+              className="p-6 rounded-3xl backdrop-blur-xl bg-[#1E1914]/90 border border-[#FFDBBB]/25 shadow-2xl hover:border-[#FFDBBB]/50 transition-all group flex items-center justify-between h-full"
             >
               <div className="space-y-2">
-                <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors flex items-center gap-2 font-serif">
-                  Participant Queries <ArrowUpRight className="w-4 h-4 text-amber-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                <h3 className="text-xl font-bold text-white group-hover:text-[#FFDBBB] transition-colors flex items-center gap-2 font-syne">
+                  Participant Queries <ArrowUpRight className="w-4 h-4 text-[#FFDBBB] opacity-80 group-hover:opacity-100 transition-opacity" />
                 </h3>
-                <p className="text-xs text-slate-300 max-w-sm leading-relaxed">
+                <p className="text-xs text-[#CCBEB1] max-w-sm leading-relaxed">
                   Read and respond to messages submitted by participants from the "Get in Touch" contact form.
                 </p>
               </div>
@@ -160,15 +160,15 @@ export default function AdminDashboard() {
 
         {/* Recent Registrations Table preview */}
         <Card3D depth={15} maxTilt={5}>
-          <div className="p-6 sm:p-8 rounded-3xl backdrop-blur-xl bg-white/90 border border-white/50 shadow-2xl space-y-6">
+          <div className="p-6 sm:p-8 rounded-3xl backdrop-blur-xl bg-[#1E1914]/95 border border-[#FFDBBB]/30 shadow-2xl space-y-6">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="text-xl font-bold text-slate-900 font-serif">Recent Registrations</h3>
-                <p className="text-xs text-slate-500 mt-0.5">Summary of latest submissions</p>
+                <h3 className="text-xl font-bold text-white font-syne">Recent Registrations</h3>
+                <p className="text-xs text-[#CCBEB1] mt-0.5">Summary of latest submissions</p>
               </div>
               <Link
                 to="/admin/manage-registrations"
-                className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 transition-colors"
+                className="text-xs font-bold text-[#FFDBBB] hover:underline flex items-center gap-1 transition-colors"
               >
                 See all <ArrowRight className="w-3.5 h-3.5" />
               </Link>
@@ -177,29 +177,29 @@ export default function AdminDashboard() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-200 text-slate-400 uppercase tracking-wider font-semibold">
-                    <th className="py-3 px-4">Attendee Name</th>
-                    <th className="py-3 px-4">College</th>
-                    <th className="py-3 px-4">Registered Event</th>
-                    <th className="py-3 px-4">Ticket Code</th>
-                    <th className="py-3 px-4 text-right">Date</th>
+                  <tr className="border-b border-[#FFDBBB]/20 text-[#FFDBBB] uppercase tracking-wider font-semibold">
+                    <th className="py-3.5 px-4">Attendee Name</th>
+                    <th className="py-3.5 px-4">College</th>
+                    <th className="py-3.5 px-4">Registered Event</th>
+                    <th className="py-3.5 px-4">Ticket Code</th>
+                    <th className="py-3.5 px-4 text-right">Date</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-slate-700">
+                <tbody className="divide-y divide-[#FFDBBB]/10 text-slate-200">
                   {registrations.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="py-10 text-center text-slate-400">
+                      <td colSpan={5} className="py-10 text-center text-[#CCBEB1]">
                         No registrations recorded yet.
                       </td>
                     </tr>
                   ) : (
                     registrations.slice(0, 5).map((reg) => (
-                      <tr key={reg.id} className="hover:bg-indigo-50/50 transition-colors">
-                        <td className="py-3.5 px-4 font-bold text-slate-900">{reg.name}</td>
-                        <td className="py-3.5 px-4 text-slate-500">{reg.collegeName}</td>
-                        <td className="py-3.5 px-4 text-indigo-600 font-semibold">{reg.eventTitle}</td>
-                        <td className="py-3.5 px-4 font-mono text-slate-500">{reg.registrationId}</td>
-                        <td className="py-3.5 px-4 text-right text-slate-400">
+                      <tr key={reg.id} className="hover:bg-[#FFDBBB]/5 transition-colors">
+                        <td className="py-3.5 px-4 font-bold text-white">{reg.name}</td>
+                        <td className="py-3.5 px-4 text-[#CCBEB1]">{reg.collegeName}</td>
+                        <td className="py-3.5 px-4 text-[#FFDBBB] font-semibold">{reg.eventTitle}</td>
+                        <td className="py-3.5 px-4 font-mono text-slate-300">{reg.registrationId}</td>
+                        <td className="py-3.5 px-4 text-right text-[#CCBEB1]">
                           {reg.timestamp ? new Date(reg.timestamp).toLocaleDateString() : "TBD"}
                         </td>
                       </tr>
