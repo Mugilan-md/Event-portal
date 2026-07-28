@@ -2,7 +2,11 @@
 
 @theme {
   --font-limelight:         "Limelight", sans-serif;
-  --font-sans:              "Limelight", "Inter", sans-serif;
+  --font-sans:              "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-syne:              "Syne", "Space Grotesk", sans-serif;
+  --font-space:             "Space Grotesk", "Outfit", sans-serif;
+  --font-jakarta:           "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-mono:              "JetBrains Mono", monospace;
 
   /* ── Brand Core ── */
   --color-brand-dark:       #090D16;   /* Deep Charcoal */
@@ -558,4 +562,26 @@ footer.relative {
   border: 1px solid rgba(255, 255, 255, 0.6) !important;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
 }
+
+/* ─────────────────────────────────────────────
+   ADMIN TYPOGRAPHY OVERHAUL UTILITIES
+   ───────────────────────────────────────────── */
+.font-admin-title, .font-syne {
+  font-family: "Syne", "Space Grotesk", "Outfit", sans-serif !important;
+  letter-spacing: -0.03em !important;
+}
+
+.font-admin-heading, .font-space {
+  font-family: "Space Grotesk", "Outfit", sans-serif !important;
+  letter-spacing: -0.025em !important;
+}
+
+.font-admin-body, .font-jakarta {
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif !important;
+}
+
+.font-admin-mono, .font-mono-tech {
+  font-family: "JetBrains Mono", monospace !important;
+}
+
 

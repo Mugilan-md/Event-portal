@@ -66,14 +66,14 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body">
       <div className="max-w-7xl mx-auto space-y-10 relative z-10">
         {/* Title */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex items-center gap-4">
             <Icon3D icon={BarChart3} size="lg" color="violet" />
             <div>
-              <h1 className="text-3xl font-extrabold text-slate-900 flex items-center gap-2 font-serif">
+              <h1 className="text-3xl font-extrabold text-slate-900 flex items-center gap-2 font-syne tracking-tight">
                 Admin Console Dashboard
               </h1>
               <p className="text-sm text-slate-500 mt-0.5">Real-time database records, telemetry & portal analytics.</p>

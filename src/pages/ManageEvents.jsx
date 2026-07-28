@@ -227,7 +227,7 @@ export default function ManageEvents() {
   };
 
   return (
-    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body">
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         
         {/* Breadcrumb & Title */}
@@ -238,7 +238,7 @@ export default function ManageEvents() {
               <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-indigo-600 font-bold hover:underline transition-colors">
                 <ChevronLeft className="w-4 h-4" /> Back to Dashboard
               </Link>
-              <h1 className="text-3xl font-extrabold text-slate-900 font-serif">Manage Events</h1>
+              <h1 className="text-3xl font-extrabold text-slate-900 font-syne tracking-tight">Manage Events</h1>
               <p className="text-xs text-slate-500">Add, edit, or terminate event entries in the database.</p>
             </div>
           </div>

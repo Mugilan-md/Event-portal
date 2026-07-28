@@ -163,7 +163,7 @@ export default function AdminLogin() {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen w-full flex flex-col lg:flex-row items-center justify-center overflow-hidden bg-[#050816] text-slate-100 font-sans select-none"
+      className="relative min-h-screen w-full flex flex-col lg:flex-row items-center justify-center overflow-hidden bg-[#050816] text-slate-100 font-admin-body select-none"
     >
       {/* ─────────────────────────────────────────────────────────────
           CANVAS & CINEMATIC ANIMATED BACKGROUND
@@ -300,7 +300,7 @@ export default function AdminLogin() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15] mb-4"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15] mb-4 font-syne"
             >
               Autonomous Security &{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-300 to-cyan-400">
@@ -480,7 +480,7 @@ export default function AdminLogin() {
                   </div>
 
                   <div>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-syne">
                       {isAdminSetup ? "Initialize Master Admin" : "Admin Dashboard Login"}
                     </h2>
                     <p className="text-xs sm:text-sm text-slate-400 mt-1">
