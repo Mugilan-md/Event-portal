@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Mail, MessageSquare, Trash2, Search, RefreshCw, ChevronLeft, Calendar, User } from "lucide-react";
 import { getContactQueries, deleteContactQuery } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
+import Card3D from "../components/ui/Card3D";
+import Icon3D from "../components/ui/Icon3D";
 
 export default function ManageQueries() {
   const { showToast } = useToast();
@@ -49,22 +51,20 @@ export default function ManageQueries() {
   );
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-      {/* Background glow */}
-      <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl pointer-events-none" />
-
+    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         
         {/* Breadcrumb & Title */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div className="space-y-1">
-            <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors">
-              <ChevronLeft className="w-4 h-4" /> Back to Dashboard
-            </Link>
-            <h1 className="text-3xl font-extrabold text-white flex items-center gap-2">
-              <Mail className="w-8 h-8 text-purple-400" /> Participant Queries
-            </h1>
-            <p className="text-xs text-gray-500">View and manage messages sent from the "Get in Touch" contact form.</p>
+          <div className="flex items-center gap-4">
+            <Icon3D icon={MessageSquare} size="lg" color="gold" />
+            <div className="space-y-1">
+              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-indigo-600 font-bold hover:underline transition-colors">
+                <ChevronLeft className="w-4 h-4" /> Back to Dashboard
+              </Link>
+              <h1 className="text-3xl font-extrabold text-slate-900 font-serif">Participant Queries</h1>
+              <p className="text-xs text-slate-500">Read and respond to inquiries submitted by attendees.</p>
+            </div>
           </div>
           
           <button

@@ -19,14 +19,17 @@ import ManageQueries from "./pages/ManageQueries";
 import NotFound from "./pages/NotFound";
 import StudentDashboard from "./pages/StudentDashboard";
 import VerifyTicket from "./pages/VerifyTicket";
+import Background3D from "./components/ui/Background3D";
 
 
 function Layout({ children }) {
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAFAFA]">
+    <div className="relative flex flex-col min-h-screen">
+      {/* Dynamic 3D Canvas Background */}
+      <Background3D />
       {/* Navbar has padding internally and handles floating alignment */}
       <Navbar />
-      <main className="flex-grow">
+      <main className="relative z-10 flex-grow">
         {children}
       </main>
       <Footer />
@@ -97,8 +100,18 @@ function App() {
             }
           />
 
-          {/* Hidden Admin Login Page (No Public Layout to prevent leak of links) */}
-          <Route path="/admin" element={<AdminLogin />} />
+          {/* Hidden Admin Login Page */}
+          <Route
+            path="/admin"
+            element={
+              <div className="relative min-h-screen">
+                <Background3D />
+                <div className="relative z-10">
+                  <AdminLogin />
+                </div>
+              </div>
+            }
+          />
 
           {/* Protected Admin Routes with Custom Layout */}
           <Route

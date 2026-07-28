@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Plus, Edit2, Trash2, X, PlusCircle, MinusCircle, Upload, Save, Eye, Check, RefreshCw, ChevronLeft, Hourglass } from "lucide-react";
 import { getEventsList, getRegistrationsList, createEvent, updateEventData, deleteEventData } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
+import Card3D from "../components/ui/Card3D";
+import Icon3D from "../components/ui/Icon3D";
 
 export default function ManageEvents() {
   const { showToast } = useToast();
@@ -225,17 +227,20 @@ export default function ManageEvents() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         
         {/* Breadcrumb & Title */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div className="space-y-1">
-            <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors">
-              <ChevronLeft className="w-4 h-4" /> Back to Dashboard
-            </Link>
-            <h1 className="text-3xl font-extrabold text-white">Manage Events</h1>
-            <p className="text-xs text-gray-500">Add, edit, or terminate event entries in the database.</p>
+          <div className="flex items-center gap-4">
+            <Icon3D icon={Calendar} size="lg" color="violet" />
+            <div className="space-y-1">
+              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-indigo-600 font-bold hover:underline transition-colors">
+                <ChevronLeft className="w-4 h-4" /> Back to Dashboard
+              </Link>
+              <h1 className="text-3xl font-extrabold text-slate-900 font-serif">Manage Events</h1>
+              <p className="text-xs text-slate-500">Add, edit, or terminate event entries in the database.</p>
+            </div>
           </div>
           
           <button

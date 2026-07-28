@@ -5,6 +5,8 @@ import { Calendar, Users, Award, Shield, ArrowRight, Hourglass, Plus, Minus, Sen
 import { getEventsList, addContactQuery } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
 import StarButton from "../components/ui/star-button";
+import Card3D from "../components/ui/Card3D";
+import Icon3D from "../components/ui/Icon3D";
 
 export default function Home() {
   const { showToast } = useToast();
@@ -183,105 +185,78 @@ export default function Home() {
       {/* ── COUNTDOWN TIMER ── */}
       {featuredEvent && (
         <section className="relative z-10 max-w-5xl mx-auto px-4 pb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="p-8 rounded-2xl relative overflow-hidden text-center"
-            style={{
-              background: "#FFFFFF",
-              border: "1px solid #E2E8F0",
-              boxShadow: "0 20px 40px -8px rgba(9,13,22,0.08), 0 0 0 1px rgba(99,102,241,0.05)"
-            }}
-          >
-            {/* Cyan glow corner */}
-            <div className="absolute top-0 right-0 w-40 h-40 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(6,182,212,0.08)" }} />
-            <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(99,102,241,0.06)" }} />
-
-            <div
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-3 uppercase tracking-widest"
+          <Card3D depth={25} maxTilt={8} className="w-full">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="p-8 sm:p-10 rounded-3xl relative overflow-hidden text-center backdrop-blur-xl border border-white/20 shadow-2xl"
               style={{
-                background: "rgba(6,182,212,0.08)",
-                border: "1px solid rgba(6,182,212,0.2)",
-                color: "#06B6D4"
+                background: "rgba(255, 255, 255, 0.90)",
+                boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.8)"
               }}
             >
-              <Zap className="w-3 h-3" />
-              Next Live Event Countdown
-            </div>
+              {/* Glowing aura corners */}
+              <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl pointer-events-none bg-cyan-500/20" />
+              <div className="absolute bottom-0 left-0 w-40 h-40 rounded-full blur-3xl pointer-events-none bg-indigo-500/20" />
 
-            {timerFinished ? (
-              <div className="py-10 flex flex-col items-center gap-4">
-                <motion.div
-                  animate={{ scale: [1, 1.06, 1], opacity: [0.8, 1, 0.8] }}
-                  transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                >
-                  <Hourglass className="w-12 h-12 mx-auto mb-2" style={{ color: "#F59E0B" }} />
-                </motion.div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold font-serif" style={{ color: "#0F172A" }}>
-                  Registrations Closed
-                </h2>
-                <p className="font-semibold" style={{ color: "#6366F1" }}>
-                  Upcoming events will be posted soon. Stay tuned!
-                </p>
-                <StarButton to="/events" variant="violet" className="mt-4 inline-flex items-center gap-2">
-                  <ArrowRight className="w-4 h-4" />
-                  Browse Past Events
-                </StarButton>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-4 uppercase tracking-widest bg-cyan-500/10 border border-cyan-400/30 text-cyan-600">
+                <Icon3D icon={Zap} size="sm" color="cyan" />
+                Next Live Event Countdown
               </div>
-            ) : (
-              <>
-                <h2
-                  className="text-2xl sm:text-3xl font-extrabold mb-8 font-serif transition-colors"
-                  style={{ color: "#0F172A" }}
-                >
-                  {featuredEvent.title}
-                </h2>
 
-                <div className="grid grid-cols-4 gap-3 sm:gap-6 max-w-xl mx-auto mb-8">
-                  {[
-                    { value: countdown.days, label: "Days" },
-                    { value: countdown.hours, label: "Hours" },
-                    { value: countdown.minutes, label: "Minutes" },
-                    { value: countdown.seconds, label: "Seconds" }
-                  ].map((time, idx) => (
-                    <motion.div
-                      key={idx}
-                      whileHover={{ scale: 1.05 }}
-                      className="p-3 sm:p-5 rounded-xl text-center transition-all duration-250"
-                      style={{
-                        background: "#FAFAFC",
-                        border: "1px solid #E2E8F0",
-                        boxShadow: "inset 0 1px 3px rgba(9,13,22,0.04)"
-                      }}
-                    >
-                      <div
-                        className="text-2xl sm:text-4xl font-extrabold font-mono"
-                        style={{ color: "#6366F1" }}
-                      >
-                        {String(time.value).padStart(2, "0")}
-                      </div>
-                      <div
-                        className="text-[10px] sm:text-xs uppercase tracking-widest mt-1 font-semibold"
-                        style={{ color: "#94A3B8" }}
-                      >
-                        {time.label}
-                      </div>
-                    </motion.div>
-                  ))}
+              {timerFinished ? (
+                <div className="py-10 flex flex-col items-center gap-4">
+                  <Icon3D icon={Hourglass} size="xl" color="gold" />
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-serif text-slate-900">
+                    Registrations Closed
+                  </h2>
+                  <p className="font-semibold text-indigo-600">
+                    Upcoming events will be posted soon. Stay tuned!
+                  </p>
+                  <StarButton to="/events" variant="violet" className="mt-4 inline-flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    Browse Past Events
+                  </StarButton>
                 </div>
+              ) : (
+                <>
+                  <h2 className="text-2xl sm:text-4xl font-extrabold mb-8 font-serif text-slate-900 tracking-tight">
+                    {featuredEvent.title}
+                  </h2>
 
-                <StarButton
-                  to={`/event/${featuredEvent.id}`}
-                  variant="violet"
-                  className="inline-flex items-center gap-2"
-                >
-                  <Zap className="w-4 h-4" style={{ color: "#F59E0B" }} />
-                  <span>Register Now before seats run out</span>
-                </StarButton>
-              </>
-            )}
-          </motion.div>
+                  <div className="grid grid-cols-4 gap-3 sm:gap-6 max-w-xl mx-auto mb-8">
+                    {[
+                      { value: countdown.days, label: "Days" },
+                      { value: countdown.hours, label: "Hours" },
+                      { value: countdown.minutes, label: "Minutes" },
+                      { value: countdown.seconds, label: "Seconds" }
+                    ].map((time, idx) => (
+                      <Card3D key={idx} depth={15} maxTilt={10}>
+                        <div className="p-3 sm:p-5 rounded-2xl text-center bg-slate-900/90 border border-white/10 shadow-xl backdrop-blur-md">
+                          <div className="text-2xl sm:text-4xl font-extrabold font-mono text-cyan-300 drop-shadow-[0_2px_10px_rgba(6,182,212,0.4)]">
+                            {String(time.value).padStart(2, "0")}
+                          </div>
+                          <div className="text-[10px] sm:text-xs uppercase tracking-widest mt-1 font-semibold text-slate-400">
+                            {time.label}
+                          </div>
+                        </div>
+                      </Card3D>
+                    ))}
+                  </div>
+
+                  <StarButton
+                    to={`/event/${featuredEvent.id}`}
+                    variant="violet"
+                    className="inline-flex items-center gap-2 text-base px-8 py-3"
+                  >
+                    <Icon3D icon={Zap} size="sm" color="gold" />
+                    <span>Register Now before seats run out</span>
+                  </StarButton>
+                </>
+              )}
+            </motion.div>
+          </Card3D>
         </section>
       )}
 
@@ -318,85 +293,62 @@ export default function Home() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {events.slice(0, 3).map((event) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -6 }}
-                className="rounded-2xl flex flex-col h-full overflow-hidden group transition-all duration-300"
-                style={{
-                  background: "#FFFFFF",
-                  border: "1px solid #E2E8F0",
-                  boxShadow: "0 4px 6px -1px rgba(9,13,22,0.05), 0 2px 4px -1px rgba(9,13,22,0.03)"
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.boxShadow = "0 20px 40px -8px rgba(9,13,22,0.12), 0 0 0 1px rgba(99,102,241,0.1)";
-                  e.currentTarget.style.borderColor = "rgba(99,102,241,0.15)";
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.boxShadow = "0 4px 6px -1px rgba(9,13,22,0.05), 0 2px 4px -1px rgba(9,13,22,0.03)";
-                  e.currentTarget.style.borderColor = "#E2E8F0";
-                }}
-              >
-                {/* Poster */}
-                <div className="h-48 relative overflow-hidden shrink-0">
-                  <img
-                    src={event.posterUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"}
-                    alt={event.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <span
-                      className="px-3 py-1 rounded-lg text-[10px] font-bold tracking-wider uppercase"
-                      style={{
-                        background: "rgba(99,102,241,0.9)",
-                        color: "white",
-                        backdropFilter: "blur(8px)"
-                      }}
-                    >
-                      {event.category || "General"}
-                    </span>
+            {events.slice(0, 3).map((event, idx) => (
+              <Card3D key={event.id || idx} depth={20} maxTilt={10} className="h-full">
+                <div
+                  className="rounded-3xl flex flex-col h-full overflow-hidden group transition-all duration-300 backdrop-blur-xl border border-white/20 shadow-xl"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.88)",
+                    boxShadow: "0 15px 35px -5px rgba(0,0,0,0.1)"
+                  }}
+                >
+                  {/* Poster */}
+                  <div className="h-48 relative overflow-hidden shrink-0">
+                    <img
+                      src={event.posterUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"}
+                      alt={event.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
+                    <div className="absolute top-4 left-4">
+                      <span
+                        className="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-indigo-600/90 text-white shadow-lg backdrop-blur-md border border-white/20"
+                      >
+                        {event.category || "General"}
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="p-6 flex flex-col justify-between flex-grow relative">
-                  <div className="absolute top-0 right-6 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md" style={{ border: "1px solid #E2E8F0" }}>
-                    <Calendar className="w-4 h-4" style={{ color: "#F59E0B" }} />
-                  </div>
-                  <div className="space-y-3 pt-2">
-                    <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#6366F1" }}>
-                      {event.date} • {event.time}
+                  {/* Content */}
+                  <div className="p-6 flex flex-col justify-between flex-grow relative">
+                    <div className="absolute top-0 right-6 -translate-y-1/2">
+                      <Icon3D icon={Calendar} size="md" color="gold" />
                     </div>
-                    <h3
-                      className="text-xl font-bold line-clamp-1 font-serif transition-colors duration-200"
-                      style={{ color: "#0F172A" }}
-                    >
-                      {event.title}
-                    </h3>
-                    <p className="text-sm line-clamp-3 leading-relaxed" style={{ color: "#64748B" }}>
-                      {event.description}
-                    </p>
-                  </div>
-                  <div
-                    className="pt-5 mt-5 flex items-center justify-between"
-                    style={{ borderTop: "1px solid #F1F5F9" }}
-                  >
-                    <div>
-                      <div className="text-[10px] uppercase tracking-widest" style={{ color: "#94A3B8" }}>Entry Fee</div>
-                      <div className="text-base font-extrabold" style={{ color: "#0F172A" }}>
-                        {event.registrationFee === 0 ? "FREE" : `₹${event.registrationFee}`}
+                    <div className="space-y-3 pt-2">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+                        {event.date} • {event.time}
                       </div>
+                      <h3 className="text-xl font-bold line-clamp-1 font-serif text-slate-900 group-hover:text-indigo-600 transition-colors">
+                        {event.title}
+                      </h3>
+                      <p className="text-sm line-clamp-3 leading-relaxed text-slate-600">
+                        {event.description}
+                      </p>
                     </div>
-                    <StarButton to={`/event/${event.id}`} variant="violet" className="px-4 py-2 text-xs">
-                      Details
-                    </StarButton>
+                    <div className="pt-5 mt-5 flex items-center justify-between border-t border-slate-200/80">
+                      <div>
+                        <div className="text-[10px] uppercase tracking-widest text-slate-400">Entry Fee</div>
+                        <div className="text-lg font-extrabold text-slate-900">
+                          {event.registrationFee === 0 ? "FREE" : `₹${event.registrationFee}`}
+                        </div>
+                      </div>
+                      <StarButton to={`/event/${event.id}`} variant="violet" className="px-5 py-2 text-xs">
+                        Details
+                      </StarButton>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </Card3D>
             ))}
           </div>
         )}

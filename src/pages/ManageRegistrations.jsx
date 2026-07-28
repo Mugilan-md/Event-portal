@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Users, Download, Eye, X, Filter, ChevronLeft, RefreshCw, AlertCircle, FileSpreadsheet, Edit2, Trash2, Save } from "lucide-react";
 import { getEventsList, getRegistrationsList, deleteRegistration, updateRegistrationData } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
+import Card3D from "../components/ui/Card3D";
+import Icon3D from "../components/ui/Icon3D";
 
 export default function ManageRegistrations() {
   const { showToast } = useToast();
@@ -142,19 +144,20 @@ export default function ManageRegistrations() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA] pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         
         {/* Title */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div className="space-y-1">
-            <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors">
-              <ChevronLeft className="w-4 h-4" /> Back to Dashboard
-            </Link>
-            <h1 className="text-3xl font-extrabold text-white flex items-center gap-2">
-              <Users className="w-8 h-8 text-purple-400" /> Manage Registrations
-            </h1>
-            <p className="text-xs text-gray-500">Audit attendee records, inspect billing screenshots, and download rosters.</p>
+          <div className="flex items-center gap-4">
+            <Icon3D icon={Users} size="lg" color="cyan" />
+            <div className="space-y-1">
+              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-indigo-600 font-bold hover:underline transition-colors">
+                <ChevronLeft className="w-4 h-4" /> Back to Dashboard
+              </Link>
+              <h1 className="text-3xl font-extrabold text-slate-900 font-serif">Manage Registrations</h1>
+              <p className="text-xs text-slate-500">Live participant database directory and CSV sheet exporter.</p>
+            </div>
           </div>
 
           <button

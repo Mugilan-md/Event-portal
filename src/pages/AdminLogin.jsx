@@ -36,6 +36,8 @@ import {
   registerFirstAdmin
 } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
+import Card3D from "../components/ui/Card3D";
+import Icon3D from "../components/ui/Icon3D";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -451,34 +453,26 @@ export default function AdminLogin() {
           {/* ─────────────────────────────────────────────────────────
               RIGHT COLUMN: ULTRA-PREMIUM GLASS LOGIN CARD
              ───────────────────────────────────────────────────────── */}
-          <motion.div
-            style={{
-              rotateX: mousePos.y * 0.4,
-              rotateY: mousePos.x * -0.4
-            }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className="lg:col-span-6 w-full max-w-lg mx-auto"
-          >
-            {/* Card Outer Glow Border Container */}
-            <div className="relative p-0.5 rounded-[30px] bg-gradient-to-b from-indigo-500/40 via-purple-500/20 to-cyan-500/40 shadow-[0_20px_60px_rgba(0,0,0,0.7),0_0_40px_rgba(99,102,241,0.2)]">
-              
-              {/* Animated Top Border Sweep Effect */}
-              <div className="absolute top-0 inset-x-12 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent blur-[1px] animate-pulse" />
-
-              {/* Main Card Body */}
-              <div className="relative w-full bg-[#09111F]/90 backdrop-blur-3xl rounded-[28px] p-6 sm:p-10 text-left overflow-hidden border border-white/10">
+          <div className="lg:col-span-6 w-full max-w-lg mx-auto">
+            <Card3D depth={25} maxTilt={12}>
+              {/* Card Outer Glow Border Container */}
+              <div className="relative p-0.5 rounded-[30px] bg-gradient-to-b from-indigo-500/40 via-purple-500/20 to-cyan-500/40 shadow-[0_20px_60px_rgba(0,0,0,0.7),0_0_40px_rgba(99,102,241,0.2)]">
                 
-                {/* Decorative Subtle Grid Lines inside card */}
-                <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
-                <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+                {/* Animated Top Border Sweep Effect */}
+                <div className="absolute top-0 inset-x-12 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent blur-[1px] animate-pulse" />
 
-                {/* Card Title & Icon Header */}
-                <div className="relative z-10 mb-8 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.3)]">
-                      <Shield className="w-6 h-6" />
-                    </div>
+                {/* Main Card Body */}
+                <div className="relative w-full bg-[#09111F]/90 backdrop-blur-3xl rounded-[28px] p-6 sm:p-10 text-left overflow-hidden border border-white/10">
+                  
+                  {/* Decorative Subtle Grid Lines inside card */}
+                  <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+                  <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                  {/* Card Title & Icon Header */}
+                  <div className="relative z-10 mb-8 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <Icon3D icon={Shield} size="lg" color="violet" />
                     <span className="px-3 py-1 rounded-full text-[10px] font-mono tracking-wider font-semibold uppercase bg-slate-800/80 border border-slate-700 text-slate-300 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
                       SECURE AUTH SESSION
@@ -742,10 +736,10 @@ export default function AdminLogin() {
                 <Server className="w-3.5 h-3.5 text-indigo-400" /> V.S.B. Core Cloud
               </span>
             </div>
-          </motion.div>
-
+          </Card3D>
         </div>
-      </main>
-    </div>
-  );
+      </div>
+    </main>
+  </div>
+);
 }
