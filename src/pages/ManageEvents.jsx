@@ -245,43 +245,43 @@ export default function ManageEvents() {
           
           <button
             onClick={openAddModal}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-500 hover:to-blue-400 text-white font-bold text-sm transition-all shadow-md neon-glow-purple"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#FFDBBB] hover:bg-white text-[#664930] font-extrabold text-sm transition-all shadow-lg hover:scale-105 active:scale-95"
           >
-            <Plus className="w-4 h-4" /> Add New Event
+            <Plus className="w-4 h-4 text-[#664930]" /> Add New Event
           </button>
         </div>
 
         {/* Table representation */}
         {loading && events.length === 0 ? (
           <div className="min-h-[300px] flex items-center justify-center">
-            <RefreshCw className="w-8 h-8 text-purple-500 animate-spin" />
+            <RefreshCw className="w-8 h-8 text-[#FFDBBB] animate-spin" />
           </div>
         ) : (
-          <div className="p-6 rounded-2xl glass-panel border border-purple-500/10 shadow-2xl overflow-hidden">
+          <div className="p-6 rounded-3xl bg-[#1E1914]/95 backdrop-blur-xl border border-[#FFDBBB]/30 shadow-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b border-purple-500/10 text-gray-500 uppercase tracking-wider font-semibold">
-                    <th className="py-3 px-4">Event Details</th>
-                    <th className="py-3 px-4">Schedule</th>
-                    <th className="py-3 px-4">Capacity</th>
-                    <th className="py-3 px-4">Reg Status</th>
-                    <th className="py-3 px-4 text-right">Actions</th>
+                  <tr className="border-b border-[#FFDBBB]/20 text-[#FFDBBB] uppercase tracking-wider font-semibold">
+                    <th className="py-3.5 px-4">Event Details</th>
+                    <th className="py-3.5 px-4">Schedule</th>
+                    <th className="py-3.5 px-4">Capacity</th>
+                    <th className="py-3.5 px-4">Reg Status</th>
+                    <th className="py-3.5 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-purple-500/5 text-gray-300">
+                <tbody className="divide-y divide-[#FFDBBB]/10 text-slate-200">
                   {events.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="py-12 text-center text-gray-500">
+                      <td colSpan={5} className="py-12 text-center text-[#CCBEB1]">
                         No events found in database. Create one to begin.
                       </td>
                     </tr>
                   ) : (
                     events.map((event) => (
-                      <tr key={event.id} className="hover:bg-white/5 transition-colors">
+                      <tr key={event.id} className="hover:bg-[#FFDBBB]/5 transition-colors">
                         <td className="py-4 px-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-14 h-10 bg-purple-950/20 border border-purple-500/10 rounded overflow-hidden shrink-0">
+                            <div className="w-14 h-10 bg-[#664930]/40 border border-[#FFDBBB]/20 rounded-lg overflow-hidden shrink-0">
                               <img
                                 src={event.posterUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"}
                                 alt=""
@@ -289,7 +289,7 @@ export default function ManageEvents() {
                               />
                             </div>
                             <div>
-                              <span className="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold uppercase tracking-wider">
+                              <span className="text-[9px] px-2 py-0.5 rounded-full bg-[#FFDBBB]/15 text-[#FFDBBB] border border-[#FFDBBB]/30 font-bold uppercase tracking-wider">
                                 {event.category}
                               </span>
                               <div className="font-bold text-white mt-1 text-sm">{event.title}</div>
@@ -297,8 +297,8 @@ export default function ManageEvents() {
                           </div>
                         </td>
                         <td className="py-4 px-4">
-                          <div className="text-gray-300 font-semibold">{event.date}</div>
-                          <div className="text-gray-500 mt-0.5">{event.time} • {event.venue}</div>
+                          <div className="text-white font-semibold">{event.date}</div>
+                          <div className="text-[10px] text-[#CCBEB1]">{event.time}</div>
                         </td>
                         <td className="py-4 px-4 font-mono">
                           <div className="font-bold text-white text-xs">{registrations.filter(r => r.eventId === event.id).length} registered</div>

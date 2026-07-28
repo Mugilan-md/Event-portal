@@ -162,20 +162,20 @@ export default function ManageRegistrations() {
 
           <button
             onClick={exportToCSV}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-500 hover:to-blue-400 text-white font-bold text-sm transition-all shadow-md neon-glow-purple"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#FFDBBB] hover:bg-white text-[#664930] font-extrabold text-sm transition-all shadow-lg hover:scale-105 active:scale-95"
           >
-            <Download className="w-4 h-4" /> Export CSV / Excel
+            <Download className="w-4 h-4 text-[#664930]" /> Export CSV / Excel
           </button>
         </div>
 
         {/* Filter and stats wrapper */}
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between p-4 rounded-xl bg-[#0a0624]/60 border border-purple-500/10">
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between p-4 rounded-2xl bg-[#1E1914]/90 border border-[#FFDBBB]/20 backdrop-blur-xl">
           <div className="flex items-center gap-2 w-full sm:w-auto">
-            <Filter className="w-4 h-4 text-purple-400" />
+            <Filter className="w-4 h-4 text-[#FFDBBB]" />
             <select
               value={selectedEventId}
               onChange={(e) => setSelectedEventId(e.target.value)}
-              className="bg-[#FAFAFA] border border-purple-500/20 text-xs font-semibold text-gray-300 px-3 py-2 rounded-xl focus:outline-none focus:border-purple-500 cursor-pointer max-w-xs"
+              className="bg-[#2A241F] border border-[#FFDBBB]/30 text-xs font-semibold text-[#FFDBBB] px-3.5 py-2 rounded-xl focus:outline-none focus:border-[#FFDBBB] cursor-pointer max-w-xs"
             >
               <option value="All">All Registered Events</option>
               {events.map((e) => (
@@ -184,7 +184,7 @@ export default function ManageRegistrations() {
             </select>
           </div>
 
-          <div className="text-xs text-gray-400 font-bold uppercase tracking-wider">
+          <div className="text-xs text-[#CCBEB1] font-bold uppercase tracking-wider">
             Displaying: <span className="text-white font-mono">{filteredRegistrations.length}</span> Records
           </div>
         </div>
@@ -192,10 +192,10 @@ export default function ManageRegistrations() {
         {/* Table data grid */}
         {loading ? (
           <div className="min-h-[300px] flex items-center justify-center">
-            <RefreshCw className="w-8 h-8 text-purple-500 animate-spin" />
+            <RefreshCw className="w-8 h-8 text-[#FFDBBB] animate-spin" />
           </div>
         ) : (
-          <div className="p-6 rounded-2xl glass-panel border border-purple-500/10 shadow-2xl overflow-hidden">
+          <div className="p-6 rounded-3xl bg-[#1E1914]/95 backdrop-blur-xl border border-[#FFDBBB]/30 shadow-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>

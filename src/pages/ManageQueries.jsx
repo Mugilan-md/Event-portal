@@ -69,33 +69,33 @@ export default function ManageQueries() {
           
           <button
             onClick={fetchQueries}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-950/40 hover:bg-purple-900/40 text-purple-300 border border-purple-500/20 text-xs font-bold transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#FFDBBB] hover:bg-white text-[#664930] font-extrabold text-xs transition-all shadow-md"
           >
-            <RefreshCw className="w-3.5 h-3.5" /> Reload List
+            <RefreshCw className="w-3.5 h-3.5 text-[#664930]" /> Reload List
           </button>
         </div>
 
         {/* Search Bar */}
         <div className="relative max-w-md">
-          <Search className="absolute left-4 top-3.5 w-4 h-4 text-gray-500" />
+          <Search className="absolute left-4 top-3.5 w-4 h-4 text-[#CCBEB1]" />
           <input
             type="text"
             placeholder="Search queries by name, email, or message..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#090625] border border-purple-500/20 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-purple-500 transition-all"
+            className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#1E1914]/90 border border-[#FFDBBB]/30 text-white placeholder-[#CCBEB1]/60 text-sm focus:outline-none focus:border-[#FFDBBB] transition-all"
           />
         </div>
 
         {/* Content list */}
         {loading && queries.length === 0 ? (
           <div className="min-h-[300px] flex items-center justify-center">
-            <RefreshCw className="w-8 h-8 text-purple-500 animate-spin" />
+            <RefreshCw className="w-8 h-8 text-[#FFDBBB] animate-spin" />
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredQueries.length === 0 ? (
-              <div className="col-span-full p-12 text-center text-gray-500 bg-[#090625] border border-purple-500/10 rounded-2xl">
+              <div className="col-span-full p-12 text-center text-[#CCBEB1] bg-[#1E1914]/90 border border-[#FFDBBB]/20 rounded-3xl">
                 No queries found.
               </div>
             ) : (
@@ -104,7 +104,7 @@ export default function ManageQueries() {
                   key={query.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-6 rounded-2xl bg-[#090625]/60 border border-purple-500/10 hover:border-purple-500/30 transition-all flex flex-col justify-between"
+                  className="p-6 rounded-3xl bg-[#1E1914]/95 backdrop-blur-xl border border-[#FFDBBB]/30 hover:border-[#FFDBBB]/60 transition-all flex flex-col justify-between shadow-2xl"
                 >
                   <div className="space-y-4">
                     {/* Participant Details */}

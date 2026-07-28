@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 // Color Palettes from user reference:
 // 1. Sapphire Nightfall Whisper: Deep ocean blue, electric cyan, nightfall sapphire
 // 2. Moon Dust: Ethereal periwinkle, lavender, ice blue
-// 3. Neutral Elegance: Warm champagne, muted taupe, bronze gold
+// 3. Neutral Elegance: #FFDBBB, #CCBEB1, #997E67, #664930
 export const PALETTES = {
   sapphire: {
     name: "Sapphire Nightfall",
@@ -22,15 +23,24 @@ export const PALETTES = {
   neutral: {
     name: "Neutral Elegance",
     bg: "#14110E",
-    orbs: ["rgba(255, 219, 187, 0.4)", "rgba(204, 190, 177, 0.35)", "rgba(153, 126, 103, 0.45)", "rgba(102, 73, 48, 0.5)"],
-    poly: "rgba(255, 219, 187, 0.4)",
+    orbs: ["rgba(255, 219, 187, 0.45)", "rgba(204, 190, 177, 0.35)", "rgba(153, 126, 103, 0.45)", "rgba(102, 73, 48, 0.5)"],
+    poly: "rgba(255, 219, 187, 0.45)",
     glow: "#FFDBBB"
   }
 };
 
 export default function Background3D() {
   const canvasRef = useRef(null);
-  const [currentPalette, setCurrentPalette] = useState("sapphire");
+  const location = useLocation();
+  const [currentPalette, setCurrentPalette] = useState(
+    location.pathname.includes("admin") ? "neutral" : "sapphire"
+  );
+
+  useEffect(() => {
+    if (location.pathname.includes("admin")) {
+      setCurrentPalette("neutral");
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
