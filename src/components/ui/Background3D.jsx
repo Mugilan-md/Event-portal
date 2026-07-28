@@ -22,10 +22,10 @@ export const PALETTES = {
   },
   neutral: {
     name: "Neutral Elegance",
-    bg: "#14110E",
-    orbs: ["rgba(255, 219, 187, 0.45)", "rgba(204, 190, 177, 0.35)", "rgba(153, 126, 103, 0.45)", "rgba(102, 73, 48, 0.5)"],
-    poly: "rgba(255, 219, 187, 0.45)",
-    glow: "#FFDBBB"
+    bg: "#FFDBBB",
+    orbs: ["rgba(204, 190, 177, 0.5)", "rgba(153, 126, 103, 0.4)", "rgba(102, 73, 48, 0.35)", "rgba(255, 255, 255, 0.6)"],
+    poly: "rgba(102, 73, 48, 0.35)",
+    glow: "#664930"
   }
 };
 

@@ -227,7 +227,7 @@ export default function ManageEvents() {
   };
 
   return (
-    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body">
+    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body bg-[#FFDBBB] text-[#664930]">
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         
         {/* Breadcrumb & Title */}
@@ -235,11 +235,11 @@ export default function ManageEvents() {
           <div className="flex items-center gap-4">
             <Icon3D icon={Calendar} size="lg" color="gold" />
             <div className="space-y-1">
-              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-[#FFDBBB] font-bold hover:underline transition-colors">
-                <ChevronLeft className="w-4 h-4" /> Back to Dashboard
+              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-[#664930] font-extrabold hover:underline transition-colors">
+                <ChevronLeft className="w-4 h-4 text-[#664930]" /> Back to Dashboard
               </Link>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#FFDBBB] font-syne tracking-tight drop-shadow-[0_2px_10px_rgba(255,219,187,0.3)]">Manage Events</h1>
-              <p className="text-xs text-[#CCBEB1] font-medium">Add, edit, or terminate event entries in the database.</p>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#664930] font-syne tracking-tight">Manage Events</h1>
+              <p className="text-xs text-[#664930]/80 font-semibold">Add, edit, or terminate event entries in the database.</p>
             </div>
           </div>
           
@@ -257,7 +257,7 @@ export default function ManageEvents() {
             <RefreshCw className="w-8 h-8 text-[#FFDBBB] animate-spin" />
           </div>
         ) : (
-          <div className="p-6 rounded-3xl bg-[#1E1914]/95 backdrop-blur-xl border border-[#FFDBBB]/30 shadow-2xl overflow-hidden">
+          <div className="p-6 rounded-3xl bg-[#664930] backdrop-blur-xl border border-[#997E67] shadow-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>

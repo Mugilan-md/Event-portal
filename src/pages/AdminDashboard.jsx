@@ -66,7 +66,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body bg-[#14110E] text-[#FFDBBB]">
+    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body bg-[#FFDBBB] text-[#664930]">
       <div className="max-w-7xl mx-auto space-y-10 relative z-10">
         
         {/* Header Title */}
@@ -74,16 +74,16 @@ export default function AdminDashboard() {
           <div className="flex items-center gap-4">
             <Icon3D icon={BarChart3} size="lg" color="gold" />
             <div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#FFDBBB] flex items-center gap-2 font-syne tracking-tight drop-shadow-[0_2px_10px_rgba(255,219,187,0.4)]">
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#664930] flex items-center gap-2 font-syne tracking-tight">
                 Admin Console Dashboard
               </h1>
-              <p className="text-sm text-[#CCBEB1] mt-1 font-medium">
+              <p className="text-sm text-[#664930]/80 mt-1 font-semibold">
                 Real-time database records, telemetry & portal analytics.
               </p>
             </div>
           </div>
-          <div className="text-xs text-[#FFDBBB] bg-[#664930]/60 border border-[#997E67] px-4 py-2 rounded-full font-bold flex items-center gap-2 shadow-md backdrop-blur-md">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" /> Connection Stable
+          <div className="text-xs text-[#664930] bg-[#664930]/15 border border-[#997E67] px-4 py-2 rounded-full font-extrabold flex items-center gap-2 shadow-sm backdrop-blur-md">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" /> Connection Stable
           </div>
         </div>
 
@@ -91,10 +91,10 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, idx) => (
             <Card3D key={idx} depth={20} maxTilt={10}>
-              <div className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930]/85 border border-[#997E67] shadow-2xl relative overflow-hidden flex justify-between items-start">
+              <div className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border border-[#997E67] shadow-2xl relative overflow-hidden flex justify-between items-start">
                 <div>
                   <span className="text-[11px] text-[#CCBEB1] uppercase tracking-widest block font-extrabold">{stat.title}</span>
-                  <span className="text-2xl sm:text-3xl font-mono font-extrabold text-[#FFDBBB] mt-2 block drop-shadow-[0_2px_8px_rgba(255,219,187,0.3)]">
+                  <span className="text-2xl sm:text-3xl font-mono font-extrabold text-[#FFDBBB] mt-2 block drop-shadow-sm">
                     {stat.value}
                   </span>
                 </div>
@@ -110,13 +110,13 @@ export default function AdminDashboard() {
           <Card3D depth={18} maxTilt={8}>
             <Link
               to="/admin/manage-events"
-              className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930]/85 border border-[#997E67] shadow-2xl hover:border-[#FFDBBB] transition-all group flex items-center justify-between h-full"
+              className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border border-[#997E67] shadow-2xl hover:border-[#FFDBBB] transition-all group flex items-center justify-between h-full"
             >
               <div className="space-y-2">
                 <h3 className="text-xl font-extrabold text-[#FFDBBB] group-hover:text-white transition-colors flex items-center gap-2 font-syne">
                   Manage Events <ArrowUpRight className="w-4 h-4 text-[#FFDBBB] opacity-80 group-hover:opacity-100 transition-opacity" />
                 </h3>
-                <p className="text-xs text-[#CCBEB1] max-w-sm leading-relaxed">
+                <p className="text-xs text-[#CCBEB1] max-w-sm leading-relaxed font-medium">
                   Add new hackathons, edit coordinator contact details, set deadlines, and manage registration status fields.
                 </p>
               </div>
@@ -128,13 +128,13 @@ export default function AdminDashboard() {
           <Card3D depth={18} maxTilt={8}>
             <Link
               to="/admin/manage-registrations"
-              className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930]/85 border border-[#997E67] shadow-2xl hover:border-[#FFDBBB] transition-all group flex items-center justify-between h-full"
+              className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border border-[#997E67] shadow-2xl hover:border-[#FFDBBB] transition-all group flex items-center justify-between h-full"
             >
               <div className="space-y-2">
                 <h3 className="text-xl font-extrabold text-[#FFDBBB] group-hover:text-white transition-colors flex items-center gap-2 font-syne">
                   Manage Registrations <ArrowUpRight className="w-4 h-4 text-[#FFDBBB] opacity-80 group-hover:opacity-100 transition-opacity" />
                 </h3>
-                <p className="text-xs text-[#CCBEB1] max-w-sm leading-relaxed">
+                <p className="text-xs text-[#CCBEB1] max-w-sm leading-relaxed font-medium">
                   View student lists, download Excel/CSV files, and audit uploaded payment confirmation proofs.
                 </p>
               </div>
@@ -146,13 +146,13 @@ export default function AdminDashboard() {
           <Card3D depth={18} maxTilt={8}>
             <Link
               to="/admin/manage-queries"
-              className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930]/85 border border-[#997E67] shadow-2xl hover:border-[#FFDBBB] transition-all group flex items-center justify-between h-full"
+              className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border border-[#997E67] shadow-2xl hover:border-[#FFDBBB] transition-all group flex items-center justify-between h-full"
             >
               <div className="space-y-2">
                 <h3 className="text-xl font-extrabold text-[#FFDBBB] group-hover:text-white transition-colors flex items-center gap-2 font-syne">
                   Participant Queries <ArrowUpRight className="w-4 h-4 text-[#FFDBBB] opacity-80 group-hover:opacity-100 transition-opacity" />
                 </h3>
-                <p className="text-xs text-[#CCBEB1] max-w-sm leading-relaxed">
+                <p className="text-xs text-[#CCBEB1] max-w-sm leading-relaxed font-medium">
                   Read and respond to messages submitted by participants from the "Get in Touch" contact form.
                 </p>
               </div>
@@ -163,7 +163,7 @@ export default function AdminDashboard() {
 
         {/* Recent Registrations Table preview */}
         <Card3D depth={15} maxTilt={5}>
-          <div className="p-6 sm:p-8 rounded-3xl backdrop-blur-xl bg-[#664930]/90 border border-[#997E67] shadow-2xl space-y-6">
+          <div className="p-6 sm:p-8 rounded-3xl backdrop-blur-xl bg-[#664930] border border-[#997E67] shadow-2xl space-y-6">
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="text-2xl font-extrabold text-[#FFDBBB] font-syne tracking-tight">Recent Registrations</h3>
@@ -188,7 +188,7 @@ export default function AdminDashboard() {
                     <th className="py-3.5 px-4 text-right">Date</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#997E67]/40 text-[#FFDBBB]">
+                <tbody className="divide-y divide-[#997E67]/40 text-[#CCBEB1]">
                   {registrations.length === 0 ? (
                     <tr>
                       <td colSpan={5} className="py-10 text-center text-[#CCBEB1]">

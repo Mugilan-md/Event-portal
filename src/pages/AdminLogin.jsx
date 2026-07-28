@@ -115,11 +115,11 @@ export default function AdminLogin() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#14110E] text-white relative overflow-hidden font-admin-body">
-        <div className="w-16 h-16 rounded-2xl bg-[#664930]/40 border border-[#997E67] flex items-center justify-center shadow-2xl animate-pulse">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#FFDBBB] text-[#664930] relative overflow-hidden font-admin-body">
+        <div className="w-16 h-16 rounded-2xl bg-[#664930] border border-[#997E67] flex items-center justify-center shadow-2xl animate-pulse">
           <Shield className="w-8 h-8 text-[#FFDBBB]" />
         </div>
-        <p className="text-xs font-mono tracking-widest text-[#FFDBBB] uppercase font-bold animate-pulse">
+        <p className="text-xs font-mono tracking-widest text-[#664930] uppercase font-extrabold animate-pulse">
           Verifying Admin Credentials...
         </p>
       </div>
@@ -127,7 +127,7 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-[#14110E] text-[#FFDBBB] font-admin-body selection:bg-[#FFDBBB]/30">
+    <div className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-[#FFDBBB] text-[#664930] font-admin-body selection:bg-[#664930]/30">
       
       {/* ── TOP HEADER BAR ── */}
       <header className="relative z-20 w-full max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -136,24 +136,24 @@ export default function AdminLogin() {
             <img src={logoImg} alt="VSB Logo" className="w-full h-full object-contain" />
           </div>
           <div className="flex flex-col">
-            <span className="font-syne font-extrabold text-lg tracking-tight text-white flex items-center gap-1.5">
-              VSB <span className="text-[#FFDBBB]">Portal</span>
+            <span className="font-syne font-extrabold text-lg tracking-tight text-[#664930] flex items-center gap-1.5">
+              VSB <span className="text-[#664930]">Portal</span>
             </span>
-            <span className="text-[10px] text-[#CCBEB1] font-mono">Control Center</span>
+            <span className="text-[10px] text-[#664930]/80 font-mono font-bold">Control Center</span>
           </div>
         </Link>
 
         <div className="flex items-center gap-4 text-xs font-mono">
-          <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#664930]/60 border border-[#997E67] text-[#FFDBBB] shadow-sm">
+          <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#664930] border border-[#997E67] text-[#FFDBBB] shadow-sm">
             <Clock className="w-3.5 h-3.5 text-[#FFDBBB]" />
             <span>{time.toLocaleTimeString()}</span>
           </div>
 
           <Link
             to="/"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#664930]/40 hover:bg-[#664930] border border-[#997E67] text-[#FFDBBB] text-xs font-semibold transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#664930] hover:bg-[#14110E] border border-[#997E67] text-[#FFDBBB] text-xs font-extrabold transition-all"
           >
-            <ChevronLeft className="w-4 h-4" /> Home
+            <ChevronLeft className="w-4 h-4 text-[#FFDBBB]" /> Home
           </Link>
         </div>
       </header>
@@ -161,7 +161,7 @@ export default function AdminLogin() {
       {/* ── MAIN SIGN IN CARD CONTAINER ── */}
       <main className="relative z-10 w-full max-w-md mx-auto px-4 py-8 flex-grow flex items-center justify-center">
         <Card3D depth={25} maxTilt={8} className="w-full">
-          <div className="relative rounded-3xl bg-[#664930]/90 backdrop-blur-2xl border border-[#997E67] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] p-8 sm:p-10 text-left overflow-hidden">
+          <div className="relative rounded-3xl bg-[#664930] backdrop-blur-2xl border border-[#997E67] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] p-8 sm:p-10 text-left overflow-hidden">
             
             {/* Top Glowing Accent Line */}
             <div className="absolute top-0 inset-x-8 h-[2px] bg-gradient-to-r from-[#FFDBBB] via-[#997E67] to-[#FFDBBB] shadow-[0_0_12px_rgba(255,219,187,0.8)]" />
@@ -180,7 +180,7 @@ export default function AdminLogin() {
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-[#FFDBBB] font-syne tracking-tight">
                   {isAdminSetup ? "Setup Primary Admin" : "Admin Sign In"}
                 </h1>
-                <p className="text-xs sm:text-sm text-[#CCBEB1] mt-1 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#CCBEB1] mt-1 leading-relaxed font-medium">
                   {isAdminSetup
                     ? "Initialize your primary administrator credentials below."
                     : "Enter your secure credentials to access management console."}
@@ -203,7 +203,7 @@ export default function AdminLogin() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@vsb.edu"
-                    className="w-full px-4 py-3 bg-[#14110E] rounded-xl text-sm text-white placeholder-[#CCBEB1]/50 border border-[#997E67] focus:border-[#FFDBBB] focus:ring-2 focus:ring-[#FFDBBB]/20 focus:outline-none transition-all"
+                    className="w-full px-4 py-3 bg-[#14110E] rounded-xl text-sm text-[#FFDBBB] placeholder-[#CCBEB1]/50 border border-[#997E67] focus:border-[#FFDBBB] focus:ring-2 focus:ring-[#FFDBBB]/20 focus:outline-none transition-all font-semibold"
                     required
                   />
                 </div>
@@ -222,7 +222,7 @@ export default function AdminLogin() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full px-4 py-3 bg-[#14110E] rounded-xl text-sm text-white placeholder-[#CCBEB1]/50 border border-[#997E67] focus:border-[#FFDBBB] focus:ring-2 focus:ring-[#FFDBBB]/20 focus:outline-none transition-all pr-11"
+                    className="w-full px-4 py-3 bg-[#14110E] rounded-xl text-sm text-[#FFDBBB] placeholder-[#CCBEB1]/50 border border-[#997E67] focus:border-[#FFDBBB] focus:ring-2 focus:ring-[#FFDBBB]/20 focus:outline-none transition-all pr-11 font-semibold"
                     required
                   />
                   <button
@@ -246,7 +246,7 @@ export default function AdminLogin() {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full px-4 py-3 bg-[#14110E] rounded-xl text-sm text-white placeholder-[#CCBEB1]/50 border border-[#997E67] focus:border-[#FFDBBB] focus:ring-2 focus:ring-[#FFDBBB]/20 focus:outline-none transition-all"
+                    className="w-full px-4 py-3 bg-[#14110E] rounded-xl text-sm text-[#FFDBBB] placeholder-[#CCBEB1]/50 border border-[#997E67] focus:border-[#FFDBBB] focus:ring-2 focus:ring-[#FFDBBB]/20 focus:outline-none transition-all font-semibold"
                     required
                   />
                 </div>
@@ -289,7 +289,7 @@ export default function AdminLogin() {
       </main>
 
       {/* ── FOOTER STATUS BAR ── */}
-      <footer className="relative z-20 w-full max-w-7xl mx-auto px-6 py-6 text-center text-xs text-[#CCBEB1] font-mono flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#997E67]/30">
+      <footer className="relative z-20 w-full max-w-7xl mx-auto px-6 py-6 text-center text-xs text-[#664930] font-mono font-bold flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#997E67]/40">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-400" />
           <span>256-Bit SSL Encrypted Enterprise Auth</span>

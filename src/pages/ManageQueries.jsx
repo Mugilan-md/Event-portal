@@ -51,7 +51,7 @@ export default function ManageQueries() {
   );
 
   return (
-    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body">
+    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body bg-[#FFDBBB] text-[#664930]">
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         
         {/* Breadcrumb & Title */}
@@ -59,19 +59,19 @@ export default function ManageQueries() {
           <div className="flex items-center gap-4">
             <Icon3D icon={MessageSquare} size="lg" color="gold" />
             <div className="space-y-1">
-              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-[#FFDBBB] font-bold hover:underline transition-colors">
-                <ChevronLeft className="w-4 h-4" /> Back to Dashboard
+              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-[#664930] font-extrabold hover:underline transition-colors">
+                <ChevronLeft className="w-4 h-4 text-[#664930]" /> Back to Dashboard
               </Link>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#FFDBBB] font-syne tracking-tight drop-shadow-[0_2px_10px_rgba(255,219,187,0.3)]">Participant Queries</h1>
-              <p className="text-xs text-[#CCBEB1] font-medium">Read and respond to inquiries submitted by attendees.</p>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#664930] font-syne tracking-tight">Participant Queries</h1>
+              <p className="text-xs text-[#664930]/80 font-semibold">Read and respond to inquiries submitted by attendees.</p>
             </div>
           </div>
           
           <button
             onClick={fetchQueries}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#FFDBBB] hover:bg-white text-[#664930] font-extrabold text-xs transition-all shadow-md"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#664930] hover:bg-[#14110E] text-[#FFDBBB] font-extrabold text-xs transition-all shadow-md"
           >
-            <RefreshCw className="w-3.5 h-3.5 text-[#664930]" /> Reload List
+            <RefreshCw className="w-3.5 h-3.5 text-[#FFDBBB]" /> Reload List
           </button>
         </div>
 
@@ -83,19 +83,19 @@ export default function ManageQueries() {
             placeholder="Search queries by name, email, or message..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#1E1914]/90 border border-[#FFDBBB]/30 text-white placeholder-[#CCBEB1]/60 text-sm focus:outline-none focus:border-[#FFDBBB] transition-all"
+            className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#664930] border border-[#997E67] text-[#FFDBBB] placeholder-[#CCBEB1]/70 text-sm focus:outline-none focus:border-[#FFDBBB] transition-all"
           />
         </div>
 
         {/* Content list */}
         {loading && queries.length === 0 ? (
           <div className="min-h-[300px] flex items-center justify-center">
-            <RefreshCw className="w-8 h-8 text-[#FFDBBB] animate-spin" />
+            <RefreshCw className="w-8 h-8 text-[#664930] animate-spin" />
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredQueries.length === 0 ? (
-              <div className="col-span-full p-12 text-center text-[#CCBEB1] bg-[#1E1914]/90 border border-[#FFDBBB]/20 rounded-3xl">
+              <div className="col-span-full p-12 text-center text-[#CCBEB1] bg-[#664930] border border-[#997E67] rounded-3xl">
                 No queries found.
               </div>
             ) : (
@@ -104,7 +104,7 @@ export default function ManageQueries() {
                   key={query.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-6 rounded-3xl bg-[#1E1914]/95 backdrop-blur-xl border border-[#FFDBBB]/30 hover:border-[#FFDBBB]/60 transition-all flex flex-col justify-between shadow-2xl"
+                  className="p-6 rounded-3xl bg-[#664930] backdrop-blur-xl border border-[#997E67] hover:border-[#FFDBBB] transition-all flex flex-col justify-between shadow-2xl"
                 >
                   <div className="space-y-4">
                     {/* Participant Details */}

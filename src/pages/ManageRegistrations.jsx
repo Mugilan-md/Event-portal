@@ -144,7 +144,7 @@ export default function ManageRegistrations() {
   };
 
   return (
-    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body">
+    <div className="relative min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-admin-body bg-[#FFDBBB] text-[#664930]">
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
         
         {/* Title */}
@@ -152,30 +152,30 @@ export default function ManageRegistrations() {
           <div className="flex items-center gap-4">
             <Icon3D icon={Users} size="lg" color="cyan" />
             <div className="space-y-1">
-              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-[#FFDBBB] font-bold hover:underline transition-colors">
-                <ChevronLeft className="w-4 h-4" /> Back to Dashboard
+              <Link to="/admin-dashboard" className="inline-flex items-center gap-1.5 text-xs text-[#664930] font-extrabold hover:underline transition-colors">
+                <ChevronLeft className="w-4 h-4 text-[#664930]" /> Back to Dashboard
               </Link>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#FFDBBB] font-syne tracking-tight drop-shadow-[0_2px_10px_rgba(255,219,187,0.3)]">Manage Registrations</h1>
-              <p className="text-xs text-[#CCBEB1] font-medium">Live participant database directory and CSV sheet exporter.</p>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#664930] font-syne tracking-tight">Manage Registrations</h1>
+              <p className="text-xs text-[#664930]/80 font-semibold">Live participant database directory and CSV sheet exporter.</p>
             </div>
           </div>
 
           <button
             onClick={exportToCSV}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#FFDBBB] hover:bg-white text-[#664930] font-extrabold text-sm transition-all shadow-lg hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#664930] hover:bg-[#14110E] text-[#FFDBBB] font-extrabold text-sm transition-all shadow-lg hover:scale-105 active:scale-95"
           >
-            <Download className="w-4 h-4 text-[#664930]" /> Export CSV / Excel
+            <Download className="w-4 h-4 text-[#FFDBBB]" /> Export CSV / Excel
           </button>
         </div>
 
         {/* Filter and stats wrapper */}
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between p-4 rounded-2xl bg-[#1E1914]/90 border border-[#FFDBBB]/20 backdrop-blur-xl">
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between p-4 rounded-2xl bg-[#664930] border border-[#997E67] backdrop-blur-xl">
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <Filter className="w-4 h-4 text-[#FFDBBB]" />
             <select
               value={selectedEventId}
               onChange={(e) => setSelectedEventId(e.target.value)}
-              className="bg-[#2A241F] border border-[#FFDBBB]/30 text-xs font-semibold text-[#FFDBBB] px-3.5 py-2 rounded-xl focus:outline-none focus:border-[#FFDBBB] cursor-pointer max-w-xs"
+              className="bg-[#14110E] border border-[#997E67] text-xs font-semibold text-[#FFDBBB] px-3.5 py-2 rounded-xl focus:outline-none focus:border-[#FFDBBB] cursor-pointer max-w-xs"
             >
               <option value="All">All Registered Events</option>
               {events.map((e) => (
@@ -185,17 +185,17 @@ export default function ManageRegistrations() {
           </div>
 
           <div className="text-xs text-[#CCBEB1] font-bold uppercase tracking-wider">
-            Displaying: <span className="text-white font-mono">{filteredRegistrations.length}</span> Records
+            Displaying: <span className="text-[#FFDBBB] font-mono font-bold">{filteredRegistrations.length}</span> Records
           </div>
         </div>
 
         {/* Table data grid */}
         {loading ? (
           <div className="min-h-[300px] flex items-center justify-center">
-            <RefreshCw className="w-8 h-8 text-[#FFDBBB] animate-spin" />
+            <RefreshCw className="w-8 h-8 text-[#664930] animate-spin" />
           </div>
         ) : (
-          <div className="p-6 rounded-3xl bg-[#1E1914]/95 backdrop-blur-xl border border-[#FFDBBB]/30 shadow-2xl overflow-hidden">
+          <div className="p-6 rounded-3xl bg-[#664930] backdrop-blur-xl border border-[#997E67] shadow-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
