@@ -64,6 +64,8 @@ export default function Card3D({
       style={{
         perspective: "1000px",
         transformStyle: "preserve-3d",
+        backfaceVisibility: "hidden",
+        WebkitBackfaceVisibility: "hidden",
         transform: isHovered
           ? `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`
           : "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
@@ -75,6 +77,8 @@ export default function Card3D({
       <div
         className="w-full h-full preserve-3d transition-all duration-300"
         style={{
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden",
           transform: isHovered ? `translateZ(${depth}px)` : "translateZ(0px)"
         }}
       >

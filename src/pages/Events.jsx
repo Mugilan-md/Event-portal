@@ -177,7 +177,7 @@ export default function Events() {
                             <span className="line-clamp-1">{event.venue}</span>
                           </div>
                         </div>
-                        <h3 className="text-xl font-bold line-clamp-1 font-serif" style={{ color: "#0F172A" }}>{event.title}</h3>
+                        <h3 className="text-xl font-extrabold line-clamp-1 text-slate-900 group-hover:text-indigo-600 transition-colors">{event.title}</h3>
                         <p className="text-sm line-clamp-3 leading-relaxed" style={{ color: "#64748B" }}>{event.description}</p>
                       </div>
 

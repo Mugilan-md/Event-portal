@@ -296,10 +296,9 @@ export default function Home() {
             {events.slice(0, 3).map((event, idx) => (
               <Card3D key={event.id || idx} depth={20} maxTilt={10} className="h-full">
                 <div
-                  className="rounded-3xl flex flex-col h-full overflow-hidden group transition-all duration-300 backdrop-blur-xl border border-white/20 shadow-xl"
+                  className="rounded-3xl flex flex-col h-full overflow-hidden group transition-all duration-300 bg-white border border-slate-200/80 shadow-xl hover:shadow-2xl"
                   style={{
-                    background: "rgba(255, 255, 255, 0.88)",
-                    boxShadow: "0 15px 35px -5px rgba(0,0,0,0.1)"
+                    boxShadow: "0 10px 30px -5px rgba(9,13,22,0.08)"
                   }}
                 >
                   {/* Poster */}
@@ -307,12 +306,12 @@ export default function Home() {
                     <img
                       src={event.posterUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"}
                       alt={event.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
                     <div className="absolute top-4 left-4">
                       <span
-                        className="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-indigo-600/90 text-white shadow-lg backdrop-blur-md border border-white/20"
+                        className="px-3 py-1 rounded-full text-[10px] font-extrabold tracking-wider uppercase bg-indigo-600 text-white shadow-md border border-white/20"
                       >
                         {event.category || "General"}
                       </span>
@@ -320,15 +319,15 @@ export default function Home() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-6 flex flex-col justify-between flex-grow relative">
+                  <div className="p-6 flex flex-col justify-between flex-grow relative bg-white">
                     <div className="absolute top-0 right-6 -translate-y-1/2">
                       <Icon3D icon={Calendar} size="md" color="gold" />
                     </div>
                     <div className="space-y-3 pt-2">
-                      <div className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+                      <div className="text-xs font-bold uppercase tracking-wider text-indigo-600">
                         {event.date} • {event.time}
                       </div>
-                      <h3 className="text-xl font-bold line-clamp-1 font-serif text-slate-900 group-hover:text-indigo-600 transition-colors">
+                      <h3 className="text-xl font-extrabold line-clamp-1 text-slate-900 group-hover:text-indigo-600 transition-colors">
                         {event.title}
                       </h3>
                       <p className="text-sm line-clamp-3 leading-relaxed text-slate-600">
