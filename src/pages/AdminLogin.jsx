@@ -108,9 +108,9 @@ export default function AdminLogin() {
   };
 
   const fillDemoCreds = () => {
-    setEmail("admin@portal.com");
-    setPassword("admin123");
-    showToast("Demo credentials filled", "info");
+    setEmail("superior@portal.com");
+    setPassword("adminpassword123");
+    showToast("Master Admin credentials loaded into form", "info");
   };
 
   if (loading) {

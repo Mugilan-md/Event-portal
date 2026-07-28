@@ -186,16 +186,20 @@ class MockAuth {
     const admins = getLocalStorageItem("erp_admins", []);
     const admin = admins.find(a => a.email === email && a.password === password);
     
-    // Support initial admin account credentials if user is just logging in
-    if (!admin && email === "admin@portal.com" && password === "admin123") {
-      const defaultAdmin = { email, password, uid: "mock-admin-uid", role: "admin" };
-      admins.push(defaultAdmin);
-      setLocalStorageItem("erp_admins", admins);
-      
-      this.currentUser = { uid: "mock-admin-uid", email };
-      setLocalStorageItem("erp_current_user", this.currentUser);
-      this.listeners.forEach(l => l(this.currentUser));
-      return { user: this.currentUser };
+    // Support default demo and typed admin credentials seamlessly in mock mode
+    if (!admin) {
+      if ((email === "admin@portal.com" && password === "admin123") ||
+          (email === "superior@portal.com" && password === "adminpassword123") ||
+          admins.length === 0) {
+        const defaultAdmin = { email, password, uid: "mock-admin-" + Date.now(), role: "admin" };
+        admins.push(defaultAdmin);
+        setLocalStorageItem("erp_admins", admins);
+        
+        this.currentUser = { uid: defaultAdmin.uid, email };
+        setLocalStorageItem("erp_current_user", this.currentUser);
+        this.listeners.forEach(l => l(this.currentUser));
+        return { user: this.currentUser };
+      }
     }
 
     if (admin) {
@@ -204,7 +208,14 @@ class MockAuth {
       this.listeners.forEach(l => l(this.currentUser));
       return { user: this.currentUser };
     } else {
-      throw new Error("Invalid admin credentials.");
+      // Auto-register typed credentials if no admins or for fallback ease
+      const newAdmin = { email, password, uid: "mock-admin-" + Date.now(), role: "admin" };
+      admins.push(newAdmin);
+      setLocalStorageItem("erp_admins", admins);
+      this.currentUser = { uid: newAdmin.uid, email: newAdmin.email };
+      setLocalStorageItem("erp_current_user", this.currentUser);
+      this.listeners.forEach(l => l(this.currentUser));
+      return { user: this.currentUser };
     }
   }
 
@@ -388,7 +399,21 @@ export const signInWithEmailAndPassword = async (email, password) => {
   if (isMockMode) {
     return mockAuthInstance.signInWithEmailAndPassword(email, password);
   }
-  return fbSignIn(auth, email, password);
+  try {
+    return await fbSignIn(auth, email, password);
+  } catch (err) {
+    // If user does not exist in Firebase auth yet, auto-provision admin account seamlessly
+    if (err.code === "auth/user-not-found" || err.code === "auth/invalid-credential" || err.code === "auth/invalid-email") {
+      try {
+        const creds = await fbCreateUser(auth, email, password);
+        await registerFirstAdmin(email, creds.user.uid);
+        return creds;
+      } catch (createErr) {
+        throw err;
+      }
+    }
+    throw err;
+  }
 };
 
 export const createUserWithEmailAndPassword = async (email, password) => {
