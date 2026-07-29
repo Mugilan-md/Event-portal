@@ -296,7 +296,7 @@ export default function Home() {
             {events.slice(0, 3).map((event, idx) => (
               <Card3D key={event.id || idx} depth={20} maxTilt={10} className="h-full">
                 <div
-                  className="rounded-3xl flex flex-col h-full overflow-hidden group transition-all duration-300 bg-white border border-slate-200/80 shadow-xl hover:shadow-2xl"
+                  className="rounded-3xl flex flex-col h-full overflow-hidden group transition-all duration-300 bg-white border border-slate-200/80 shadow-xl hover:shadow-2xl hover:-translate-y-2 hover:border-indigo-400/60 cursor-pointer"
                   style={{
                     boxShadow: "0 10px 30px -5px rgba(9,13,22,0.08)"
                   }}
@@ -306,7 +306,7 @@ export default function Home() {
                     <img
                       src={event.posterUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"}
                       alt={event.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
                     <div className="absolute top-4 left-4">
@@ -602,23 +602,24 @@ export default function Home() {
           {/* Stats Cards */}
           <div className="grid grid-cols-2 gap-4">
             {[
-              { title: "Hackathons", value: "24+", color: "#6366F1", glow: "rgba(99,102,241,0.1)" },
-              { title: "Colleges", value: "150+", color: "#F59E0B", glow: "rgba(245,158,11,0.1)" },
-              { title: "Symposiums", value: "48+", color: "#06B6D4", glow: "rgba(6,182,212,0.1)" },
-              { title: "Active Admins", value: "10+", color: "#6366F1", glow: "rgba(99,102,241,0.1)" }
+              { title: "Hackathons", value: "24+", color: "#6366F1", glow: "rgba(99,102,241,0.15)" },
+              { title: "Colleges", value: "150+", color: "#F59E0B", glow: "rgba(245,158,11,0.15)" },
+              { title: "Symposiums", value: "48+", color: "#06B6D4", glow: "rgba(6,182,212,0.15)" },
+              { title: "Active Admins", value: "10+", color: "#6366F1", glow: "rgba(99,102,241,0.15)" }
             ].map((stat, idx) => (
               <motion.div
                 key={idx}
-                whileHover={{ scale: 1.03, y: -4 }}
-                className="p-6 rounded-xl flex flex-col justify-center text-center transition-all duration-250"
+                whileHover={{ scale: 1.06, y: -6 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="p-6 rounded-xl flex flex-col justify-center text-center transition-all duration-300 cursor-pointer"
                 style={{
                   background: "#FFFFFF",
                   border: "1px solid #E2E8F0",
                   boxShadow: "0 1px 3px rgba(9,13,22,0.05)"
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.boxShadow = `0 12px 24px ${stat.glow}, 0 0 0 1px ${stat.glow}`;
-                  e.currentTarget.style.borderColor = `${stat.color}30`;
+                  e.currentTarget.style.boxShadow = `0 16px 32px ${stat.glow}, 0 0 0 1px ${stat.color}40`;
+                  e.currentTarget.style.borderColor = `${stat.color}50`;
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.boxShadow = "0 1px 3px rgba(9,13,22,0.05)";

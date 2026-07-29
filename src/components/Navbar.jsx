@@ -48,6 +48,8 @@ export default function Navbar() {
     return location.pathname === path && !location.hash;
   };
 
+  const isHomePage = location.pathname === "/";
+
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Events", path: "/events" },
@@ -60,9 +62,9 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 w-full z-40 transition-all duration-300"
       style={{
-        background: "#FFFFFF",
-        borderBottom: "2px solid #997E67",
-        boxShadow: "0 4px 20px rgba(102,73,48,0.12)"
+        background: "#FAF7F2",
+        borderBottom: "1px solid #EAE3D9",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.05)"
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,15 +79,15 @@ export default function Navbar() {
                 className="w-full h-full object-contain p-0 m-0"
               />
             </div>
-            <span className="font-black text-xl sm:text-2xl tracking-tight font-syne text-[#1A0F07]">
+            <span className="font-black text-xl sm:text-2xl tracking-tight font-syne text-[#1F160E]">
               VSB{" "}
-              <span className="text-[#664930] drop-shadow-sm">
+              <span className="text-[#D97706] drop-shadow-sm">
                 Portal
               </span>
             </span>
           </Link>
 
-          {/* Desktop Navigation - Pure Creamy White Navbar with Pure Black/Mocha text */}
+          {/* Desktop Navigation - Pure Bright Creamy White Navbar */}
           <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => {
               const isHash = link.path.startsWith("/#");
@@ -93,8 +95,8 @@ export default function Navbar() {
 
               const linkClass = `relative px-4 py-2 text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-200 ${
                 active
-                  ? "text-[#FFDBBB] bg-[#664930] shadow-md"
-                  : "text-[#1A0F07] hover:text-[#664930] hover:bg-[#FFDBBB]/40"
+                  ? "text-[#1F160E] bg-[#EFE6D8] border border-[#E0D4C3] shadow-sm"
+                  : "text-[#2D2219] hover:text-[#D97706] hover:bg-[#F3ECE0]"
               }`;
 
               return isHash ? (
@@ -130,18 +132,11 @@ export default function Navbar() {
             {adminUser && (
               <div
                 className="flex items-center gap-3 ml-3 pl-3"
-                style={{ borderLeft: "2px solid #997E67" }}
+                style={{ borderLeft: "2px solid #EAE3D9" }}
               >
-                <Link
-                  to="/admin-dashboard"
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-black transition-all duration-200 shadow-md bg-[#664930] text-[#FFDBBB] border border-[#3D2918] hover:bg-[#3D2918]"
-                >
-                  <User className="w-3.5 h-3.5 text-[#FFDBBB]" />
-                  Admin Dashboard
-                </Link>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-200 bg-rose-600 hover:bg-rose-700 text-white shadow-md"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-200 bg-rose-600 hover:bg-rose-700 text-white shadow-sm"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   Sign Out
@@ -152,18 +147,9 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <div className="md:hidden flex items-center gap-2">
-            {adminUser && (
-              <Link
-                to="/admin-dashboard"
-                className="p-2 rounded-xl transition-all shadow-md bg-[#664930] text-[#FFDBBB]"
-              >
-                <User className="w-4 h-4 text-[#FFDBBB]" />
-              </Link>
-            )}
-
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl transition-all duration-250 text-[#1A0F07] hover:bg-[#FFDBBB]/40"
+              className="p-2 rounded-xl transition-all duration-250 text-[#1F160E] hover:bg-[#F3ECE0]"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -179,7 +165,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-[#997E67] bg-[#FFFFFF] shadow-xl overflow-hidden"
+            className="md:hidden border-b border-[#EAE3D9] bg-[#FAF7F2] shadow-xl overflow-hidden"
           >
             <div className="px-4 pt-3 pb-6 space-y-2">
               {navLinks.map((link) => (
@@ -189,8 +175,8 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`block px-4 py-2.5 rounded-xl text-sm font-black uppercase tracking-wider transition-all ${
                     isActive(link.path)
-                      ? "bg-[#664930] text-[#FFDBBB]"
-                      : "text-[#1A0F07] hover:bg-[#FFDBBB]/30"
+                      ? "bg-[#EFE6D8] text-[#1F160E] border border-[#E0D4C3]"
+                      : "text-[#2D2219] hover:bg-[#F3ECE0]"
                   }`}
                 >
                   {link.name}
@@ -200,7 +186,7 @@ export default function Navbar() {
               {adminUser && (
                 <button
                   onClick={handleLogout}
-                  className="w-full mt-4 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-wider bg-rose-600 text-white shadow-md"
+                  className="w-full mt-4 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-wider bg-rose-600 text-white shadow-sm"
                 >
                   <LogOut className="w-4 h-4" /> Sign Out
                 </button>

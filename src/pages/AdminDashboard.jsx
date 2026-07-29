@@ -91,15 +91,21 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, idx) => (
             <Card3D key={idx} depth={20} maxTilt={10}>
-              <div className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border-2 border-[#FFDBBB]/40 shadow-2xl relative overflow-hidden flex justify-between items-start">
+              <motion.div
+                whileHover={{ scale: 1.04, y: -6 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border-2 border-[#FFDBBB]/40 shadow-2xl relative overflow-hidden flex justify-between items-start transition-all duration-300 hover:border-[#FFDBBB] hover:shadow-[0_20px_40px_rgba(102,73,48,0.45)] cursor-pointer group"
+              >
                 <div>
-                  <span className="text-[11px] text-[#FFDBBB] uppercase tracking-widest block font-black">{stat.title}</span>
-                  <span className="text-3xl sm:text-4xl font-mono font-black text-[#FFFFFF] mt-2 block drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+                  <span className="text-[11px] text-[#FFDBBB] uppercase tracking-widest block font-black group-hover:text-[#FFFFFF] transition-colors">{stat.title}</span>
+                  <span className="text-3xl sm:text-4xl font-mono font-black text-[#FFFFFF] mt-2 block drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] group-hover:scale-105 transition-transform">
                     {stat.value}
                   </span>
                 </div>
-                <Icon3D icon={stat.icon} size="md" color={stat.color} />
-              </div>
+                <div className="group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                  <Icon3D icon={stat.icon} size="md" color={stat.color} />
+                </div>
+              </motion.div>
             </Card3D>
           ))}
         </div>
@@ -108,62 +114,74 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Manage Events Link */}
           <Card3D depth={18} maxTilt={8}>
-            <Link
-              to="/admin/manage-events"
-              className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border-2 border-[#FFDBBB]/30 shadow-2xl hover:border-[#FFDBBB] transition-all group flex items-center justify-between h-full"
-            >
-              <div className="space-y-2">
-                <h3 className="text-xl font-black text-[#FFDBBB] group-hover:text-[#FFFFFF] transition-colors flex items-center gap-2 font-syne">
-                  Manage Events <ArrowUpRight className="w-5 h-5 text-[#FFDBBB] group-hover:text-[#FFFFFF] transition-colors" />
-                </h3>
-                <p className="text-xs text-[#FFF5EA] max-w-sm leading-relaxed font-bold">
-                  Add new hackathons, edit coordinator contact details, set deadlines, and manage registration status fields.
-                </p>
-              </div>
-              <Icon3D icon={Calendar} size="lg" color="violet" />
-            </Link>
+            <motion.div whileHover={{ scale: 1.03, y: -6 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="h-full">
+              <Link
+                to="/admin/manage-events"
+                className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border-2 border-[#FFDBBB]/30 shadow-2xl hover:border-[#FFFFFF] hover:shadow-[0_25px_50px_rgba(61,41,24,0.5)] transition-all group flex items-center justify-between h-full"
+              >
+                <div className="space-y-2">
+                  <h3 className="text-xl font-black text-[#FFDBBB] group-hover:text-[#FFFFFF] transition-colors flex items-center gap-2 font-syne">
+                    Manage Events <ArrowUpRight className="w-5 h-5 text-[#FFDBBB] group-hover:text-[#FFFFFF] group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-all duration-300" />
+                  </h3>
+                  <p className="text-xs text-[#FFF5EA] max-w-sm leading-relaxed font-bold">
+                    Add new hackathons, edit coordinator contact details, set deadlines, and manage registration status fields.
+                  </p>
+                </div>
+                <div className="group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                  <Icon3D icon={Calendar} size="lg" color="violet" />
+                </div>
+              </Link>
+            </motion.div>
           </Card3D>
 
           {/* Manage Registrations Link */}
           <Card3D depth={18} maxTilt={8}>
-            <Link
-              to="/admin/manage-registrations"
-              className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border-2 border-[#FFDBBB]/30 shadow-2xl hover:border-[#FFDBBB] transition-all group flex items-center justify-between h-full"
-            >
-              <div className="space-y-2">
-                <h3 className="text-xl font-black text-[#FFDBBB] group-hover:text-[#FFFFFF] transition-colors flex items-center gap-2 font-syne">
-                  Manage Registrations <ArrowUpRight className="w-5 h-5 text-[#FFDBBB] group-hover:text-[#FFFFFF] transition-colors" />
-                </h3>
-                <p className="text-xs text-[#FFF5EA] max-w-sm leading-relaxed font-bold">
-                  View student lists, download Excel/CSV files, and audit uploaded payment confirmation proofs.
-                </p>
-              </div>
-              <Icon3D icon={Users} size="lg" color="cyan" />
-            </Link>
+            <motion.div whileHover={{ scale: 1.03, y: -6 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="h-full">
+              <Link
+                to="/admin/manage-registrations"
+                className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border-2 border-[#FFDBBB]/30 shadow-2xl hover:border-[#FFFFFF] hover:shadow-[0_25px_50px_rgba(61,41,24,0.5)] transition-all group flex items-center justify-between h-full"
+              >
+                <div className="space-y-2">
+                  <h3 className="text-xl font-black text-[#FFDBBB] group-hover:text-[#FFFFFF] transition-colors flex items-center gap-2 font-syne">
+                    Manage Registrations <ArrowUpRight className="w-5 h-5 text-[#FFDBBB] group-hover:text-[#FFFFFF] group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-all duration-300" />
+                  </h3>
+                  <p className="text-xs text-[#FFF5EA] max-w-sm leading-relaxed font-bold">
+                    View student lists, download Excel/CSV files, and audit uploaded payment confirmation proofs.
+                  </p>
+                </div>
+                <div className="group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                  <Icon3D icon={Users} size="lg" color="cyan" />
+                </div>
+              </Link>
+            </motion.div>
           </Card3D>
 
           {/* Manage Queries Link */}
           <Card3D depth={18} maxTilt={8}>
-            <Link
-              to="/admin/manage-queries"
-              className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border-2 border-[#FFDBBB]/30 shadow-2xl hover:border-[#FFDBBB] transition-all group flex items-center justify-between h-full"
-            >
-              <div className="space-y-2">
-                <h3 className="text-xl font-black text-[#FFDBBB] group-hover:text-[#FFFFFF] transition-colors flex items-center gap-2 font-syne">
-                  Participant Queries <ArrowUpRight className="w-5 h-5 text-[#FFDBBB] group-hover:text-[#FFFFFF] transition-colors" />
-                </h3>
-                <p className="text-xs text-[#FFF5EA] max-w-sm leading-relaxed font-bold">
-                  Read and respond to messages submitted by participants from the "Get in Touch" contact form.
-                </p>
-              </div>
-              <Icon3D icon={Mail} size="lg" color="gold" />
-            </Link>
+            <motion.div whileHover={{ scale: 1.03, y: -6 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="h-full">
+              <Link
+                to="/admin/manage-queries"
+                className="p-6 rounded-3xl backdrop-blur-xl bg-[#664930] border-2 border-[#FFDBBB]/30 shadow-2xl hover:border-[#FFFFFF] hover:shadow-[0_25px_50px_rgba(61,41,24,0.5)] transition-all group flex items-center justify-between h-full"
+              >
+                <div className="space-y-2">
+                  <h3 className="text-xl font-black text-[#FFDBBB] group-hover:text-[#FFFFFF] transition-colors flex items-center gap-2 font-syne">
+                    Participant Queries <ArrowUpRight className="w-5 h-5 text-[#FFDBBB] group-hover:text-[#FFFFFF] group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-all duration-300" />
+                  </h3>
+                  <p className="text-xs text-[#FFF5EA] max-w-sm leading-relaxed font-bold">
+                    Read and respond to messages submitted by participants from the "Get in Touch" contact form.
+                  </p>
+                </div>
+                <div className="group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                  <Icon3D icon={Mail} size="lg" color="gold" />
+                </div>
+              </Link>
+            </motion.div>
           </Card3D>
         </div>
 
         {/* Recent Registrations Table preview */}
         <Card3D depth={15} maxTilt={5}>
-          <div className="p-6 sm:p-8 rounded-3xl backdrop-blur-xl bg-[#523A25] border-2 border-[#FFDBBB]/50 shadow-2xl space-y-6">
+          <div className="p-6 sm:p-8 rounded-3xl backdrop-blur-xl bg-[#523A25] border-2 border-[#FFDBBB]/50 shadow-2xl space-y-6 hover:border-[#FFDBBB] transition-all duration-300">
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="text-2xl sm:text-3xl font-black text-[#FFFFFF] font-syne tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">Recent Registrations</h3>
@@ -171,9 +189,9 @@ export default function AdminDashboard() {
               </div>
               <Link
                 to="/admin/manage-registrations"
-                className="text-xs font-black text-[#FFDBBB] hover:text-[#FFFFFF] underline flex items-center gap-1 transition-colors"
+                className="text-xs font-black text-[#FFDBBB] hover:text-[#FFFFFF] flex items-center gap-1 transition-all group"
               >
-                See all <ArrowRight className="w-4 h-4" />
+                See all <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
 
@@ -197,7 +215,7 @@ export default function AdminDashboard() {
                     </tr>
                   ) : (
                     registrations.slice(0, 5).map((reg) => (
-                      <tr key={reg.id} className="hover:bg-[#FFDBBB]/20 transition-colors bg-[#2C1D10]">
+                      <tr key={reg.id} className="hover:bg-[#FFDBBB]/30 transition-all duration-200 cursor-pointer bg-[#2C1D10]">
                         <td className="py-4 px-4">
                           <span style={{ color: "#FFFFFF", fontWeight: "900", fontSize: "14px", letterSpacing: "0.02em" }}>
                             {reg.name}
@@ -209,12 +227,12 @@ export default function AdminDashboard() {
                           </span>
                         </td>
                         <td className="py-4 px-4">
-                          <span style={{ color: "#2C1D10", backgroundColor: "#FFDBBB", fontWeight: "900", fontSize: "11px" }} className="inline-block px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                          <span style={{ color: "#2C1D10", backgroundColor: "#FFDBBB", fontWeight: "900", fontSize: "11px" }} className="inline-block px-3 py-1 rounded-full uppercase tracking-wider shadow-sm hover:scale-105 transition-transform">
                             {reg.eventTitle}
                           </span>
                         </td>
                         <td className="py-4 px-4 font-mono">
-                          <span style={{ color: "#38BDF8", backgroundColor: "#0F172A", fontWeight: "800", fontSize: "12px" }} className="inline-block px-2.5 py-1 rounded-lg border border-[#38BDF8]/40 shadow-sm">
+                          <span style={{ color: "#38BDF8", backgroundColor: "#0F172A", fontWeight: "800", fontSize: "12px" }} className="inline-block px-2.5 py-1 rounded-lg border border-[#38BDF8]/40 shadow-sm hover:scale-105 transition-transform">
                             {reg.registrationId}
                           </span>
                         </td>

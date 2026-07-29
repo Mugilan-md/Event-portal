@@ -131,13 +131,13 @@ export default function AdminLogin() {
       
       {/* ── TOP HEADER BAR ── */}
       <header className="relative z-20 w-full max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-[#664930] border border-[#997E67] p-1.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-            <img src={logoImg} alt="VSB Logo" className="w-full h-full object-contain" />
+        <Link to="/" className="flex items-center gap-3 group py-1">
+          <div className="w-14 h-14 shrink-0 transition-all duration-300 group-hover:scale-105 flex items-center justify-center bg-transparent">
+            <img src={logoImg} alt="VSB Logo" className="w-full h-full object-contain p-0 m-0" />
           </div>
           <div className="flex flex-col">
-            <span className="font-syne font-extrabold text-lg tracking-tight text-[#664930] flex items-center gap-1.5">
-              VSB <span className="text-[#664930]">Portal</span>
+            <span className="font-black text-xl sm:text-2xl tracking-tight font-syne text-[#3D2918]">
+              VSB <span className="text-[#664930] drop-shadow-sm">Portal</span>
             </span>
             <span className="text-[10px] text-[#664930]/80 font-mono font-bold">Control Center</span>
           </div>

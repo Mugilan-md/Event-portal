@@ -139,7 +139,7 @@
 /* ─────────────────────────────────────────────
    TEXT COLOR OVERRIDES
    ───────────────────────────────────────────── */
-.text-white    { color: var(--text) !important; }
+.text-white    { color: #FFFFFF !important; }
 .text-gray-200 { color: #334155 !important; }
 .text-gray-300 { color: var(--text-muted) !important; }
 .text-gray-400 { color: #94A3B8 !important; }
@@ -384,13 +384,14 @@ tr.hover\:bg-white\/5:hover { background-color: rgba(99,102,241,0.03) !important
 }
 
 /* ─────────────────────────────────────────────
-   NAV — Deep Charcoal glassmorphism
+   NAV — Bright Creamy White Navbar
    ───────────────────────────────────────────── */
 nav.fixed {
-  background-color: rgba(9,13,22,0.88) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  background-color: #FAF7F2 !important;
+  border-bottom: 1px solid #EAE3D9 !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
 }
 
 /* ─────────────────────────────────────────────
