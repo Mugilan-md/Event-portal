@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { CheckCircle, XCircle, Calendar, MapPin, School, User, Users, ShieldAlert, Award } from "lucide-react";
+import { CheckCircle, XCircle, Calendar, MapPin, ShieldAlert } from "lucide-react";
 import { getRegistrationByRegistrationId, getEventById } from "../firebase/config";
 import vsbLogo from "../assets/vsb_logo.png";
 

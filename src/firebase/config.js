@@ -64,7 +64,7 @@ const getLocalStorageItem = (key, defaultValue) => {
   const item = localStorage.getItem(key);
   try {
     return item ? JSON.parse(item) : defaultValue;
-  } catch (e) {
+  } catch {
     return defaultValue;
   }
 };
@@ -417,7 +417,7 @@ export const signInWithEmailAndPassword = async (email, password) => {
         const creds = await fbCreateUser(auth, email, password);
         await registerFirstAdmin(email, creds.user.uid);
         return creds;
-      } catch (createErr) {
+      } catch {
         throw err;
       }
     }

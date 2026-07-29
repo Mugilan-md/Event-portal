@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, User, LogOut, Award } from "lucide-react";
+import { Menu, X, LogOut, Award } from "lucide-react";
 import logoImg from "../assets/logo.png";
 import { onAuthStateChanged, signOut } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
-import StarButton from "./ui/star-button";
+import StarButton from "./ui/StarButton";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [adminUser, setAdminUser] = useState(null);
   const [showRegisterBtn, setShowRegisterBtn] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { showToast } = useToast();
@@ -26,7 +25,6 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setShowRegisterBtn(window.scrollY > 300);
-      setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -47,8 +45,6 @@ export default function Navbar() {
     if (path.startsWith("/#")) return location.hash === path.substring(1);
     return location.pathname === path && !location.hash;
   };
-
-  const isHomePage = location.pathname === "/";
 
   const navLinks = [
     { name: "Home", path: "/" },

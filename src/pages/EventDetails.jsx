@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, Award, ShieldAlert, BookOpen, Phone, User, Hourglass, ArrowLeft, Zap } from "lucide-react";
+import { Award, ShieldAlert, BookOpen, Phone, User, Hourglass } from "lucide-react";
 import { getEventById } from "../firebase/config";
 
 export default function EventDetails() {

@@ -1,5 +1,4 @@
-import React from "react";
-import { BookOpen, Trophy, Flame, TrendingUp } from "lucide-react";
+import { Trophy, Flame, TrendingUp } from "lucide-react";
 
 export default function StudentDashboardHeader({ studentName = "Student" }) {
   return (

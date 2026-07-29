@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 // Color Palettes from user reference:
 // 1. Sapphire Nightfall Whisper: Deep ocean blue, electric cyan, nightfall sapphire
 // 2. Moon Dust: Ethereal periwinkle, lavender, ice blue
 // 3. Neutral Elegance: #FFDBBB, #CCBEB1, #997E67, #664930
-export const PALETTES = {
+const PALETTES = {
   sapphire: {
     name: "Sapphire Nightfall",
     bg: "#060D1A",

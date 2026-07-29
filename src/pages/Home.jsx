@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Users, Award, Shield, ArrowRight, Hourglass, Plus, Minus, Send, CheckCircle, Zap, MessageSquare, Mail, User, GraduationCap, MapPin, HelpCircle } from "lucide-react";
 import { getEventsList, addContactQuery, isEmailRegistered } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
-import StarButton from "../components/ui/star-button";
+import StarButton from "../components/ui/StarButton";
 import Card3D from "../components/ui/Card3D";
 import Icon3D from "../components/ui/Icon3D";
 

@@ -1,4 +1,3 @@
-import React from "react";
 
 /**
  * Card3D wrapper component

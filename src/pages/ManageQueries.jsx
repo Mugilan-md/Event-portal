@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, MessageSquare, Trash2, Search, RefreshCw, ChevronLeft, Calendar, User, Send, CheckCircle2, X, Clock, CornerDownRight } from "lucide-react";
 import { getContactQueries, deleteContactQuery, updateContactQuery } from "../firebase/config";
 import { sendQueryResponseEmail } from "../services/emailService";
 import { useToast } from "../context/ToastContext";
-import Card3D from "../components/ui/Card3D";
 import Icon3D from "../components/ui/Icon3D";
 
 export default function ManageQueries() {
@@ -18,7 +17,7 @@ export default function ManageQueries() {
   const [replyText, setReplyText] = useState("");
   const [sendingReply, setSendingReply] = useState(false);
 
-  const fetchQueries = async () => {
+  const fetchQueries = useCallback(async () => {
     try {
       setLoading(true);
       const list = await getContactQueries();
@@ -28,11 +27,24 @@ export default function ManageQueries() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [showToast]);
 
   useEffect(() => {
-    fetchQueries();
-  }, []);
+    let isMounted = true;
+    (async () => {
+      try {
+        const list = await getContactQueries();
+        if (isMounted) setQueries(list);
+      } catch (err) {
+        if (isMounted) showToast("Failed to fetch queries: " + err.message, "error");
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    })();
+    return () => {
+      isMounted = false;
+    };
+  }, [showToast]);
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this query?")) {

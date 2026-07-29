@@ -1,4 +1,3 @@
-import React from "react";
 import { Play, CheckCircle, Zap } from "lucide-react";
 
 export default function CourseProgressCard({

@@ -1,7 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ShieldAlert, Home, ArrowLeft } from "lucide-react";
+import { ShieldAlert, Home } from "lucide-react";
 
 export default function NotFound() {
   return (

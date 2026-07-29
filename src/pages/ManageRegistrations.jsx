@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, Download, Eye, X, Filter, ChevronLeft, RefreshCw, AlertCircle, FileSpreadsheet, Edit2, Trash2, Save } from "lucide-react";
+import { Users, Download, Eye, X, Filter, ChevronLeft, RefreshCw, FileSpreadsheet, Edit2, Trash2, Save } from "lucide-react";
 import { getEventsList, getRegistrationsList, deleteRegistration, updateRegistrationData } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
-import Card3D from "../components/ui/Card3D";
 import Icon3D from "../components/ui/Icon3D";
 
 export default function ManageRegistrations() {
@@ -82,7 +81,7 @@ export default function ManageRegistrations() {
     }
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       const [evList, regList] = await Promise.all([
@@ -96,11 +95,11 @@ export default function ManageRegistrations() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [showToast]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   // Filter registrations based on selected event dropdown
   const filteredRegistrations = selectedEventId === "All"

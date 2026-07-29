@@ -1,4 +1,3 @@
-import React from "react";
 import StudentDashboardHeader from "../components/StudentDashboardHeader";
 import CourseProgressCard from "../components/CourseProgressCard";
 

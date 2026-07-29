@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Mail, Phone, MapPin, Zap } from "lucide-react";
 import logoImg from "../assets/logo.png";

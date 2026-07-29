@@ -1,4 +1,3 @@
-import React from "react";
 
 /**
  * Icon3D component
@@ -10,7 +9,6 @@ export default function Icon3D({
   children,
   size = "md", // sm, md, lg, xl
   color = "violet", // violet, cyan, gold, emerald, rose, blue, white
-  badge = false,
   className = "",
   style = {}
 }) {
@@ -75,8 +73,6 @@ export default function Icon3D({
 
   const currentSize = sizeMap[size] || sizeMap.md;
   const currentColor = colorMap[color] || colorMap.violet;
-
-  const RenderedIcon = IconComponent || (() => children || null);
 
   return (
     <div

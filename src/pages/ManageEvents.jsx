@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Plus, Edit2, Trash2, X, PlusCircle, MinusCircle, Upload, Save, Eye, Check, RefreshCw, ChevronLeft, Hourglass } from "lucide-react";
+import { Calendar, Plus, Edit2, Trash2, X, PlusCircle, MinusCircle, Upload, Save, Eye, RefreshCw, ChevronLeft, Hourglass } from "lucide-react";
 import { getEventsList, getRegistrationsList, createEvent, updateEventData, deleteEventData } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
-import Card3D from "../components/ui/Card3D";
 import Icon3D from "../components/ui/Icon3D";
 
 export default function ManageEvents() {
@@ -38,7 +37,7 @@ export default function ManageEvents() {
     coordinators: [{ name: "", phone: "" }]
   });
 
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     try {
       setLoading(true);
       const [evList, regList] = await Promise.all([
@@ -52,11 +51,34 @@ export default function ManageEvents() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [showToast]);
 
   useEffect(() => {
-    fetchEvents();
-  }, []);
+    let isMounted = true;
+    (async () => {
+      try {
+        const [evList, regList] = await Promise.all([
+          getEventsList(),
+          getRegistrationsList()
+        ]);
+        if (isMounted) {
+          setEvents(evList);
+          setRegistrations(regList);
+        }
+      } catch (err) {
+        if (isMounted) {
+          showToast("Failed to fetch events: " + err.message, "error");
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    })();
+    return () => {
+      isMounted = false;
+    };
+  }, [showToast]);
 
   const openAddModal = () => {
     setEditingEventId(null);
