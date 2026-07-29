@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Users, Award, Shield, ArrowRight, Hourglass, Plus, Minus, Send, CheckCircle, Zap, MessageSquare, Mail, User, GraduationCap, MapPin, HelpCircle } from "lucide-react";
-import { getEventsList, addContactQuery } from "../firebase/config";
+import { getEventsList, addContactQuery, isEmailRegistered } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
 import StarButton from "../components/ui/star-button";
 import Card3D from "../components/ui/Card3D";
@@ -34,6 +34,14 @@ export default function Home() {
     }
     try {
       setSendingQuery(true);
+      
+      // Verify that the participant email is registered for at least one event in the portal
+      const registered = await isEmailRegistered(contactForm.email.trim());
+      if (!registered) {
+        showToast("Access Denied: Only participants registered for an event can submit questions. Please register for an event first with this email address.", "error");
+        return;
+      }
+
       await addContactQuery({
         name: contactForm.name.trim(),
         email: contactForm.email.trim(),
@@ -44,7 +52,7 @@ export default function Home() {
       showToast("Your inquiry has been submitted! Our support desk will contact you soon.", "success");
       setContactForm({ name: "", email: "", college: "", queryType: "General Inquiry", message: "" });
     } catch (err) {
-      showToast("Failed to send message: " + err.message, "error");
+      showToast(err.message || "Failed to send message", "error");
     } finally {
       setSendingQuery(false);
     }
@@ -563,11 +571,16 @@ export default function Home() {
               >
                 {/* Header inside Form Card */}
                 <div className="mb-6 pb-4 border-b border-slate-100">
-                  <h3 className="text-xl font-bold font-serif text-slate-900">
-                    Send a Direct Message
-                  </h3>
+                  <div className="flex items-center justify-between gap-2 flex-wrap mb-1">
+                    <h3 className="text-xl font-bold font-serif text-slate-900">
+                      Send a Direct Message
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 flex items-center gap-1">
+                      <Shield className="w-3 h-3" /> Registered Participants Only
+                    </span>
+                  </div>
                   <p className="text-xs text-slate-500 mt-1">
-                    Fill out your details below and our coordinator desk will respond to your query.
+                    Enter your registered participant email and query. Only participants registered for an event can send messages.
                   </p>
                 </div>
 

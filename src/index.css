@@ -240,19 +240,13 @@
    INPUTS — Violet focus ring, premium borders
    ───────────────────────────────────────────── */
 input, select, textarea {
-  background-color: var(--white) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--text) !important;
-  font-family: "Inter", "Outfit", sans-serif !important;
-  border-radius: var(--radius-sm) !important;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+  font-family: "Inter", "Outfit", sans-serif;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: var(--violet) !important;
-  box-shadow: var(--shadow-violet) !important;
-  outline: none !important;
+  outline: none;
 }
-input::placeholder, textarea::placeholder { color: var(--text-subtle) !important; }
+input::placeholder, textarea::placeholder { color: var(--text-subtle); }
 
 /* ─────────────────────────────────────────────
    TABLES

@@ -651,7 +651,23 @@ export const updateRegistrationData = async (id, data) => {
 };
 
 // Contact Form Queries Support
+export const isEmailRegistered = async (email) => {
+  if (!email) return false;
+  const target = email.toLowerCase().trim();
+  try {
+    const regs = await getRegistrationsList();
+    return regs.some(r => r.email && r.email.toLowerCase().trim() === target);
+  } catch (err) {
+    console.error("Error checking registration status for email:", err);
+    return false;
+  }
+};
+
 export const addContactQuery = async (data) => {
+  const registered = await isEmailRegistered(data.email);
+  if (!registered) {
+    throw new Error("Access Denied: Only participants registered for an event in the portal can submit inquiries.");
+  }
   if (isMockMode) {
     return mockFirestore.addQuery(data);
   }

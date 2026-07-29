@@ -318,7 +318,7 @@ export default function ManageQueries() {
                     placeholder="Type your response to the participant..."
                     value={replyText}
                     onChange={(e) => setReplyText(e.target.value)}
-                    className="w-full p-4 text-xs sm:text-sm rounded-xl bg-[#2A1B10] border border-[#FFDBBB]/50 text-white placeholder-[#CCBEB1]/60 focus:outline-none focus:border-[#FFDBBB] leading-relaxed"
+                    className="w-full p-4 text-xs sm:text-sm rounded-xl !bg-[#2A1B10] border border-[#FFDBBB]/50 !text-[#FFDBBB] placeholder-[#CCBEB1]/60 focus:outline-none focus:border-[#FFDBBB] leading-relaxed"
                     required
                   />
                 </div>
