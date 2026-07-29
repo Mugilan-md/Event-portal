@@ -63,28 +63,33 @@ export default function Navbar() {
       className="fixed top-0 left-0 w-full z-40 transition-all duration-300"
       style={{
         background: isAdminPage
-          ? (scrolled ? "rgba(255, 255, 255, 0.98)" : "rgba(255, 248, 240, 0.95)")
-          : (scrolled ? "rgba(9,13,22,0.92)" : "rgba(9,13,22,0.80)"),
-        backdropFilter: "blur(20px) saturate(180%)",
-        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+          ? "#FFDBBB"
+          : (scrolled ? "rgba(9,13,22,0.95)" : "rgba(9,13,22,0.85)"),
+        backdropFilter: isAdminPage ? "none" : "blur(20px) saturate(180%)",
+        WebkitBackdropFilter: isAdminPage ? "none" : "blur(20px) saturate(180%)",
         borderBottom: isAdminPage
-          ? "2px solid #997E67"
+          ? "2px solid #664930"
           : "1px solid rgba(255,255,255,0.07)",
-        boxShadow: scrolled
-          ? (isAdminPage ? "0 10px 30px rgba(102,73,48,0.12)" : "0 8px 32px rgba(0,0,0,0.24)")
-          : "none"
+        boxShadow: isAdminPage
+          ? "0 4px 20px rgba(102,73,48,0.15)"
+          : (scrolled ? "0 8px 32px rgba(0,0,0,0.24)" : "none")
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
-          {/* Logo - No black box, fully uncropped */}
+          {/* Logo - Clipped circle to remove any black square box cleanly */}
           <Link to="/" className="flex items-center gap-3 group py-1">
             <div className="w-14 h-14 shrink-0 transition-all duration-300 group-hover:scale-105 flex items-center justify-center bg-transparent">
-              <img src={logoImg} alt="VSB Logo" className="w-full h-full object-contain p-0 m-0" />
+              <img
+                src={logoImg}
+                alt="VSB Logo"
+                className="w-full h-full object-contain p-0 m-0 rounded-full"
+                style={{ clipPath: "circle(47% at 50% 50%)" }}
+              />
             </div>
             <span
-              className="font-extrabold text-xl sm:text-2xl tracking-tight font-serif transition-all duration-300"
+              className="font-black text-xl sm:text-2xl tracking-tight font-syne transition-all duration-300"
               style={{ color: isAdminPage ? "#3D2918" : "#FFFFFF" }}
             >
               VSB{" "}
@@ -92,7 +97,7 @@ export default function Navbar() {
                 className="transition-all duration-300"
                 style={{
                   color: isAdminPage ? "#664930" : "#F59E0B",
-                  textShadow: isAdminPage ? "0 0 12px rgba(102,73,48,0.3)" : "0 0 16px rgba(245,158,11,0.65)"
+                  textShadow: isAdminPage ? "0 1px 2px rgba(0,0,0,0.1)" : "0 0 16px rgba(245,158,11,0.65)"
                 }}
               >
                 Portal
@@ -110,7 +115,7 @@ export default function Navbar() {
                 isAdminPage
                   ? (active
                       ? "text-[#FFDBBB] bg-[#664930] shadow-md"
-                      : "text-[#664930] hover:text-[#3D2918] hover:bg-[#FFDBBB]/40")
+                      : "text-[#3D2918] hover:text-[#664930] hover:bg-[#664930]/15")
                   : (active
                       ? "text-white bg-white/[0.08]"
                       : "text-white/60 hover:text-white hover:bg-white/[0.05]")
@@ -157,14 +162,14 @@ export default function Navbar() {
             {adminUser && isAdminPage && (
               <div
                 className="flex items-center gap-3 ml-3 pl-3"
-                style={{ borderLeft: "2px solid rgba(153,126,103,0.3)" }}
+                style={{ borderLeft: "2px solid #664930" }}
               >
                 <Link
                   to="/admin-dashboard"
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black transition-all duration-200 shadow-sm"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black transition-all duration-200 shadow-md"
                   style={{
                     background: "#664930",
-                    border: "1px solid #997E67",
+                    border: "1px solid #3D2918",
                     color: "#FFDBBB"
                   }}
                 >
@@ -173,7 +178,7 @@ export default function Navbar() {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-200 bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 border border-rose-500/20"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-200 bg-rose-600 hover:bg-rose-700 text-white shadow-md"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   Sign Out
@@ -190,7 +195,6 @@ export default function Navbar() {
                 className="p-2 rounded-xl transition-all shadow-sm"
                 style={{
                   background: "#664930",
-                  border: "1px solid #997E67",
                   color: "#FFDBBB"
                 }}
               >
@@ -219,8 +223,8 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden border-b shadow-xl overflow-hidden"
             style={{
-              background: isAdminPage ? "#FFFFFF" : "#090D16",
-              borderColor: isAdminPage ? "#997E67" : "rgba(255,255,255,0.1)"
+              background: isAdminPage ? "#FFDBBB" : "#090D16",
+              borderColor: isAdminPage ? "#664930" : "rgba(255,255,255,0.1)"
             }}
           >
             <div className="px-4 pt-3 pb-6 space-y-2">
@@ -231,7 +235,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`block px-4 py-2.5 rounded-xl text-sm font-black uppercase tracking-wider transition-all ${
                     isAdminPage
-                      ? (isActive(link.path) ? "bg-[#664930] text-[#FFDBBB]" : "text-[#664930] hover:bg-[#FFDBBB]/30")
+                      ? (isActive(link.path) ? "bg-[#664930] text-[#FFDBBB]" : "text-[#3D2918] hover:bg-[#664930]/20")
                       : (isActive(link.path) ? "bg-white/10 text-white" : "text-white/70 hover:bg-white/5")
                   }`}
                 >
@@ -242,7 +246,7 @@ export default function Navbar() {
               {adminUser && isAdminPage && (
                 <button
                   onClick={handleLogout}
-                  className="w-full mt-4 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-wider bg-rose-500/10 text-rose-600 border border-rose-500/20"
+                  className="w-full mt-4 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-wider bg-rose-600 text-white shadow-md"
                 >
                   <LogOut className="w-4 h-4" /> Sign Out
                 </button>

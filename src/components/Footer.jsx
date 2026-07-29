@@ -12,7 +12,7 @@ export default function Footer() {
       className="relative pt-16 pb-8 overflow-hidden transition-colors duration-300"
       style={{
         background: isAdminPage ? "#FFDBBB" : "#F8FAFC",
-        borderTop: isAdminPage ? "2px solid rgba(153,126,103,0.3)" : "1px solid #E2E8F0"
+        borderTop: isAdminPage ? "none" : "1px solid #E2E8F0"
       }}
     >
       {/* Decorative orbs */}
@@ -36,10 +36,15 @@ export default function Footer() {
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3 group">
               <div className="w-14 h-14 shrink-0 transition-all duration-300 group-hover:scale-105 flex items-center justify-center bg-transparent">
-                <img src={logoImg} alt="Logo" className="w-full h-full object-contain p-0 m-0" />
+                <img
+                  src={logoImg}
+                  alt="Logo"
+                  className="w-full h-full object-contain p-0 m-0 rounded-full"
+                  style={{ clipPath: "circle(47% at 50% 50%)" }}
+                />
               </div>
               <span
-                className="font-extrabold text-xl tracking-tight font-serif"
+                className="font-black text-xl tracking-tight font-syne"
                 style={{ color: isAdminPage ? "#3D2918" : "#0F172A" }}
               >
                 VSB{" "}
@@ -48,18 +53,18 @@ export default function Footer() {
             </Link>
 
             <p
-              className="text-sm leading-relaxed font-medium"
-              style={{ color: isAdminPage ? "#523A25" : "#64748B" }}
+              className="text-sm leading-relaxed font-bold"
+              style={{ color: isAdminPage ? "#3D2918" : "#64748B" }}
             >
               Empowering technical communities, hackathons, and collegiate symposiums with a seamless registration and event coordination ecosystem.
             </p>
 
             {/* AI badge */}
             <div
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black shadow-sm"
               style={{
                 background: isAdminPage ? "#664930" : "rgba(6,182,212,0.08)",
-                border: isAdminPage ? "1px solid #997E67" : "1px solid rgba(6,182,212,0.2)",
+                border: isAdminPage ? "1px solid #3D2918" : "1px solid rgba(6,182,212,0.2)",
                 color: isAdminPage ? "#FFDBBB" : "#06B6D4"
               }}
             >
@@ -78,10 +83,10 @@ export default function Footer() {
                   key={social.label}
                   href="#"
                   aria-label={social.label}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 shadow-sm"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 shadow-md"
                   style={{
                     background: isAdminPage ? "#664930" : "rgba(99,102,241,0.06)",
-                    border: isAdminPage ? "1px solid #997E67" : "1px solid rgba(99,102,241,0.12)",
+                    border: isAdminPage ? "1px solid #3D2918" : "1px solid rgba(99,102,241,0.12)",
                     color: isAdminPage ? "#FFDBBB" : "#64748B"
                   }}
                 >
@@ -109,8 +114,8 @@ export default function Footer() {
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="text-sm font-semibold transition-all duration-200 hover:translate-x-1 inline-block"
-                    style={{ color: isAdminPage ? "#523A25" : "#64748B" }}
+                    className="text-sm font-bold transition-all duration-200 hover:translate-x-1 inline-block"
+                    style={{ color: isAdminPage ? "#3D2918" : "#64748B" }}
                   >
                     {item.label}
                   </Link>
@@ -131,8 +136,8 @@ export default function Footer() {
               {["Hackathons", "Technical Symposiums", "Coding Workshops", "Panel Discussions"].map((cat) => (
                 <li
                   key={cat}
-                  className="text-sm font-semibold cursor-pointer transition-all duration-200 hover:translate-x-1"
-                  style={{ color: isAdminPage ? "#523A25" : "#64748B" }}
+                  className="text-sm font-bold cursor-pointer transition-all duration-200 hover:translate-x-1"
+                  style={{ color: isAdminPage ? "#3D2918" : "#64748B" }}
                 >
                   {cat}
                 </li>
@@ -148,17 +153,17 @@ export default function Footer() {
             >
               Support & Contact
             </h3>
-            <div className="space-y-2 text-sm font-semibold" style={{ color: isAdminPage ? "#523A25" : "#64748B" }}>
+            <div className="space-y-2 text-sm font-bold" style={{ color: isAdminPage ? "#3D2918" : "#64748B" }}>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-amber-600" />
+                <Mail className="w-4 h-4 text-[#664930]" />
                 <span>info@eventregistrationportal.com</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-amber-600" />
+                <Phone className="w-4 h-4 text-[#664930]" />
                 <span>+1 (555) 100-2938</span>
               </div>
               <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#664930] shrink-0 mt-0.5" />
                 <span>100 Innovation Avenue, Cyber City, CA 94016</span>
               </div>
             </div>
@@ -168,9 +173,9 @@ export default function Footer() {
 
         {/* Bottom copyright line */}
         <div
-          className="pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold"
+          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold"
           style={{
-            borderColor: isAdminPage ? "rgba(153,126,103,0.3)" : "#E2E8F0",
+            borderTop: isAdminPage ? "1px solid rgba(102,73,48,0.2)" : "1px solid #E2E8F0",
             color: isAdminPage ? "#3D2918" : "#94A3B8"
           }}
         >
