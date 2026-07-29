@@ -60,9 +60,9 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 w-full z-40 transition-all duration-300"
       style={{
-        background: "#FFDBBB",
-        borderBottom: "2px solid #664930",
-        boxShadow: "0 4px 20px rgba(102,73,48,0.15)"
+        background: "#FFFFFF",
+        borderBottom: "2px solid #997E67",
+        boxShadow: "0 4px 20px rgba(102,73,48,0.12)"
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +85,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Navigation - 100% Bright Crisp Pure Black/Mocha text */}
+          {/* Desktop Navigation - Pure Creamy White Navbar with Pure Black/Mocha text */}
           <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => {
               const isHash = link.path.startsWith("/#");
@@ -94,7 +94,7 @@ export default function Navbar() {
               const linkClass = `relative px-4 py-2 text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-200 ${
                 active
                   ? "text-[#FFDBBB] bg-[#664930] shadow-md"
-                  : "text-[#1A0F07] hover:text-[#1A0F07] hover:bg-[#664930]/20"
+                  : "text-[#1A0F07] hover:text-[#664930] hover:bg-[#FFDBBB]/40"
               }`;
 
               return isHash ? (
@@ -130,7 +130,7 @@ export default function Navbar() {
             {adminUser && (
               <div
                 className="flex items-center gap-3 ml-3 pl-3"
-                style={{ borderLeft: "2px solid #664930" }}
+                style={{ borderLeft: "2px solid #997E67" }}
               >
                 <Link
                   to="/admin-dashboard"
@@ -163,7 +163,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl transition-all duration-250 text-[#1A0F07] hover:bg-[#664930]/15"
+              className="p-2 rounded-xl transition-all duration-250 text-[#1A0F07] hover:bg-[#FFDBBB]/40"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -179,7 +179,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-[#664930] bg-[#FFDBBB] shadow-xl overflow-hidden"
+            className="md:hidden border-b border-[#997E67] bg-[#FFFFFF] shadow-xl overflow-hidden"
           >
             <div className="px-4 pt-3 pb-6 space-y-2">
               {navLinks.map((link) => (
@@ -190,7 +190,7 @@ export default function Navbar() {
                   className={`block px-4 py-2.5 rounded-xl text-sm font-black uppercase tracking-wider transition-all ${
                     isActive(link.path)
                       ? "bg-[#664930] text-[#FFDBBB]"
-                      : "text-[#1A0F07] hover:bg-[#664930]/20"
+                      : "text-[#1A0F07] hover:bg-[#FFDBBB]/30"
                   }`}
                 >
                   {link.name}
