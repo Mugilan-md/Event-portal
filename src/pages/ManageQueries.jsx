@@ -104,23 +104,25 @@ export default function ManageQueries() {
                   key={query.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-6 rounded-3xl bg-[#664930] backdrop-blur-xl border border-[#997E67] hover:border-[#FFDBBB] transition-all flex flex-col justify-between shadow-2xl"
+                  className="p-6 rounded-3xl bg-[#523A25] backdrop-blur-xl border-2 border-[#FFDBBB]/50 hover:border-[#FFDBBB] transition-all flex flex-col justify-between shadow-2xl"
                 >
                   <div className="space-y-4">
                     {/* Participant Details */}
                     <div className="flex justify-between items-start gap-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-300">
+                        <div className="w-10 h-10 rounded-xl bg-[#3D2918] border border-[#FFDBBB]/30 flex items-center justify-center text-[#FFDBBB] shadow-md">
                           <User className="w-5 h-5" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-white text-sm">{query.name}</h3>
-                          <a href={`mailto:${query.email}`} className="text-xs text-purple-400 hover:underline">{query.email}</a>
+                          <h3 className="font-black text-[#FFFFFF] text-base tracking-wide">{query.name}</h3>
+                          <a href={`mailto:${query.email}`} className="text-xs font-bold text-[#FFDBBB] hover:underline flex items-center gap-1">
+                            <Mail className="w-3 h-3" /> {query.email}
+                          </a>
                         </div>
                       </div>
                       <button
                         onClick={() => handleDelete(query.id)}
-                        className="p-2 rounded-lg bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 hover:text-rose-300 transition-all border border-rose-500/10"
+                        className="p-2 rounded-xl bg-rose-500/20 text-rose-300 hover:bg-rose-500/35 border border-rose-400/40 transition-all"
                         title="Delete query"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -128,15 +130,15 @@ export default function ManageQueries() {
                     </div>
 
                     {/* Message Area */}
-                    <div className="p-4 rounded-xl bg-[#FAFAFA]/60 border border-purple-500/5 text-gray-300 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap flex items-start gap-2.5">
-                      <MessageSquare className="w-4 h-4 text-purple-500 shrink-0 mt-0.5" />
-                      <span>{query.message}</span>
+                    <div className="p-4 rounded-2xl bg-[#3D2918] border border-[#FFDBBB]/30 text-[#FFF5EA] text-xs sm:text-sm font-semibold leading-relaxed whitespace-pre-wrap flex items-start gap-2.5 shadow-inner">
+                      <MessageSquare className="w-4 h-4 text-[#FFDBBB] shrink-0 mt-0.5" />
+                      <span className="text-[#FFF5EA]">{query.message}</span>
                     </div>
                   </div>
 
                   {/* Timestamp Footer */}
-                  <div className="flex items-center gap-1.5 text-[10px] text-gray-500 mt-4 border-t border-purple-500/5 pt-3">
-                    <Calendar className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-1.5 text-xs text-[#FFDBBB] font-mono font-bold mt-4 border-t border-[#FFDBBB]/20 pt-3">
+                    <Calendar className="w-3.5 h-3.5 text-[#FFDBBB]" />
                     <span>{query.timestamp ? new Date(query.timestamp).toLocaleString() : "TBD"}</span>
                   </div>
                 </motion.div>

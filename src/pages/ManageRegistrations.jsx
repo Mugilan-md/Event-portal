@@ -195,68 +195,76 @@ export default function ManageRegistrations() {
             <RefreshCw className="w-8 h-8 text-[#664930] animate-spin" />
           </div>
         ) : (
-          <div className="p-6 rounded-3xl bg-[#664930] backdrop-blur-xl border border-[#997E67] shadow-2xl overflow-hidden">
-            <div className="overflow-x-auto">
+          <div className="p-6 rounded-3xl bg-[#523A25] backdrop-blur-xl border-2 border-[#FFDBBB]/50 shadow-2xl overflow-hidden">
+            <div className="overflow-x-auto rounded-2xl border border-[#FFDBBB]/30 bg-[#3D2918]/80">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b border-purple-500/10 text-gray-500 uppercase tracking-wider font-semibold">
-                    <th className="py-3 px-4">Attendee / College</th>
-                    <th className="py-3 px-4">Contact</th>
-                    <th className="py-3 px-4">Registered Event</th>
-                    <th className="py-3 px-4">Ticket ID</th>
-                    <th className="py-3 px-4">Receipt</th>
-                    <th className="py-3 px-4">Date</th>
-                    <th className="py-3 px-4 text-right">Actions</th>
+                  <tr className="border-b-2 border-[#FFDBBB]/40 bg-[#2C1D10] text-[#FFDBBB] uppercase tracking-wider font-mono font-black">
+                    <th className="py-4 px-4 text-[#FFDBBB]">Attendee / College</th>
+                    <th className="py-4 px-4 text-[#FFDBBB]">Contact</th>
+                    <th className="py-4 px-4 text-[#FFDBBB]">Registered Event</th>
+                    <th className="py-4 px-4 text-[#FFDBBB]">Ticket ID</th>
+                    <th className="py-4 px-4 text-[#FFDBBB]">Receipt</th>
+                    <th className="py-4 px-4 text-[#FFDBBB]">Date</th>
+                    <th className="py-4 px-4 text-right text-[#FFDBBB]">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-purple-500/5 text-gray-300">
+                <tbody className="divide-y divide-[#FFDBBB]/20">
                   {filteredRegistrations.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="py-12 text-center text-gray-600">
+                      <td colSpan={7} className="py-12 text-center text-[#FFF5EA] font-bold">
                         No registrations matching the filter query found.
                       </td>
                     </tr>
                   ) : (
                     filteredRegistrations.map((reg) => (
-                      <tr key={reg.id} className="hover:bg-white/5 transition-colors">
-                        <td className="py-3.5 px-4">
-                          <div className="font-bold text-white text-sm">{reg.name}</div>
-                          <div className="text-gray-400 mt-0.5">{reg.collegeName} • <span className="text-[10px] uppercase text-gray-500">{reg.department} ({reg.year})</span></div>
+                      <tr key={reg.id} className="hover:bg-[#FFDBBB]/15 transition-colors">
+                        <td className="py-4 px-4">
+                          <div className="font-black text-[#FFFFFF] text-sm tracking-wide">{reg.name}</div>
+                          <div className="text-[#FFF5EA] font-bold text-xs mt-0.5">{reg.collegeName} • <span className="text-[#FFDBBB] font-mono">{reg.department} ({reg.year})</span></div>
                         </td>
-                        <td className="py-3.5 px-4 font-mono">
-                          <div>{reg.email}</div>
-                          <div className="text-gray-500 mt-0.5">{reg.phone}</div>
+                        <td className="py-4 px-4 font-mono font-bold text-[#FFF5EA]">
+                          <div className="text-[#FFFFFF]">{reg.email}</div>
+                          <div className="text-[#FFDBBB] text-xs mt-0.5">{reg.phone}</div>
                         </td>
-                        <td className="py-3.5 px-4 font-semibold text-purple-300">{reg.eventTitle}</td>
-                        <td className="py-3.5 px-4 font-mono text-gray-400">{reg.registrationId}</td>
-                        <td className="py-3.5 px-4">
+                        <td className="py-4 px-4">
+                          <span className="inline-block font-extrabold text-[#FFDBBB] text-xs bg-[#FFDBBB]/15 px-3 py-1 rounded-full border border-[#FFDBBB]/30 uppercase tracking-wider">
+                            {reg.eventTitle}
+                          </span>
+                        </td>
+                        <td className="py-4 px-4 font-mono font-black">
+                          <span className="inline-block text-[#38BDF8] bg-sky-950/60 px-2.5 py-1 rounded-lg border border-sky-400/40 text-xs">
+                            {reg.registrationId}
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
                           {reg.paymentScreenshot ? (
                             <button
                               onClick={() => setActiveProofUrl(reg.paymentScreenshot)}
-                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-purple-500/10 hover:bg-purple-500/25 border border-purple-500/20 text-purple-300 text-[10px] font-bold uppercase transition-colors"
+                              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/35 border border-emerald-400/40 text-emerald-300 text-xs font-black uppercase transition-colors"
                             >
                               <Eye className="w-3.5 h-3.5" /> View
                             </button>
                           ) : (
-                            <span className="text-gray-600 text-[10px] uppercase tracking-wider font-semibold">Free / Unpaid</span>
+                            <span className="text-[#FFDBBB]/80 text-xs uppercase tracking-wider font-extrabold">Free / Unpaid</span>
                           )}
                         </td>
-                        <td className="py-3.5 px-4 text-gray-500">
+                        <td className="py-4 px-4 text-[#FFF5EA] font-bold text-xs">
                           {reg.timestamp ? new Date(reg.timestamp).toLocaleDateString() : "TBD"}
                         </td>
-                        <td className="py-3.5 px-4 text-right">
+                        <td className="py-4 px-4 text-right">
                           <div className="flex gap-2 justify-end">
                             <button
                               onClick={() => openEditModal(reg)}
-                              className="p-1.5 rounded bg-blue-500/10 text-blue-300 hover:bg-blue-500/20 border border-blue-500/20 transition-all"
+                              className="p-2 rounded-lg bg-sky-500/20 text-sky-300 hover:bg-sky-500/35 border border-sky-400/40 transition-all font-bold"
                             >
-                              <Edit2 className="w-3.5 h-3.5" />
+                              <Edit2 className="w-4 h-4" />
                             </button>
                             <button
                               onClick={() => handleDelete(reg)}
-                              className="p-1.5 rounded bg-rose-500/10 text-rose-300 hover:bg-rose-500/20 border border-rose-500/20 transition-all"
+                              className="p-2 rounded-lg bg-rose-500/20 text-rose-300 hover:bg-rose-500/35 border border-rose-400/40 transition-all font-bold"
                             >
-                              <Trash2 className="w-3.5 h-3.5" />
+                              <Trash2 className="w-4 h-4" />
                             </button>
                           </div>
                         </td>

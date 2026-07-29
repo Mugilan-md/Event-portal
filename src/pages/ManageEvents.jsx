@@ -257,31 +257,31 @@ export default function ManageEvents() {
             <RefreshCw className="w-8 h-8 text-[#FFDBBB] animate-spin" />
           </div>
         ) : (
-          <div className="p-6 rounded-3xl bg-[#664930] backdrop-blur-xl border border-[#997E67] shadow-2xl overflow-hidden">
-            <div className="overflow-x-auto">
+          <div className="p-6 rounded-3xl bg-[#523A25] backdrop-blur-xl border-2 border-[#FFDBBB]/50 shadow-2xl overflow-hidden">
+            <div className="overflow-x-auto rounded-2xl border border-[#FFDBBB]/30 bg-[#3D2918]/80">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b border-[#FFDBBB]/20 text-[#FFDBBB] uppercase tracking-wider font-semibold">
-                    <th className="py-3.5 px-4">Event Details</th>
-                    <th className="py-3.5 px-4">Schedule</th>
-                    <th className="py-3.5 px-4">Capacity</th>
-                    <th className="py-3.5 px-4">Reg Status</th>
-                    <th className="py-3.5 px-4 text-right">Actions</th>
+                  <tr className="border-b-2 border-[#FFDBBB]/40 bg-[#2C1D10] text-[#FFDBBB] uppercase tracking-wider font-mono font-black">
+                    <th className="py-4 px-4 text-[#FFDBBB]">Event Details</th>
+                    <th className="py-4 px-4 text-[#FFDBBB]">Schedule</th>
+                    <th className="py-4 px-4 text-[#FFDBBB]">Capacity</th>
+                    <th className="py-4 px-4 text-[#FFDBBB]">Reg Status</th>
+                    <th className="py-4 px-4 text-right text-[#FFDBBB]">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#FFDBBB]/10 text-slate-200">
+                <tbody className="divide-y divide-[#FFDBBB]/20">
                   {events.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="py-12 text-center text-[#CCBEB1]">
+                      <td colSpan={5} className="py-12 text-center text-[#FFF5EA] font-bold">
                         No events found in database. Create one to begin.
                       </td>
                     </tr>
                   ) : (
                     events.map((event) => (
-                      <tr key={event.id} className="hover:bg-[#FFDBBB]/5 transition-colors">
+                      <tr key={event.id} className="hover:bg-[#FFDBBB]/15 transition-colors">
                         <td className="py-4 px-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-14 h-10 bg-[#664930]/40 border border-[#FFDBBB]/20 rounded-lg overflow-hidden shrink-0">
+                            <div className="w-14 h-10 bg-[#3D2918] border border-[#FFDBBB]/30 rounded-lg overflow-hidden shrink-0 shadow-md">
                               <img
                                 src={event.posterUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"}
                                 alt=""
@@ -289,30 +289,30 @@ export default function ManageEvents() {
                               />
                             </div>
                             <div>
-                              <span className="text-[9px] px-2 py-0.5 rounded-full bg-[#FFDBBB]/15 text-[#FFDBBB] border border-[#FFDBBB]/30 font-bold uppercase tracking-wider">
+                              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#FFDBBB]/15 text-[#FFDBBB] border border-[#FFDBBB]/30 font-black uppercase tracking-wider">
                                 {event.category}
                               </span>
-                              <div className="font-bold text-white mt-1 text-sm">{event.title}</div>
+                              <div className="font-black text-[#FFFFFF] mt-1 text-sm tracking-wide">{event.title}</div>
                             </div>
                           </div>
                         </td>
                         <td className="py-4 px-4">
-                          <div className="text-white font-semibold">{event.date}</div>
-                          <div className="text-[10px] text-[#CCBEB1]">{event.time}</div>
+                          <div className="text-[#FFFFFF] font-bold">{event.date}</div>
+                          <div className="text-[#FFDBBB] font-mono text-xs font-semibold">{event.time}</div>
                         </td>
                         <td className="py-4 px-4 font-mono">
-                          <div className="font-bold text-white text-xs">{registrations.filter(r => r.eventId === event.id).length} registered</div>
-                          <div className="text-gray-500 text-[10px] mt-0.5">{event.seatsAvailable} left / {event.totalSeats} seats</div>
+                          <div className="font-black text-[#FFFFFF] text-xs">{registrations.filter(r => r.eventId === event.id).length} registered</div>
+                          <div className="text-[#FFDBBB] font-bold text-xs mt-0.5">{event.seatsAvailable} left / {event.totalSeats} seats</div>
                         </td>
                         <td className="py-4 px-4">
                           <select
-                            value={event.status}
+                            value={event.status || "open"}
                             onChange={(e) => updateStatus(event.id, e.target.value)}
-                            className="bg-[#FAFAFA] border border-purple-500/20 text-[11px] font-bold text-purple-300 px-2 py-1 rounded focus:outline-none focus:border-purple-500 cursor-pointer uppercase tracking-wider"
+                            className="bg-[#14110E] border border-[#FFDBBB]/40 text-xs font-black text-[#FFDBBB] px-2.5 py-1 rounded-lg focus:outline-none focus:border-[#FFDBBB] cursor-pointer uppercase tracking-wider"
                           >
                             <option value="open">Open</option>
-                            <option value="closed">Closed</option>
-                            <option value="completed">Completed</option>
+                            <option value="closing-soon">Closing Soon</option>
+                            <option value="closed">Closed / Full</option>
                           </select>
                         </td>
                         <td className="py-4 px-4 text-right">

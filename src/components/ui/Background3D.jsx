@@ -58,13 +58,7 @@ export default function Background3D() {
     };
     window.addEventListener("resize", handleResize);
 
-    // Mouse tracking for 3D parallax
     const mouse = { x: width / 2, y: height / 2, targetX: width / 2, targetY: height / 2 };
-    const handleMouseMove = (e) => {
-      mouse.targetX = e.clientX;
-      mouse.targetY = e.clientY;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
 
     // Create 3D Floating Geometric Polyhedrons
     class Polyhedron3D {
