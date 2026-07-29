@@ -177,41 +177,51 @@ export default function AdminDashboard() {
               </Link>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-[#FFDBBB]/30 bg-[#3D2918]/80">
+            <div className="overflow-x-auto rounded-2xl border-2 border-[#FFDBBB]/40 bg-[#1F130B] shadow-2xl">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b-2 border-[#FFDBBB]/40 bg-[#2C1D10] text-[#FFDBBB] uppercase tracking-wider font-mono font-black">
-                    <th className="py-4 px-4 text-[#FFDBBB]">Attendee Name</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">College</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Registered Event</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Ticket Code</th>
-                    <th className="py-4 px-4 text-right text-[#FFDBBB]">Date</th>
+                  <tr className="border-b-2 border-[#FFDBBB]/50 bg-[#140C07] uppercase tracking-wider font-mono font-black">
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>ATTENDEE NAME</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>COLLEGE</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>REGISTERED EVENT</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>TICKET CODE</th>
+                    <th className="py-4 px-4 text-right" style={{ color: "#FFDBBB", fontSize: "12px" }}>DATE</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#FFDBBB]/20">
                   {registrations.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="py-10 text-center text-[#FFF5EA] font-bold">
+                      <td colSpan={5} className="py-10 text-center font-bold" style={{ color: "#FFFFFF" }}>
                         No registrations recorded yet.
                       </td>
                     </tr>
                   ) : (
                     registrations.slice(0, 5).map((reg) => (
-                      <tr key={reg.id} className="hover:bg-[#FFDBBB]/15 transition-colors">
-                        <td className="py-4 px-4 font-black text-[#FFFFFF] text-sm tracking-wide">{reg.name}</td>
-                        <td className="py-4 px-4 text-[#FFF5EA] font-bold text-xs">{reg.collegeName}</td>
+                      <tr key={reg.id} className="hover:bg-[#FFDBBB]/20 transition-colors bg-[#2C1D10]">
                         <td className="py-4 px-4">
-                          <span className="inline-block font-extrabold text-[#FFDBBB] text-xs bg-[#FFDBBB]/15 px-3 py-1 rounded-full border border-[#FFDBBB]/30 uppercase tracking-wider">
+                          <span style={{ color: "#FFFFFF", fontWeight: "900", fontSize: "14px", letterSpacing: "0.02em" }}>
+                            {reg.name}
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <span style={{ color: "#FFDBBB", fontWeight: "700", fontSize: "13px" }}>
+                            {reg.collegeName}
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <span style={{ color: "#2C1D10", backgroundColor: "#FFDBBB", fontWeight: "900", fontSize: "11px" }} className="inline-block px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
                             {reg.eventTitle}
                           </span>
                         </td>
-                        <td className="py-4 px-4 font-mono font-black">
-                          <span className="inline-block text-[#38BDF8] bg-sky-950/60 px-2.5 py-1 rounded-lg border border-sky-400/40 text-xs">
+                        <td className="py-4 px-4 font-mono">
+                          <span style={{ color: "#38BDF8", backgroundColor: "#0F172A", fontWeight: "800", fontSize: "12px" }} className="inline-block px-2.5 py-1 rounded-lg border border-[#38BDF8]/40 shadow-sm">
                             {reg.registrationId}
                           </span>
                         </td>
-                        <td className="py-4 px-4 text-right text-[#FFF5EA] font-bold text-xs">
-                          {reg.timestamp ? new Date(reg.timestamp).toLocaleDateString() : "TBD"}
+                        <td className="py-4 px-4 text-right">
+                          <span style={{ color: "#FFFFFF", fontWeight: "800", fontSize: "13px" }}>
+                            {reg.timestamp ? new Date(reg.timestamp).toLocaleDateString() : "TBD"}
+                          </span>
                         </td>
                       </tr>
                     ))

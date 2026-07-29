@@ -258,30 +258,30 @@ export default function ManageEvents() {
           </div>
         ) : (
           <div className="p-6 rounded-3xl bg-[#523A25] backdrop-blur-xl border-2 border-[#FFDBBB]/50 shadow-2xl overflow-hidden">
-            <div className="overflow-x-auto rounded-2xl border border-[#FFDBBB]/30 bg-[#3D2918]/80">
+            <div className="overflow-x-auto rounded-2xl border-2 border-[#FFDBBB]/40 bg-[#1F130B] shadow-2xl">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b-2 border-[#FFDBBB]/40 bg-[#2C1D10] text-[#FFDBBB] uppercase tracking-wider font-mono font-black">
-                    <th className="py-4 px-4 text-[#FFDBBB]">Event Details</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Schedule</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Capacity</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Reg Status</th>
-                    <th className="py-4 px-4 text-right text-[#FFDBBB]">Actions</th>
+                  <tr className="border-b-2 border-[#FFDBBB]/50 bg-[#140C07] uppercase tracking-wider font-mono font-black">
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>EVENT DETAILS</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>SCHEDULE</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>CAPACITY</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>REG STATUS</th>
+                    <th className="py-4 px-4 text-right" style={{ color: "#FFDBBB", fontSize: "12px" }}>ACTIONS</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#FFDBBB]/20">
                   {events.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="py-12 text-center text-[#FFF5EA] font-bold">
+                      <td colSpan={5} className="py-12 text-center font-bold" style={{ color: "#FFFFFF" }}>
                         No events found in database. Create one to begin.
                       </td>
                     </tr>
                   ) : (
                     events.map((event) => (
-                      <tr key={event.id} className="hover:bg-[#FFDBBB]/15 transition-colors">
+                      <tr key={event.id} className="hover:bg-[#FFDBBB]/20 transition-colors bg-[#2C1D10]">
                         <td className="py-4 px-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-14 h-10 bg-[#3D2918] border border-[#FFDBBB]/30 rounded-lg overflow-hidden shrink-0 shadow-md">
+                            <div className="w-14 h-10 bg-[#3D2918] border border-[#FFDBBB]/40 rounded-lg overflow-hidden shrink-0 shadow-md">
                               <img
                                 src={event.posterUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"}
                                 alt=""
@@ -289,20 +289,20 @@ export default function ManageEvents() {
                               />
                             </div>
                             <div>
-                              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#FFDBBB]/15 text-[#FFDBBB] border border-[#FFDBBB]/30 font-black uppercase tracking-wider">
+                              <span style={{ color: "#2C1D10", backgroundColor: "#FFDBBB", fontWeight: "900", fontSize: "10px" }} className="inline-block px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                                 {event.category}
                               </span>
-                              <div className="font-black text-[#FFFFFF] mt-1 text-sm tracking-wide">{event.title}</div>
+                              <div style={{ color: "#FFFFFF", fontWeight: "900", fontSize: "14px" }} className="mt-1 tracking-wide">{event.title}</div>
                             </div>
                           </div>
                         </td>
                         <td className="py-4 px-4">
-                          <div className="text-[#FFFFFF] font-bold">{event.date}</div>
-                          <div className="text-[#FFDBBB] font-mono text-xs font-semibold">{event.time}</div>
+                          <div style={{ color: "#FFFFFF", fontWeight: "800", fontSize: "13px" }}>{event.date}</div>
+                          <div style={{ color: "#FFDBBB", fontWeight: "700", fontSize: "12px" }} className="font-mono">{event.time}</div>
                         </td>
                         <td className="py-4 px-4 font-mono">
-                          <div className="font-black text-[#FFFFFF] text-xs">{registrations.filter(r => r.eventId === event.id).length} registered</div>
-                          <div className="text-[#FFDBBB] font-bold text-xs mt-0.5">{event.seatsAvailable} left / {event.totalSeats} seats</div>
+                          <div style={{ color: "#FFFFFF", fontWeight: "900", fontSize: "13px" }}>{registrations.filter(r => r.eventId === event.id).length} registered</div>
+                          <div style={{ color: "#FFDBBB", fontWeight: "700", fontSize: "12px" }} className="mt-0.5">{event.seatsAvailable} left / {event.totalSeats} seats</div>
                         </td>
                         <td className="py-4 px-4">
                           <select

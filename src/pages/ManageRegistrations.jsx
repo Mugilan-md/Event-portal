@@ -196,44 +196,46 @@ export default function ManageRegistrations() {
           </div>
         ) : (
           <div className="p-6 rounded-3xl bg-[#523A25] backdrop-blur-xl border-2 border-[#FFDBBB]/50 shadow-2xl overflow-hidden">
-            <div className="overflow-x-auto rounded-2xl border border-[#FFDBBB]/30 bg-[#3D2918]/80">
+            <div className="overflow-x-auto rounded-2xl border-2 border-[#FFDBBB]/40 bg-[#1F130B] shadow-2xl">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b-2 border-[#FFDBBB]/40 bg-[#2C1D10] text-[#FFDBBB] uppercase tracking-wider font-mono font-black">
-                    <th className="py-4 px-4 text-[#FFDBBB]">Attendee / College</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Contact</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Registered Event</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Ticket ID</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Receipt</th>
-                    <th className="py-4 px-4 text-[#FFDBBB]">Date</th>
-                    <th className="py-4 px-4 text-right text-[#FFDBBB]">Actions</th>
+                  <tr className="border-b-2 border-[#FFDBBB]/50 bg-[#140C07] uppercase tracking-wider font-mono font-black">
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>ATTENDEE / COLLEGE</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>CONTACT</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>REGISTERED EVENT</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>TICKET ID</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>RECEIPT</th>
+                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>DATE</th>
+                    <th className="py-4 px-4 text-right" style={{ color: "#FFDBBB", fontSize: "12px" }}>ACTIONS</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#FFDBBB]/20">
                   {filteredRegistrations.length === 0 ? (
                     <tr>
-                      <td colSpan={7} className="py-12 text-center text-[#FFF5EA] font-bold">
+                      <td colSpan={7} className="py-12 text-center font-bold" style={{ color: "#FFFFFF" }}>
                         No registrations matching the filter query found.
                       </td>
                     </tr>
                   ) : (
                     filteredRegistrations.map((reg) => (
-                      <tr key={reg.id} className="hover:bg-[#FFDBBB]/15 transition-colors">
+                      <tr key={reg.id} className="hover:bg-[#FFDBBB]/20 transition-colors bg-[#2C1D10]">
                         <td className="py-4 px-4">
-                          <div className="font-black text-[#FFFFFF] text-sm tracking-wide">{reg.name}</div>
-                          <div className="text-[#FFF5EA] font-bold text-xs mt-0.5">{reg.collegeName} • <span className="text-[#FFDBBB] font-mono">{reg.department} ({reg.year})</span></div>
+                          <div style={{ color: "#FFFFFF", fontWeight: "900", fontSize: "14px", letterSpacing: "0.02em" }}>{reg.name}</div>
+                          <div style={{ color: "#FFDBBB", fontWeight: "700", fontSize: "12px" }} className="mt-0.5">
+                            {reg.collegeName} • <span style={{ color: "#FFFFFF" }} className="font-mono">{reg.department} ({reg.year})</span>
+                          </div>
                         </td>
-                        <td className="py-4 px-4 font-mono font-bold text-[#FFF5EA]">
-                          <div className="text-[#FFFFFF]">{reg.email}</div>
-                          <div className="text-[#FFDBBB] text-xs mt-0.5">{reg.phone}</div>
+                        <td className="py-4 px-4 font-mono">
+                          <div style={{ color: "#FFFFFF", fontWeight: "700", fontSize: "12px" }}>{reg.email}</div>
+                          <div style={{ color: "#FFDBBB", fontWeight: "600", fontSize: "11px" }} className="mt-0.5">{reg.phone}</div>
                         </td>
                         <td className="py-4 px-4">
-                          <span className="inline-block font-extrabold text-[#FFDBBB] text-xs bg-[#FFDBBB]/15 px-3 py-1 rounded-full border border-[#FFDBBB]/30 uppercase tracking-wider">
+                          <span style={{ color: "#2C1D10", backgroundColor: "#FFDBBB", fontWeight: "900", fontSize: "11px" }} className="inline-block px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
                             {reg.eventTitle}
                           </span>
                         </td>
-                        <td className="py-4 px-4 font-mono font-black">
-                          <span className="inline-block text-[#38BDF8] bg-sky-950/60 px-2.5 py-1 rounded-lg border border-sky-400/40 text-xs">
+                        <td className="py-4 px-4 font-mono">
+                          <span style={{ color: "#38BDF8", backgroundColor: "#0F172A", fontWeight: "800", fontSize: "12px" }} className="inline-block px-2.5 py-1 rounded-lg border border-[#38BDF8]/40 shadow-sm">
                             {reg.registrationId}
                           </span>
                         </td>
@@ -246,11 +248,13 @@ export default function ManageRegistrations() {
                               <Eye className="w-3.5 h-3.5" /> View
                             </button>
                           ) : (
-                            <span className="text-[#FFDBBB]/80 text-xs uppercase tracking-wider font-extrabold">Free / Unpaid</span>
+                            <span style={{ color: "#FFDBBB" }} className="text-xs uppercase tracking-wider font-extrabold">Free / Unpaid</span>
                           )}
                         </td>
-                        <td className="py-4 px-4 text-[#FFF5EA] font-bold text-xs">
-                          {reg.timestamp ? new Date(reg.timestamp).toLocaleDateString() : "TBD"}
+                        <td className="py-4 px-4">
+                          <span style={{ color: "#FFFFFF", fontWeight: "800", fontSize: "13px" }}>
+                            {reg.timestamp ? new Date(reg.timestamp).toLocaleDateString() : "TBD"}
+                          </span>
                         </td>
                         <td className="py-4 px-4 text-right">
                           <div className="flex gap-2 justify-end">
