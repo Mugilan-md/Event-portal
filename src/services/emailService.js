@@ -68,3 +68,63 @@ export const sendConfirmationEmail = async (details, event) => {
     throw error;
   }
 };
+
+/**
+ * Sends a response email to a participant's query.
+ * @param {Object} queryDetails Participant query data (name, email, queryType, message)
+ * @param {String} responseMessage Response message written by the admin
+ */
+export const sendQueryResponseEmail = async (queryDetails, responseMessage) => {
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+  const templateParams = {
+    to_name: queryDetails.name,
+    recipient_name: queryDetails.name,
+    name: queryDetails.name,
+    to_email: queryDetails.email,
+    recipient_email: queryDetails.email,
+    email: queryDetails.email,
+    query_type: queryDetails.queryType || "Inquiry",
+    original_message: queryDetails.message,
+    response_message: responseMessage,
+    admin_response: responseMessage,
+    message: responseMessage,
+    from_name: "VSB Event Portal Coordination Team",
+    reply_to: "events@vsb.ac.in"
+  };
+
+  // Try EmailJS dispatch if credentials exist
+  if (
+    serviceId &&
+    templateId &&
+    publicKey &&
+    !serviceId.includes("PLACEHOLDER") &&
+    !templateId.includes("PLACEHOLDER") &&
+    !publicKey.includes("PLACEHOLDER")
+  ) {
+    try {
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log("EmailJS: Query response email sent successfully!");
+    } catch (err) {
+      console.warn("EmailJS send failed, opening mailto fallback launcher:", err);
+    }
+  }
+
+  // Also launch mailto link so admin can review or send directly from default mail client
+  const subject = encodeURIComponent(`[VSB Event Portal] Response to your inquiry: ${queryDetails.queryType || 'General Inquiry'}`);
+  const body = encodeURIComponent(
+    `Dear ${queryDetails.name},\n\nThank you for reaching out to the VSB Event Portal team.\n\n` +
+    `--- Your Original Inquiry ---\n"${queryDetails.message}"\n\n` +
+    `--- Admin Response ---\n${responseMessage}\n\n` +
+    `Best regards,\nVSB Event Portal Coordination Team\nVSB Engineering College, Karur\nevents@vsb.ac.in`
+  );
+  
+  // Trigger mailto client launcher safely
+  setTimeout(() => {
+    window.location.href = `mailto:${queryDetails.email}?subject=${subject}&body=${body}`;
+  }, 300);
+
+  return { success: true };
+};

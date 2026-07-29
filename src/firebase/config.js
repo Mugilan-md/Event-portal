@@ -386,6 +386,15 @@ const mockFirestore = {
     const queries = getLocalStorageItem("erp_queries", []);
     const filtered = queries.filter(q => q.id !== id);
     setLocalStorageItem("erp_queries", filtered);
+  },
+
+  updateQuery: async (id, data) => {
+    const queries = getLocalStorageItem("erp_queries", []);
+    const idx = queries.findIndex(q => q.id === id);
+    if (idx !== -1) {
+      queries[idx] = { ...queries[idx], ...data };
+      setLocalStorageItem("erp_queries", queries);
+    }
   }
 };
 
@@ -672,6 +681,14 @@ export const deleteContactQuery = async (id) => {
   }
   const docRef = fbDoc(db, "queries", id);
   await fbDeleteDoc(docRef);
+};
+
+export const updateContactQuery = async (id, data) => {
+  if (isMockMode) {
+    return mockFirestore.updateQuery(id, data);
+  }
+  const docRef = fbDoc(db, "queries", id);
+  await fbUpdateDoc(docRef, data);
 };
 
 export const getRegistrationByRegistrationId = async (registrationId) => {
