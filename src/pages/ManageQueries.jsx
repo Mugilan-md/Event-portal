@@ -118,15 +118,27 @@ export default function ManageQueries() {
                           <a href={`mailto:${query.email}`} className="text-xs font-bold text-[#FFDBBB] hover:underline flex items-center gap-1">
                             <Mail className="w-3 h-3" /> {query.email}
                           </a>
+                          {query.college && (
+                            <div className="text-[11px] font-bold text-[#CCBEB1] mt-0.5">
+                              🏛️ {query.college}
+                            </div>
+                          )}
                         </div>
                       </div>
-                      <button
-                        onClick={() => handleDelete(query.id)}
-                        className="p-2 rounded-xl bg-rose-500/20 text-rose-300 hover:bg-rose-500/35 border border-rose-400/40 transition-all"
-                        title="Delete query"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                      <div className="flex items-center gap-2">
+                        {query.queryType && (
+                          <span className="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-[#FFDBBB] text-[#3D2918]">
+                            {query.queryType}
+                          </span>
+                        )}
+                        <button
+                          onClick={() => handleDelete(query.id)}
+                          className="p-2 rounded-xl bg-rose-500/20 text-rose-300 hover:bg-rose-500/35 border border-rose-400/40 transition-all"
+                          title="Delete query"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
 
                     {/* Message Area */}

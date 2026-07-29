@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Users, Award, Shield, ArrowRight, Hourglass, Plus, Minus, Send, CheckCircle, Zap, MessageSquare } from "lucide-react";
+import { Calendar, Users, Award, Shield, ArrowRight, Hourglass, Plus, Minus, Send, CheckCircle, Zap, MessageSquare, Mail, User, GraduationCap, MapPin, HelpCircle } from "lucide-react";
 import { getEventsList, addContactQuery } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
 import StarButton from "../components/ui/star-button";
@@ -17,13 +17,19 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [activeFaq, setActiveFaq] = useState(null);
 
-  const [contactForm, setContactForm] = useState({ name: "", email: "", message: "" });
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    college: "",
+    queryType: "General Inquiry",
+    message: ""
+  });
   const [sendingQuery, setSendingQuery] = useState(false);
 
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     if (!contactForm.name.trim() || !contactForm.email.trim() || !contactForm.message.trim()) {
-      showToast("Please fill in all fields.", "error");
+      showToast("Please fill in all required fields.", "error");
       return;
     }
     try {
@@ -31,10 +37,12 @@ export default function Home() {
       await addContactQuery({
         name: contactForm.name.trim(),
         email: contactForm.email.trim(),
+        college: contactForm.college ? contactForm.college.trim() : "",
+        queryType: contactForm.queryType || "General Inquiry",
         message: contactForm.message.trim()
       });
-      showToast("Message sent successfully! The admin will contact you.", "success");
-      setContactForm({ name: "", email: "", message: "" });
+      showToast("Your inquiry has been submitted! Our support desk will contact you soon.", "success");
+      setContactForm({ name: "", email: "", college: "", queryType: "General Inquiry", message: "" });
     } catch (err) {
       showToast("Failed to send message: " + err.message, "error");
     } finally {
@@ -473,98 +481,202 @@ export default function Home() {
       {/* ── CONTACT SECTION ── */}
       <section
         id="contact"
-        className="relative z-10 py-20 overflow-hidden"
+        className="relative z-10 py-24 overflow-hidden"
         style={{ background: "#090D16", borderTop: "1px solid rgba(255,255,255,0.06)" }}
       >
-        {/* Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(99,102,241,0.12)" }} />
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(6,182,212,0.08)" }} />
+        {/* Glowing Ambient Background Orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[140px] pointer-events-none" style={{ background: "rgba(99,102,241,0.12)" }} />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[120px] pointer-events-none" style={{ background: "rgba(6,182,212,0.10)" }} />
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Left side */}
-            <div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            {/* Left Column: Info & Details */}
+            <div className="lg:col-span-5 space-y-6">
               <div
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold mb-4 uppercase tracking-widest"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest"
                 style={{
                   background: "rgba(6,182,212,0.1)",
                   border: "1px solid rgba(6,182,212,0.25)",
                   color: "#06B6D4"
                 }}
               >
-                <MessageSquare className="w-3 h-3" />
-                Get in Touch
+                <MessageSquare className="w-3.5 h-3.5" />
+                Support & Inquiries
               </div>
-              <h2 className="text-3xl font-extrabold font-serif text-white mb-4">
-                Have Questions?
+
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-serif text-white tracking-tight leading-tight">
+                Have Questions? <br />
+                <span className="text-gradient-purple">We're Here to Help</span>
               </h2>
-              <p className="mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                Have questions about an upcoming event? Need help with your registration? Drop us a message and our support team will get back to you within 24 hours.
+
+              <p className="leading-relaxed text-sm sm:text-base" style={{ color: "rgba(255,255,255,0.65)" }}>
+                Have questions about an upcoming hackathon, paper presentation, or student pass? Send a message to our event coordination team below.
               </p>
-              <div className="space-y-4">
+
+              {/* Contact Information Cards */}
+              <div className="space-y-3 pt-2">
+                <div className="flex items-center gap-3.5 p-3.5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Direct Email Support</div>
+                    <div className="text-sm font-bold text-white">events@vsb.ac.in</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3.5 p-3.5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Campus Location</div>
+                    <div className="text-sm font-bold text-white">VSB Engineering College, Karur</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Feature Highlights */}
+              <div className="space-y-3 pt-4 border-t border-white/10">
                 {[
-                  "24/7 Support Response",
-                  "Direct Organizer Contact",
-                  "Registration Assistance"
+                  "Guaranteed Response Within 24 Hours",
+                  "Direct Access to Event Conveners",
+                  "Instant Registration & Pass Assistance"
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 flex-shrink-0" style={{ color: "#06B6D4" }} />
-                    <span className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>{item}</span>
+                    <CheckCircle className="w-4 h-4 flex-shrink-0 text-cyan-400" />
+                    <span className="text-xs sm:text-sm font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Contact Form */}
-            <div
-              className="p-8 rounded-2xl relative"
-              style={{
-                background: "#FFFFFF",
-                boxShadow: "0 25px 50px -12px rgba(0,0,0,0.4)"
-              }}
-            >
-              <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full blur-2xl opacity-40 pointer-events-none" style={{ background: "#F59E0B" }} />
-              <form className="space-y-4 relative z-10" onSubmit={handleContactSubmit}>
-                {[
-                  { label: "Full Name", type: "text", key: "name", placeholder: "John Doe" },
-                  { label: "Email Address", type: "email", key: "email", placeholder: "john@university.edu" }
-                ].map(({ label, type, key, placeholder }) => (
-                  <div key={key}>
-                    <label className="block text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: "#64748B" }}>
-                      {label}
+            {/* Right Column: Professional Query Form Card */}
+            <div className="lg:col-span-7">
+              <div
+                className="p-8 sm:p-10 rounded-3xl relative backdrop-blur-2xl border border-slate-200/20 shadow-2xl overflow-hidden"
+                style={{
+                  background: "#FFFFFF",
+                  boxShadow: "0 25px 60px -15px rgba(0,0,0,0.35)"
+                }}
+              >
+                {/* Header inside Form Card */}
+                <div className="mb-6 pb-4 border-b border-slate-100">
+                  <h3 className="text-xl font-bold font-serif text-slate-900">
+                    Send a Direct Message
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Fill out your details below and our coordinator desk will respond to your query.
+                  </p>
+                </div>
+
+                <form className="space-y-5 relative z-10" onSubmit={handleContactSubmit}>
+                  
+                  {/* Name and Email side by side on desktop */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-slate-700">
+                        Full Name <span className="text-rose-500">*</span>
+                      </label>
+                      <div className="relative">
+                        <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                        <input
+                          type="text"
+                          placeholder="Enter your full name"
+                          value={contactForm.name}
+                          onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                          className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-slate-700">
+                        Email Address <span className="text-rose-500">*</span>
+                      </label>
+                      <div className="relative">
+                        <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                        <input
+                          type="email"
+                          placeholder="student@college.edu"
+                          value={contactForm.email}
+                          onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                          className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* College Name & Inquiry Topic */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-slate-700">
+                        College / Institution
+                      </label>
+                      <div className="relative">
+                        <GraduationCap className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                        <input
+                          type="text"
+                          placeholder="Your college or university"
+                          value={contactForm.college}
+                          onChange={(e) => setContactForm({ ...contactForm, college: e.target.value })}
+                          className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-slate-700">
+                        Inquiry Category
+                      </label>
+                      <div className="relative">
+                        <HelpCircle className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        <select
+                          value={contactForm.queryType}
+                          onChange={(e) => setContactForm({ ...contactForm, queryType: e.target.value })}
+                          className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all font-medium text-slate-900 bg-white"
+                        >
+                          <option value="General Inquiry">General Inquiry</option>
+                          <option value="Registration & Pass Verification">Registration & Pass Verification</option>
+                          <option value="Event Rules & Schedule Info">Event Rules & Schedule Info</option>
+                          <option value="Payment & Fee Clarification">Payment & Fee Clarification</option>
+                          <option value="Technical Support">Technical Support</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Message Field */}
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-slate-700">
+                      Message / Question <span className="text-rose-500">*</span>
                     </label>
-                    <input
-                      type={type}
-                      placeholder={placeholder}
-                      value={contactForm[key]}
-                      onChange={(e) => setContactForm({ ...contactForm, [key]: e.target.value })}
+                    <textarea
+                      rows="4"
+                      placeholder="Please describe your question or issue in detail..."
+                      value={contactForm.message}
+                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                      className="w-full p-3.5 text-sm rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all font-medium text-slate-900 placeholder:text-slate-400 leading-relaxed"
                       required
                     />
                   </div>
-                ))}
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: "#64748B" }}>
-                    Message
-                  </label>
-                  <textarea
-                    rows="4"
-                    placeholder="How can we help?"
-                    value={contactForm.message}
-                    onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                    required
-                  />
-                </div>
-                <StarButton
-                  type="submit"
-                  disabled={sendingQuery}
-                  variant="violet"
-                  className="w-full flex items-center justify-center gap-2"
-                >
-                  <Send className="w-4 h-4" />
-                  {sendingQuery ? "Sending..." : "Send Message"}
-                </StarButton>
-              </form>
+
+                  <StarButton
+                    type="submit"
+                    disabled={sendingQuery}
+                    variant="violet"
+                    className="w-full flex items-center justify-center gap-2 py-3 text-sm font-bold shadow-lg"
+                  >
+                    <Send className="w-4 h-4" />
+                    {sendingQuery ? "Sending Inquiry..." : "Submit Inquiry"}
+                  </StarButton>
+                </form>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
