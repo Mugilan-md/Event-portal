@@ -39,8 +39,7 @@ export default function Footer() {
                 <img
                   src={logoImg}
                   alt="Logo"
-                  className="w-full h-full object-contain p-0 m-0 rounded-full"
-                  style={{ clipPath: "circle(47% at 50% 50%)" }}
+                  className="w-full h-full object-contain p-0 m-0"
                 />
               </div>
               <span

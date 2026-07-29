@@ -16,8 +16,6 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { showToast } = useToast();
 
-  const isAdminPage = location.pathname.includes("admin");
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged((user) => {
       setAdminUser(user);
@@ -62,63 +60,41 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 w-full z-40 transition-all duration-300"
       style={{
-        background: isAdminPage
-          ? "#FFDBBB"
-          : (scrolled ? "rgba(9,13,22,0.95)" : "rgba(9,13,22,0.85)"),
-        backdropFilter: isAdminPage ? "none" : "blur(20px) saturate(180%)",
-        WebkitBackdropFilter: isAdminPage ? "none" : "blur(20px) saturate(180%)",
-        borderBottom: isAdminPage
-          ? "2px solid #664930"
-          : "1px solid rgba(255,255,255,0.07)",
-        boxShadow: isAdminPage
-          ? "0 4px 20px rgba(102,73,48,0.15)"
-          : (scrolled ? "0 8px 32px rgba(0,0,0,0.24)" : "none")
+        background: "#FFDBBB",
+        borderBottom: "2px solid #664930",
+        boxShadow: "0 4px 20px rgba(102,73,48,0.15)"
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
-          {/* Logo - Clipped circle to remove any black square box cleanly */}
+          {/* Logo - Full emblem, zero cropping, zero black box */}
           <Link to="/" className="flex items-center gap-3 group py-1">
             <div className="w-14 h-14 shrink-0 transition-all duration-300 group-hover:scale-105 flex items-center justify-center bg-transparent">
               <img
                 src={logoImg}
                 alt="VSB Logo"
-                className="w-full h-full object-contain p-0 m-0 rounded-full"
-                style={{ clipPath: "circle(47% at 50% 50%)" }}
+                className="w-full h-full object-contain p-0 m-0"
               />
             </div>
-            <span
-              className="font-black text-xl sm:text-2xl tracking-tight font-syne transition-all duration-300"
-              style={{ color: isAdminPage ? "#3D2918" : "#FFFFFF" }}
-            >
+            <span className="font-black text-xl sm:text-2xl tracking-tight font-syne text-[#1A0F07]">
               VSB{" "}
-              <span
-                className="transition-all duration-300"
-                style={{
-                  color: isAdminPage ? "#664930" : "#F59E0B",
-                  textShadow: isAdminPage ? "0 1px 2px rgba(0,0,0,0.1)" : "0 0 16px rgba(245,158,11,0.65)"
-                }}
-              >
+              <span className="text-[#664930] drop-shadow-sm">
                 Portal
               </span>
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1.5">
+          {/* Desktop Navigation - 100% Bright Crisp Pure Black/Mocha text */}
+          <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => {
               const isHash = link.path.startsWith("/#");
               const active = isActive(link.path);
 
-              const linkClass = `relative px-3.5 py-2 text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-200 ${
-                isAdminPage
-                  ? (active
-                      ? "text-[#FFDBBB] bg-[#664930] shadow-md"
-                      : "text-[#3D2918] hover:text-[#664930] hover:bg-[#664930]/15")
-                  : (active
-                      ? "text-white bg-white/[0.08]"
-                      : "text-white/60 hover:text-white hover:bg-white/[0.05]")
+              const linkClass = `relative px-4 py-2 text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-200 ${
+                active
+                  ? "text-[#FFDBBB] bg-[#664930] shadow-md"
+                  : "text-[#1A0F07] hover:text-[#1A0F07] hover:bg-[#664930]/20"
               }`;
 
               return isHash ? (
@@ -128,14 +104,6 @@ export default function Navbar() {
               ) : (
                 <Link key={link.path} to={link.path} className={linkClass}>
                   {link.name}
-                  {active && !isAdminPage && (
-                    <motion.div
-                      layoutId="navbar-underline"
-                      className="absolute bottom-0.5 left-3 right-3 h-[2px] rounded-full"
-                      style={{ background: "#06B6D4" }}
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
                 </Link>
               );
             })}
@@ -150,8 +118,8 @@ export default function Navbar() {
                   transition={{ duration: 0.25 }}
                   className="ml-2"
                 >
-                  <StarButton to="/events" variant={isAdminPage ? "gold" : "violet"} className="flex items-center gap-1.5 font-black">
-                    <Award className="w-3.5 h-3.5 text-amber-500" />
+                  <StarButton to="/events" variant="gold" className="flex items-center gap-1.5 font-black">
+                    <Award className="w-3.5 h-3.5 text-amber-600" />
                     Register Now
                   </StarButton>
                 </motion.div>
@@ -159,19 +127,14 @@ export default function Navbar() {
             </AnimatePresence>
 
             {/* Admin Controls */}
-            {adminUser && isAdminPage && (
+            {adminUser && (
               <div
                 className="flex items-center gap-3 ml-3 pl-3"
                 style={{ borderLeft: "2px solid #664930" }}
               >
                 <Link
                   to="/admin-dashboard"
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black transition-all duration-200 shadow-md"
-                  style={{
-                    background: "#664930",
-                    border: "1px solid #3D2918",
-                    color: "#FFDBBB"
-                  }}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-black transition-all duration-200 shadow-md bg-[#664930] text-[#FFDBBB] border border-[#3D2918] hover:bg-[#3D2918]"
                 >
                   <User className="w-3.5 h-3.5 text-[#FFDBBB]" />
                   Admin Dashboard
@@ -189,14 +152,10 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <div className="md:hidden flex items-center gap-2">
-            {adminUser && isAdminPage && (
+            {adminUser && (
               <Link
                 to="/admin-dashboard"
-                className="p-2 rounded-xl transition-all shadow-sm"
-                style={{
-                  background: "#664930",
-                  color: "#FFDBBB"
-                }}
+                className="p-2 rounded-xl transition-all shadow-md bg-[#664930] text-[#FFDBBB]"
               >
                 <User className="w-4 h-4 text-[#FFDBBB]" />
               </Link>
@@ -204,8 +163,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl transition-all duration-250"
-              style={{ color: isAdminPage ? "#3D2918" : "rgba(255,255,255,0.6)" }}
+              className="p-2 rounded-xl transition-all duration-250 text-[#1A0F07] hover:bg-[#664930]/15"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -221,11 +179,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b shadow-xl overflow-hidden"
-            style={{
-              background: isAdminPage ? "#FFDBBB" : "#090D16",
-              borderColor: isAdminPage ? "#664930" : "rgba(255,255,255,0.1)"
-            }}
+            className="md:hidden border-b border-[#664930] bg-[#FFDBBB] shadow-xl overflow-hidden"
           >
             <div className="px-4 pt-3 pb-6 space-y-2">
               {navLinks.map((link) => (
@@ -234,16 +188,16 @@ export default function Navbar() {
                   to={link.path}
                   onClick={() => setIsOpen(false)}
                   className={`block px-4 py-2.5 rounded-xl text-sm font-black uppercase tracking-wider transition-all ${
-                    isAdminPage
-                      ? (isActive(link.path) ? "bg-[#664930] text-[#FFDBBB]" : "text-[#3D2918] hover:bg-[#664930]/20")
-                      : (isActive(link.path) ? "bg-white/10 text-white" : "text-white/70 hover:bg-white/5")
+                    isActive(link.path)
+                      ? "bg-[#664930] text-[#FFDBBB]"
+                      : "text-[#1A0F07] hover:bg-[#664930]/20"
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
 
-              {adminUser && isAdminPage && (
+              {adminUser && (
                 <button
                   onClick={handleLogout}
                   className="w-full mt-4 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-wider bg-rose-600 text-white shadow-md"
