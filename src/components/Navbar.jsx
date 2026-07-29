@@ -16,6 +16,8 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { showToast } = useToast();
 
+  const isAdminPage = location.pathname.includes("admin");
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged((user) => {
       setAdminUser(user);
@@ -60,36 +62,37 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 w-full z-40 transition-all duration-300"
       style={{
-        background: scrolled
-          ? "rgba(9,13,22,0.92)"
-          : "rgba(9,13,22,0.80)",
+        background: isAdminPage
+          ? (scrolled ? "rgba(255, 255, 255, 0.98)" : "rgba(255, 248, 240, 0.95)")
+          : (scrolled ? "rgba(9,13,22,0.92)" : "rgba(9,13,22,0.80)"),
         backdropFilter: "blur(20px) saturate(180%)",
         WebkitBackdropFilter: "blur(20px) saturate(180%)",
-        borderBottom: "1px solid rgba(255,255,255,0.07)",
-        boxShadow: scrolled ? "0 8px 32px rgba(0,0,0,0.24)" : "none"
+        borderBottom: isAdminPage
+          ? "2px solid #997E67"
+          : "1px solid rgba(255,255,255,0.07)",
+        boxShadow: scrolled
+          ? (isAdminPage ? "0 10px 30px rgba(102,73,48,0.12)" : "0 8px 32px rgba(0,0,0,0.24)")
+          : "none"
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18">
+        <div className="flex items-center justify-between h-20">
 
-          {/* Logo */}
+          {/* Logo - No black box, fully uncropped */}
           <Link to="/" className="flex items-center gap-3 group py-1">
-            <div
-              className="w-16 h-16 shrink-0 transition-all duration-300 group-hover:scale-110 flex items-center justify-center"
-            >
-              <img src={logoImg} alt="VSB Logo" className="w-full h-full object-contain" />
+            <div className="w-14 h-14 shrink-0 transition-all duration-300 group-hover:scale-105 flex items-center justify-center bg-transparent">
+              <img src={logoImg} alt="VSB Logo" className="w-full h-full object-contain p-0 m-0" />
             </div>
             <span
               className="font-extrabold text-xl sm:text-2xl tracking-tight font-serif transition-all duration-300"
-              style={{ color: "#FFFFFF" }}
+              style={{ color: isAdminPage ? "#3D2918" : "#FFFFFF" }}
             >
               VSB{" "}
               <span
                 className="transition-all duration-300"
                 style={{
-                  color: "#F59E0B",
-                  textShadow: "0 0 16px rgba(245,158,11,0.65)",
-                  filter: "drop-shadow(0 0 8px rgba(245,158,11,0.5))"
+                  color: isAdminPage ? "#664930" : "#F59E0B",
+                  textShadow: isAdminPage ? "0 0 12px rgba(102,73,48,0.3)" : "0 0 16px rgba(245,158,11,0.65)"
                 }}
               >
                 Portal
@@ -98,28 +101,29 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-1.5">
             {navLinks.map((link) => {
               const isHash = link.path.startsWith("/#");
               const active = isActive(link.path);
-              const linkClass = `relative px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all duration-250 ${
-                active
-                  ? "text-white bg-white/[0.08]"
-                  : "text-white/60 hover:text-white hover:bg-white/[0.05]"
+
+              const linkClass = `relative px-3.5 py-2 text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-200 ${
+                isAdminPage
+                  ? (active
+                      ? "text-[#FFDBBB] bg-[#664930] shadow-md"
+                      : "text-[#664930] hover:text-[#3D2918] hover:bg-[#FFDBBB]/40")
+                  : (active
+                      ? "text-white bg-white/[0.08]"
+                      : "text-white/60 hover:text-white hover:bg-white/[0.05]")
               }`;
 
               return isHash ? (
-                <a
-                  key={link.path}
-                  href={link.path.substring(1)}
-                  className={linkClass}
-                >
+                <a key={link.path} href={link.path.substring(1)} className={linkClass}>
                   {link.name}
                 </a>
               ) : (
                 <Link key={link.path} to={link.path} className={linkClass}>
                   {link.name}
-                  {active && (
+                  {active && !isAdminPage && (
                     <motion.div
                       layoutId="navbar-underline"
                       className="absolute bottom-0.5 left-3 right-3 h-[2px] rounded-full"
@@ -141,8 +145,8 @@ export default function Navbar() {
                   transition={{ duration: 0.25 }}
                   className="ml-2"
                 >
-                  <StarButton to="/events" variant="violet" className="flex items-center gap-1.5">
-                    <Award className="w-3.5 h-3.5" style={{ color: "#F59E0B" }} />
+                  <StarButton to="/events" variant={isAdminPage ? "gold" : "violet"} className="flex items-center gap-1.5 font-black">
+                    <Award className="w-3.5 h-3.5 text-amber-500" />
                     Register Now
                   </StarButton>
                 </motion.div>
@@ -150,27 +154,26 @@ export default function Navbar() {
             </AnimatePresence>
 
             {/* Admin Controls */}
-            {adminUser && location.pathname.startsWith("/admin") && (
+            {adminUser && isAdminPage && (
               <div
                 className="flex items-center gap-3 ml-3 pl-3"
-                style={{ borderLeft: "1px solid rgba(255,255,255,0.1)" }}
+                style={{ borderLeft: "2px solid rgba(153,126,103,0.3)" }}
               >
                 <Link
                   to="/admin-dashboard"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-250"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black transition-all duration-200 shadow-sm"
                   style={{
-                    background: "rgba(99,102,241,0.15)",
-                    border: "1px solid rgba(99,102,241,0.3)",
-                    color: "#818CF8"
+                    background: "#664930",
+                    border: "1px solid #997E67",
+                    color: "#FFDBBB"
                   }}
                 >
-                  <User className="w-3.5 h-3.5" />
+                  <User className="w-3.5 h-3.5 text-[#FFDBBB]" />
                   Admin Dashboard
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-colors duration-250"
-                  style={{ color: "#F87171" }}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-200 bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 border border-rose-500/20"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   Sign Out
@@ -181,45 +184,29 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <div className="md:hidden flex items-center gap-2">
-            <AnimatePresence>
-              {showRegisterBtn && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  className="mr-1"
-                >
-                  <StarButton to="/events" variant="violet" className="px-3.5 py-1.5 text-[10px]">
-                    Register
-                  </StarButton>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {adminUser && location.pathname.startsWith("/admin") && (
+            {adminUser && isAdminPage && (
               <Link
                 to="/admin-dashboard"
-                className="p-2 rounded-lg transition-all"
+                className="p-2 rounded-xl transition-all shadow-sm"
                 style={{
-                  background: "rgba(99,102,241,0.15)",
-                  border: "1px solid rgba(99,102,241,0.3)",
-                  color: "#818CF8"
+                  background: "#664930",
+                  border: "1px solid #997E67",
+                  color: "#FFDBBB"
                 }}
               >
-                <User className="w-4 h-4" />
+                <User className="w-4 h-4 text-[#FFDBBB]" />
               </Link>
             )}
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg transition-all duration-250"
-              style={{ color: "rgba(255,255,255,0.6)" }}
-              onMouseEnter={e => { e.currentTarget.style.color = "white"; e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; e.currentTarget.style.background = "transparent"; }}
+              className="p-2 rounded-xl transition-all duration-250"
+              style={{ color: isAdminPage ? "#3D2918" : "rgba(255,255,255,0.6)" }}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+
         </div>
       </div>
 
@@ -230,67 +217,35 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.28, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "rgba(9,13,22,0.97)" }}
+            className="md:hidden border-b shadow-xl overflow-hidden"
+            style={{
+              background: isAdminPage ? "#FFFFFF" : "#090D16",
+              borderColor: isAdminPage ? "#997E67" : "rgba(255,255,255,0.1)"
+            }}
           >
-            <div className="px-4 pt-3 pb-6 space-y-1">
-              {navLinks.map((link) => {
-                const isHash = link.path.startsWith("/#");
-                const active = isActive(link.path);
-                return isHash ? (
-                  <a
-                    key={link.path}
-                    href={link.path.substring(1)}
-                    onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider transition-all duration-200"
-                    style={{ color: "rgba(255,255,255,0.55)" }}
-                  >
-                    {link.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider transition-all duration-200"
-                    style={
-                      active
-                        ? {
-                            background: "rgba(99,102,241,0.12)",
-                            borderLeft: "3px solid #6366F1",
-                            color: "#818CF8"
-                          }
-                        : { color: "rgba(255,255,255,0.55)" }
-                    }
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
+            <div className="px-4 pt-3 pb-6 space-y-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2.5 rounded-xl text-sm font-black uppercase tracking-wider transition-all ${
+                    isAdminPage
+                      ? (isActive(link.path) ? "bg-[#664930] text-[#FFDBBB]" : "text-[#664930] hover:bg-[#FFDBBB]/30")
+                      : (isActive(link.path) ? "bg-white/10 text-white" : "text-white/70 hover:bg-white/5")
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
 
-              {adminUser && location.pathname.startsWith("/admin") && (
-                <div className="pt-4 space-y-2" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-                  <Link
-                    to="/admin-dashboard"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider transition-all"
-                    style={{
-                      background: "rgba(99,102,241,0.12)",
-                      border: "1px solid rgba(99,102,241,0.2)",
-                      color: "#818CF8"
-                    }}
-                  >
-                    <User className="w-4 h-4" /> Admin Dashboard
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center gap-2 w-full text-left px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider transition-all"
-                    style={{ color: "#F87171" }}
-                  >
-                    <LogOut className="w-4 h-4" /> Sign Out
-                  </button>
-                </div>
+              {adminUser && isAdminPage && (
+                <button
+                  onClick={handleLogout}
+                  className="w-full mt-4 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-wider bg-rose-500/10 text-rose-600 border border-rose-500/20"
+                >
+                  <LogOut className="w-4 h-4" /> Sign Out
+                </button>
               )}
             </div>
           </motion.div>

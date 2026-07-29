@@ -1,54 +1,69 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Mail, Phone, MapPin, Zap } from "lucide-react";
 import logoImg from "../assets/logo.png";
 
 export default function Footer() {
+  const location = useLocation();
+  const isAdminPage = location.pathname.includes("admin");
+
   return (
     <footer
-      className="relative pt-16 pb-8 overflow-hidden"
-      style={{ background: "#F8FAFC", borderTop: "1px solid #E2E8F0" }}
+      className="relative pt-16 pb-8 overflow-hidden transition-colors duration-300"
+      style={{
+        background: isAdminPage ? "#FFDBBB" : "#F8FAFC",
+        borderTop: isAdminPage ? "2px solid rgba(153,126,103,0.3)" : "1px solid #E2E8F0"
+      }}
     >
       {/* Decorative orbs */}
-      <div
-        className="absolute top-0 left-1/4 w-72 h-72 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "rgba(99,102,241,0.04)" }}
-      />
-      <div
-        className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "rgba(6,182,212,0.04)" }}
-      />
+      {!isAdminPage && (
+        <>
+          <div
+            className="absolute top-0 left-1/4 w-72 h-72 rounded-full blur-3xl pointer-events-none"
+            style={{ background: "rgba(99,102,241,0.04)" }}
+          />
+          <div
+            className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full blur-3xl pointer-events-none"
+            style={{ background: "rgba(6,182,212,0.04)" }}
+          />
+        </>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
 
           {/* Brand Column */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <div
-                className="w-12 h-12 shrink-0 transition-all duration-300 group-hover:scale-105 flex items-center justify-center"
-              >
-                <img src={logoImg} alt="Logo" className="w-full h-full object-contain" />
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="w-14 h-14 shrink-0 transition-all duration-300 group-hover:scale-105 flex items-center justify-center bg-transparent">
+                <img src={logoImg} alt="Logo" className="w-full h-full object-contain p-0 m-0" />
               </div>
-              <span className="font-extrabold text-lg tracking-tight font-serif" style={{ color: "#0F172A" }}>
+              <span
+                className="font-extrabold text-xl tracking-tight font-serif"
+                style={{ color: isAdminPage ? "#3D2918" : "#0F172A" }}
+              >
                 VSB{" "}
-                <span style={{ color: "#F59E0B" }}>Portal</span>
+                <span style={{ color: isAdminPage ? "#664930" : "#F59E0B" }}>Portal</span>
               </span>
             </Link>
-            <p className="text-sm leading-relaxed" style={{ color: "#64748B" }}>
+
+            <p
+              className="text-sm leading-relaxed font-medium"
+              style={{ color: isAdminPage ? "#523A25" : "#64748B" }}
+            >
               Empowering technical communities, hackathons, and collegiate symposiums with a seamless registration and event coordination ecosystem.
             </p>
 
             {/* AI badge */}
             <div
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm"
               style={{
-                background: "rgba(6,182,212,0.08)",
-                border: "1px solid rgba(6,182,212,0.2)",
-                color: "#06B6D4"
+                background: isAdminPage ? "#664930" : "rgba(6,182,212,0.08)",
+                border: isAdminPage ? "1px solid #997E67" : "1px solid rgba(6,182,212,0.2)",
+                color: isAdminPage ? "#FFDBBB" : "#06B6D4"
               }}
             >
-              <Zap className="w-3 h-3" />
+              <Zap className="w-3.5 h-3.5" style={{ color: isAdminPage ? "#FFDBBB" : "#06B6D4" }} />
               AI-Powered Platform
             </div>
 
@@ -63,25 +78,11 @@ export default function Footer() {
                   key={social.label}
                   href="#"
                   aria-label={social.label}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-250"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 shadow-sm"
                   style={{
-                    background: "rgba(99,102,241,0.06)",
-                    border: "1px solid rgba(99,102,241,0.12)",
-                    color: "#64748B"
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.background = "rgba(99,102,241,0.14)";
-                    e.currentTarget.style.color = "#6366F1";
-                    e.currentTarget.style.borderColor = "rgba(99,102,241,0.3)";
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                    e.currentTarget.style.boxShadow = "0 4px 12px rgba(99,102,241,0.2)";
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.background = "rgba(99,102,241,0.06)";
-                    e.currentTarget.style.color = "#64748B";
-                    e.currentTarget.style.borderColor = "rgba(99,102,241,0.12)";
-                    e.currentTarget.style.transform = "";
-                    e.currentTarget.style.boxShadow = "";
+                    background: isAdminPage ? "#664930" : "rgba(99,102,241,0.06)",
+                    border: isAdminPage ? "1px solid #997E67" : "1px solid rgba(99,102,241,0.12)",
+                    color: isAdminPage ? "#FFDBBB" : "#64748B"
                   }}
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -95,8 +96,8 @@ export default function Footer() {
           {/* Navigation Column */}
           <div>
             <h3
-              className="font-bold mb-4 text-xs tracking-widest uppercase"
-              style={{ color: "#6366F1" }}
+              className="font-black mb-4 text-xs tracking-widest uppercase"
+              style={{ color: isAdminPage ? "#3D2918" : "#6366F1" }}
             >
               Navigation
             </h3>
@@ -108,10 +109,8 @@ export default function Footer() {
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="text-sm transition-all duration-200 hover:translate-x-1 inline-block"
-                    style={{ color: "#64748B" }}
-                    onMouseEnter={e => { e.currentTarget.style.color = "#6366F1"; }}
-                    onMouseLeave={e => { e.currentTarget.style.color = "#64748B"; }}
+                    className="text-sm font-semibold transition-all duration-200 hover:translate-x-1 inline-block"
+                    style={{ color: isAdminPage ? "#523A25" : "#64748B" }}
                   >
                     {item.label}
                   </Link>
@@ -123,8 +122,8 @@ export default function Footer() {
           {/* Categories Column */}
           <div>
             <h3
-              className="font-bold mb-4 text-xs tracking-widest uppercase"
-              style={{ color: "#6366F1" }}
+              className="font-black mb-4 text-xs tracking-widest uppercase"
+              style={{ color: isAdminPage ? "#3D2918" : "#6366F1" }}
             >
               Categories
             </h3>
@@ -132,10 +131,8 @@ export default function Footer() {
               {["Hackathons", "Technical Symposiums", "Coding Workshops", "Panel Discussions"].map((cat) => (
                 <li
                   key={cat}
-                  className="text-sm cursor-pointer transition-all duration-200 hover:translate-x-1"
-                  style={{ color: "#64748B" }}
-                  onMouseEnter={e => { e.currentTarget.style.color = "#6366F1"; }}
-                  onMouseLeave={e => { e.currentTarget.style.color = "#64748B"; }}
+                  className="text-sm font-semibold cursor-pointer transition-all duration-200 hover:translate-x-1"
+                  style={{ color: isAdminPage ? "#523A25" : "#64748B" }}
                 >
                   {cat}
                 </li>
@@ -146,42 +143,41 @@ export default function Footer() {
           {/* Contact Column */}
           <div className="space-y-3">
             <h3
-              className="font-bold mb-4 text-xs tracking-widest uppercase"
-              style={{ color: "#6366F1" }}
+              className="font-black mb-4 text-xs tracking-widest uppercase"
+              style={{ color: isAdminPage ? "#3D2918" : "#6366F1" }}
             >
               Support & Contact
             </h3>
-            {[
-              { Icon: Mail, text: "info@eventregistrationportal.com" },
-              { Icon: Phone, text: "+1 (555) 100-2938" },
-              { Icon: MapPin, text: "100 Innovation Avenue, Cyber City, CA 94016" }
-            ].map(({ Icon, text }) => (
-              <div key={text} className="flex items-start gap-2.5 text-sm" style={{ color: "#64748B" }}>
-                <Icon className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "#F59E0B" }} />
-                <span>{text}</span>
+            <div className="space-y-2 text-sm font-semibold" style={{ color: isAdminPage ? "#523A25" : "#64748B" }}>
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-amber-600" />
+                <span>info@eventregistrationportal.com</span>
               </div>
-            ))}
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-amber-600" />
+                <span>+1 (555) 100-2938</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                <span>100 Innovation Avenue, Cyber City, CA 94016</span>
+              </div>
+            </div>
           </div>
+
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom copyright line */}
         <div
-          className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs gap-4"
-          style={{ borderTop: "1px solid #E2E8F0", color: "#94A3B8" }}
+          className="pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold"
+          style={{
+            borderColor: isAdminPage ? "rgba(153,126,103,0.3)" : "#E2E8F0",
+            color: isAdminPage ? "#3D2918" : "#94A3B8"
+          }}
         >
           <p>© 2026 Event Registration Portal. All rights reserved.</p>
-          <div className="flex gap-5">
-            {["Privacy Policy", "Terms of Service"].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="transition-colors duration-200"
-                onMouseEnter={e => { e.currentTarget.style.color = "#6366F1"; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "#94A3B8"; }}
-              >
-                {item}
-              </a>
-            ))}
+          <div className="flex gap-6">
+            <a href="#" className="hover:underline">Privacy Policy</a>
+            <a href="#" className="hover:underline">Terms of Service</a>
           </div>
         </div>
       </div>
