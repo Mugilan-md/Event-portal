@@ -198,12 +198,12 @@ export default function AdminDashboard() {
             <div className="overflow-x-auto rounded-2xl border-2 border-[#FFDBBB]/40 bg-[#1F130B] shadow-2xl">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b-2 border-[#FFDBBB]/50 bg-[#140C07] uppercase tracking-wider font-mono font-black">
-                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>ATTENDEE NAME</th>
-                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>COLLEGE</th>
-                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>REGISTERED EVENT</th>
-                    <th className="py-4 px-4" style={{ color: "#FFDBBB", fontSize: "12px" }}>TICKET CODE</th>
-                    <th className="py-4 px-4 text-right" style={{ color: "#FFDBBB", fontSize: "12px" }}>DATE</th>
+                  <tr className="border-b-2 border-[#38BDF8]/50 bg-[#140C07] uppercase tracking-wider font-mono font-black">
+                    <th className="py-4 px-4 text-[#38BDF8]" style={{ color: "#38BDF8", fontSize: "13px", fontWeight: "900", letterSpacing: "0.08em" }}>ATTENDEE NAME</th>
+                    <th className="py-4 px-4 text-[#38BDF8]" style={{ color: "#38BDF8", fontSize: "13px", fontWeight: "900", letterSpacing: "0.08em" }}>COLLEGE</th>
+                    <th className="py-4 px-4 text-[#38BDF8]" style={{ color: "#38BDF8", fontSize: "13px", fontWeight: "900", letterSpacing: "0.08em" }}>REGISTERED EVENT</th>
+                    <th className="py-4 px-4 text-[#38BDF8]" style={{ color: "#38BDF8", fontSize: "13px", fontWeight: "900", letterSpacing: "0.08em" }}>TICKET CODE</th>
+                    <th className="py-4 px-4 text-right text-[#38BDF8]" style={{ color: "#38BDF8", fontSize: "13px", fontWeight: "900", letterSpacing: "0.08em" }}>DATE</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#FFDBBB]/20">
