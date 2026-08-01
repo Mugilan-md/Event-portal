@@ -24,57 +24,52 @@ Built with **React 19**, **Vite 8**, **Tailwind CSS v4**, and **Firebase**, the 
 
 ---
 
-## 🏗️ Real System Architecture Diagram
+## 🏗️ System Architecture Diagram
 
-The system architecture follows a decoupled, cloud-native architecture connecting the client single-page application (SPA), Firebase Firestore real-time database, EmailJS notification dispatchers, and QR verification endpoints.
+The platform follows a decoupled, cloud-native architecture connecting the React single-page application (SPA), Firebase Firestore database, EmailJS notification engine, and venue ticket verification scanners.
 
 ```mermaid
-flowchart TB
-    subgraph Client ["💻 Client Portal (React 19 + Vite 8)"]
-        direction TB
-        A[🌐 Public Landing Page & Event Discovery] --> B[📋 Registration Engine /register/:id]
-        A --> C[💬 Student Query Support Desk]
-        B --> D[🎟️ Pass & QR Code Generator]
-        E[🛡️ Admin Console Dashboard] --> F[🎪 Event Management Suite]
-        E --> G[📑 Registration Audit & CSV Export]
-        E --> H[📩 Query Resolution Desk]
-        I[📲 Venue Ticket Scanner /verify/:id]
+graph LR
+    %% User Interfaces & Entrypoints
+    subgraph UI ["🌐 FRONTEND CLIENT & PORTALS"]
+        STUDENT["🎓 Student Experience Hub<br/><i>(Home, Events & FAQs)</i>"]
+        REG_FORM["📋 Registration & Pass Engine<br/><i>(/register/:id & QR Generator)</i>"]
+        QUERY_DESK["💬 Query Support Desk<br/><i>(Inquiry Form)</i>"]
+        ADMIN_PORTAL["🛡️ Admin Control Suite<br/><i>(Dashboard & Management)</i>"]
+        TICKET_SCAN["📲 Venue Ticket Scanner<br/><i>(/verify/:id)</i>"]
     end
 
-    subgraph Firebase ["🔥 Firebase Cloud Infrastructure"]
-        J[(Firestore DB)]
-        K[Authentication API]
+    %% Cloud Backend Infrastructure
+    subgraph BACKEND ["🔥 FIREBASE BACKEND"]
+        FIRE_AUTH["🔐 Firebase Auth<br/><i>(Admin Sessions)</i>"]
+        FIRE_DB[("🗄️ Firestore Database<br/><i>(Events, Registrations, Queries)</i>")]
     end
 
-    subgraph Messaging ["✉️ Email Notification Services"]
-        L[EmailJS Engine]
-        M[Template 1: Event Registration Pass]
-        N[Template 2: Participant Query Response]
-        O[Direct Mailto Client Fallback]
+    %% Messaging & Dispatch Services
+    subgraph MAIL ["✉️ EMAIL DISPATCH SYSTEM"]
+        EMAILJS["⚡ EmailJS API Engine"]
+        TPL_REG["🎟️ Registration Template<br/><i>(template_mit1b6q)</i>"]
+        TPL_QUERY["📩 Query Response Template<br/><i>(template_x20xfhw)</i>"]
+        MAILTO["📧 Direct Mailto Fallback"]
     end
 
-    %% Flow Connections
-    B -->|Save Registration Record| J
-    B -->|Trigger Confirmation Mail| L
-    C -->|Save Query Ticket| J
-    D -->|Generate Verification Link| I
-    E -->|Authenticate Admin| K
-    F -->|Create / Update Events| J
-    G -->|Fetch Registrations & Export| J
-    H -->|Fetch Queries & Log Replies| J
-    H -->|Dispatch Response Mail| L
-    L -->|Route Template 1| M
-    L -->|Route Template 2| N
-    H -->|Fallback Mailer| O
-    I -->|Verify Pass ID & Status| J
+    %% Workflow Connections
+    STUDENT --> REG_FORM
+    STUDENT --> QUERY_DESK
+    
+    REG_FORM -->|1. Save Record| FIRE_DB
+    REG_FORM -->|2. Send Pass Email| EMAILJS
+    QUERY_DESK -->|1. Submit Query| FIRE_DB
 
-    %% Styling
-    classDef clientStyle fill:#1E293B,stroke:#6366F1,stroke-width:2px,color:#FFFFFF
-    classDef firebaseStyle fill:#331E0B,stroke:#F59E0B,stroke-width:2px,color:#FFDBBB
-    classDef emailStyle fill:#0F291E,stroke:#10B981,stroke-width:2px,color:#D1FAE5
-    class Client clientStyle
-    class Firebase firebaseStyle
-    class Messaging emailStyle
+    ADMIN_PORTAL -->|Authenticate| FIRE_AUTH
+    ADMIN_PORTAL -->|Manage Data| FIRE_DB
+    ADMIN_PORTAL -->|Reply to Query| EMAILJS
+    ADMIN_PORTAL -.->|Fallback Reply| MAILTO
+
+    EMAILJS --> TPL_REG
+    EMAILJS --> TPL_QUERY
+
+    TICKET_SCAN -->|Verify Ticket ID| FIRE_DB
 ```
 
 ---
