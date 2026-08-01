@@ -314,15 +314,15 @@ export default function ManageQueries() {
                   {[
                     {
                       label: "Pass Verified",
-                      text: `Dear ${selectedQuery.name},\n\nWe have reviewed your inquiry. Your QR Pass has been verified and your ticket status is active. Please check your email or student portal.\n\nBest regards,\nVSB Event Portal Conveners`
+                      text: "We have reviewed your inquiry. Your QR Pass has been verified and your ticket status is active. Please check your email or student portal."
                     },
                     {
                       label: "Issue Resolved",
-                      text: `Dear ${selectedQuery.name},\n\nThank you for reaching out. We have investigated your reported issue and resolved it in our portal system.\n\nBest regards,\nVSB Support Desk`
+                      text: "Thank you for reaching out. We have investigated your reported issue and resolved it in our portal system."
                     },
                     {
                       label: "Schedule Info",
-                      text: `Dear ${selectedQuery.name},\n\nThank you for your inquiry regarding event timings. The updated event schedule and guidelines are now available on our portal.\n\nBest regards,\nVSB Event Desk`
+                      text: "Thank you for your inquiry regarding event timings. The updated event schedule and guidelines are now available on our portal."
                     }
                   ].map((tmpl, idx) => (
                     <button
