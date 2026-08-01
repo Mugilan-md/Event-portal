@@ -524,23 +524,49 @@ export default function Home() {
 
               {/* Contact Information Cards */}
               <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-3.5 p-3.5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md">
-                  <div className="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
-                    <Mail className="w-5 h-5" />
+                <div
+                  className="flex items-center gap-3.5 p-4 rounded-2xl border shadow-lg transition-all duration-300 hover:border-indigo-400/50"
+                  style={{
+                    background: "#1E293B",
+                    borderColor: "rgba(255,255,255,0.15)"
+                  }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-indigo-300 shrink-0 shadow-inner"
+                    style={{ background: "rgba(99,102,241,0.25)", border: "1px solid rgba(99,102,241,0.4)" }}
+                  >
+                    <Mail className="w-5 h-5 text-indigo-300" />
                   </div>
                   <div>
-                    <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Direct Email Support</div>
-                    <div className="text-sm font-bold text-white">events@vsb.ac.in</div>
+                    <div className="text-[11px] uppercase tracking-wider font-extrabold" style={{ color: "#94A3B8" }}>
+                      Direct Email Support
+                    </div>
+                    <div className="text-sm sm:text-base font-black tracking-wide" style={{ color: "#FFFFFF" }}>
+                      events@vsb.ac.in
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3.5 p-3.5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md">
-                  <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
-                    <MapPin className="w-5 h-5" />
+                <div
+                  className="flex items-center gap-3.5 p-4 rounded-2xl border shadow-lg transition-all duration-300 hover:border-cyan-400/50"
+                  style={{
+                    background: "#1E293B",
+                    borderColor: "rgba(255,255,255,0.15)"
+                  }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-cyan-300 shrink-0 shadow-inner"
+                    style={{ background: "rgba(6,182,212,0.25)", border: "1px solid rgba(6,182,212,0.4)" }}
+                  >
+                    <MapPin className="w-5 h-5 text-cyan-300" />
                   </div>
                   <div>
-                    <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Campus Location</div>
-                    <div className="text-sm font-bold text-white">VSB Engineering College, Karur</div>
+                    <div className="text-[11px] uppercase tracking-wider font-extrabold" style={{ color: "#94A3B8" }}>
+                      Campus Location
+                    </div>
+                    <div className="text-sm sm:text-base font-black tracking-wide" style={{ color: "#FFFFFF" }}>
+                      VSB Engineering College, Karur
+                    </div>
                   </div>
                 </div>
               </div>
