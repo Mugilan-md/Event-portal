@@ -20,7 +20,62 @@
 
 **Event Portal** is a full-stack, futuristic event management and registration application designed for modern educational institutions, technical symposiums, and corporate conferences. 
 
-Built with **React 19**, **Vite 8**, **Tailwind CSS v4**, and **Firebase**, the platform delivers an engaging student registration experience featuring **interactive 3D canvas visuals**, **instant QR code event pass generation**, **automated EmailJS notifications**, and a comprehensive **Admin Operations Suite** for real-time attendance management, query resolution, and data export.
+Built with **React 19**, **Vite 8**, **Tailwind CSS v4**, and **Firebase**, the platform delivers an engaging student registration experience featuring **interactive 3D canvas visuals (60–120 FPS mobile optimized)**, **instant QR code event pass generation**, **automated dual-template EmailJS notifications**, and a comprehensive **Admin Operations Suite** for real-time attendance management, query resolution, and data export.
+
+---
+
+## 🏗️ Real System Architecture Diagram
+
+The system architecture follows a decoupled, cloud-native architecture connecting the client single-page application (SPA), Firebase Firestore real-time database, EmailJS notification dispatchers, and QR verification endpoints.
+
+```mermaid
+flowchart TB
+    subgraph Client ["💻 Client Portal (React 19 + Vite 8)"]
+        direction TB
+        A[🌐 Public Landing Page & Event Discovery] --> B[📋 Registration Engine /register/:id]
+        A --> C[💬 Student Query Support Desk]
+        B --> D[🎟️ Pass & QR Code Generator]
+        E[🛡️ Admin Console Dashboard] --> F[🎪 Event Management Suite]
+        E --> G[📑 Registration Audit & CSV Export]
+        E --> H[📩 Query Resolution Desk]
+        I[📲 Venue Ticket Scanner /verify/:id]
+    end
+
+    subgraph Firebase ["🔥 Firebase Cloud Infrastructure"]
+        J[(Firestore DB)]
+        K[Authentication API]
+    end
+
+    subgraph Messaging ["✉️ Email Notification Services"]
+        L[EmailJS Engine]
+        M[Template 1: Event Registration Pass]
+        N[Template 2: Participant Query Response]
+        O[Direct Mailto Client Fallback]
+    end
+
+    %% Flow Connections
+    B -->|Save Registration Record| J
+    B -->|Trigger Confirmation Mail| L
+    C -->|Save Query Ticket| J
+    D -->|Generate Verification Link| I
+    E -->|Authenticate Admin| K
+    F -->|Create / Update Events| J
+    G -->|Fetch Registrations & Export| J
+    H -->|Fetch Queries & Log Replies| J
+    H -->|Dispatch Response Mail| L
+    L -->|Route Template 1| M
+    L -->|Route Template 2| N
+    H -->|Fallback Mailer| O
+    I -->|Verify Pass ID & Status| J
+
+    %% Styling
+    classDef clientStyle fill:#1E293B,stroke:#6366F1,stroke-width:2px,color:#FFFFFF
+    classDef firebaseStyle fill:#331E0B,stroke:#F59E0B,stroke-width:2px,color:#FFDBBB
+    classDef emailStyle fill:#0F291E,stroke:#10B981,stroke-width:2px,color:#D1FAE5
+    class Client clientStyle
+    class Firebase firebaseStyle
+    class Messaging emailStyle
+```
 
 ---
 
@@ -40,10 +95,12 @@ Built with **React 19**, **Vite 8**, **Tailwind CSS v4**, and **Firebase**, the 
 * **Ticket Verification Engine (`/verify/:id`)**: Venue scanner endpoint to instantly verify attendee tickets via QR code or registration ID.
 * **Query Resolution Portal**: Review student queries, send direct email replies with custom messages, and update resolution statuses in real time.
 
-### ✨ Immersive UI / UX Design System
-* **Dynamic 3D Background**: Custom HTML5 Canvas particle animation (`Background3D.jsx`) with customizable palette themes.
-* **Glassmorphism Components**: Translucent backdrop blurs, 3D card tilt containers (`Card3D.jsx`), and glossy multi-layered 3D icon badges (`Icon3D.jsx`).
-* **Micro-Animations & Visual Feedback**: Smooth entrance transitions via Framer Motion, interactive star buttons (`StarButton.jsx`), non-blocking animated toast notifications, and celebratory confetti upon registration success.
+### ✨ Immersive UI / UX & Performance Enhancements
+* **60–120 FPS Mobile 3D Engine**: Custom HTML5 Canvas particle/polyhedron engine (`Background3D.jsx`) with dynamic 1.0 DPR mobile scaling, disabled canvas `shadowBlur` on touch devices, and tab visibility frame pausing (`visibilitychange`).
+* **Glittering Star Button Design System**: Interactive animated star button component (`StarButton.jsx`) applied across all action buttons (Navbar, Hero, Events, Registration, and Admin Console).
+* **Dual-Template EmailJS Routing**: Distinct template routing between Event Registration Confirmations (`VITE_EMAILJS_TEMPLATE_ID`) and Query Responses (`VITE_EMAILJS_QUERY_TEMPLATE_ID`), with direct `mailto:` fallback.
+* **High-Contrast Admin Typography**: High-legibility **Bright Light Sky Blue (`#38BDF8`)** table headers (`ATTENDEE NAME`, `COLLEGE`, `REGISTERED EVENT`, `TICKET CODE`, `DATE`) and solid dark contact support cards.
+* **Micro-Animations & Visual Feedback**: Entrance transitions via Framer Motion, non-blocking animated toast notifications (`ToastContext.jsx`), and celebratory confetti upon registration success.
 
 ---
 
@@ -54,9 +111,9 @@ Built with **React 19**, **Vite 8**, **Tailwind CSS v4**, and **Firebase**, the 
 | **Frontend Core** | React 19, React Router DOM v7, JavaScript (ES6+) |
 | **Build Tool & HMR** | Vite 8, ESLint 10, React Compiler ready |
 | **Styling & Design System** | Tailwind CSS v4, Lucide React Icons, HTML5 Canvas 3D |
-| **Animations & FX** | Framer Motion v12, Canvas Confetti |
+| **Animations & FX** | Framer Motion v12, Canvas Confetti, StarButton Design Engine |
 | **Backend & Database** | Firebase Firestore, Firebase Authentication, LocalStorage Fallback |
-| **Email Service** | EmailJS Browser SDK |
+| **Email Service** | EmailJS Browser SDK (Dual Template Architecture + Mailto Fallback) |
 | **QR Code Engine** | qrcode.react (SVG rendering) |
 | **Deployment** | Vercel Serverless Hosting |
 
@@ -82,10 +139,10 @@ Event-portal/
 │   │   ├── ProtectedRoute.jsx
 │   │   ├── StudentDashboardHeader.jsx
 │   │   └── ui/                              # Advanced 3D & Design System Components
-│   │       ├── Background3D.jsx
-│   │       ├── Card3D.jsx
-│   │       ├── Icon3D.jsx
-│   │       └── StarButton.jsx
+│   │       ├── Background3D.jsx             # High FPS Mobile 3D Canvas
+│   │       ├── Card3D.jsx                   # Non-blurring 3D Depth Card
+│   │       ├── Icon3D.jsx                   # Multi-layered 3D Icon Badge
+│   │       └── StarButton.jsx               # Glittering Star Button Component
 │   ├── context/                             # React Context Providers
 │   │   └── ToastContext.jsx                 # Global Toast Notification System
 │   ├── firebase/                            # Firebase & Storage Configuration
@@ -161,9 +218,10 @@ Complete architectural blueprints and database requirements are available in the
    VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
    VITE_FIREBASE_APP_ID=your_app_id
 
-   # EmailJS Configuration (Optional for notifications)
+   # EmailJS Configuration (Dual Template Setup)
    VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id
-   VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+   VITE_EMAILJS_TEMPLATE_ID=your_registration_emailjs_template_id
+   VITE_EMAILJS_QUERY_TEMPLATE_ID=your_query_response_emailjs_template_id
    VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
    ```
 
@@ -196,3 +254,4 @@ Developed with ❤️ by **Mugilan MD**
 * **Repository**: [https://github.com/Mugilan-md/Event-portal](https://github.com/Mugilan-md/Event-portal)
 
 This project is licensed under the **MIT License** — feel free to use and adapt for campus and community events!
+
