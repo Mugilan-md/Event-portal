@@ -5,6 +5,7 @@ import { ChevronLeft, User, School, BookOpen, Mail, Phone, Upload, Award, AlertC
 import { getEventById, registerParticipant } from "../firebase/config";
 import { useToast } from "../context/ToastContext";
 import { sendConfirmationEmail } from "../services/emailService";
+import StarButton from "../components/ui/StarButton";
 
 export default function Registration() {
   const { id } = useParams();
@@ -748,37 +749,40 @@ export default function Registration() {
             </AnimatePresence>
 
             {/* Navigation Buttons */}
-            <div className="pt-6 border-t border-gray-100 mt-8 flex justify-between">
+            <div className="pt-6 border-t border-gray-100 mt-8 flex justify-between items-center">
               {currentStep > 1 ? (
-                 <button
+                 <StarButton
                    type="button"
                    onClick={prevStep}
-                   className="px-6 py-3 rounded-lg text-gray-600 font-bold text-sm hover:bg-gray-100 transition-colors flex items-center gap-2"
+                   variant="dark"
+                   className="flex items-center gap-2 font-bold text-xs"
                  >
                    <ArrowLeft className="w-4 h-4" /> Back
-                 </button>
+                 </StarButton>
               ) : <div></div>}
               
               {currentStep < 3 ? (
-                 <button
+                 <StarButton
                    type="button"
                    onClick={nextStep}
-                   className="px-6 py-3 rounded-lg bg-[#4338CA] text-white font-bold text-sm hover:bg-[#312e81] transition-colors shadow-md flex items-center gap-2 border border-[#F59E0B]/30"
+                   variant="violet"
+                   className="flex items-center gap-2 font-bold text-xs"
                  >
                    Continue <ArrowRight className="w-4 h-4" />
-                 </button>
+                 </StarButton>
               ) : (
-                 <button
+                 <StarButton
                    type="submit"
                    disabled={loading || uploading}
-                   className="px-8 py-3 rounded-lg bg-gradient-to-r from-[#4338CA] to-[#312e81] text-white font-extrabold text-sm transition-all shadow-[0_4px_14px_rgba(31,60,136,0.3)] hover:shadow-[0_6px_20px_rgba(31,60,136,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 border border-[#F59E0B]/50"
+                   variant="emerald"
+                   className="px-8 py-3 text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-xl"
                  >
                    {loading ? (
                      <div className="flex items-center gap-2">
                         <Award className="w-4 h-4 animate-spin text-[#F59E0B]" /> Processing...
                      </div>
                    ) : "CONFIRM & REGISTER"}
-                 </button>
+                 </StarButton>
               )}
             </div>
           </form>

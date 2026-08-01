@@ -52,6 +52,16 @@ export default function StarButton({
       bg: "bg-[#090D16] border-white/20 text-white",
       hover: "hover:text-white hover:shadow-[0_8px_25px_rgba(9,13,22,0.5)] hover:border-[#6366F1]/50",
       starColor: "#6366F1"
+    },
+    rose: {
+      bg: "bg-rose-600 border-rose-600 text-white",
+      hover: "hover:text-rose-600 hover:shadow-[0_8px_25px_rgba(225,29,72,0.45)]",
+      starColor: "#FDA4AF"
+    },
+    emerald: {
+      bg: "bg-emerald-600 border-emerald-600 text-white",
+      hover: "hover:text-emerald-500 hover:shadow-[0_8px_25px_rgba(16,185,129,0.45)]",
+      starColor: "#6EE7B7"
     }
   };
 

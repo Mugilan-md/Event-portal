@@ -1,7 +1,7 @@
 
 /**
  * Card3D wrapper component
- * Provides clean card container without cursor tilt effects.
+ * Provides high-performance 3D perspective depth & hover animations without blur or wobbling.
  */
 export default function Card3D({
   children,
@@ -11,13 +11,15 @@ export default function Card3D({
 }) {
   return (
     <div
-      className={`relative ${className}`}
+      className={`group relative transition-all duration-300 ease-out transform preserve-3d hover:-translate-y-2 hover:scale-[1.015] ${className}`}
       style={{
+        transformStyle: "preserve-3d",
+        willChange: "transform",
         ...style
       }}
       {...props}
     >
-      <div className="w-full h-full">
+      <div className="w-full h-full relative z-10">
         {children}
       </div>
     </div>

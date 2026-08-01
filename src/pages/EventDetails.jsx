@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Award, ShieldAlert, BookOpen, Phone, User, Hourglass } from "lucide-react";
 import { getEventById } from "../firebase/config";
+import StarButton from "../components/ui/StarButton";
 
 export default function EventDetails() {
   const { id } = useParams();
@@ -225,15 +226,14 @@ export default function EventDetails() {
               </div>
 
               {canRegister ? (
-                <Link
+                <StarButton
                   to={`/register/${event.id}`}
-                  className="w-full text-center block py-3.5 rounded-xl font-bold text-sm text-white transition-all"
-                  style={{ background: "linear-gradient(135deg, #6366F1, #4F46E5)", boxShadow: "0 4px 14px rgba(99,102,241,0.3)" }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(99,102,241,0.4)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 4px 14px rgba(99,102,241,0.3)"; }}
+                  variant="violet"
+                  className="w-full text-center py-3.5 text-sm font-black tracking-wide flex items-center justify-center gap-2"
                 >
+                  <Award className="w-4 h-4 text-indigo-300" />
                   Register Now
-                </Link>
+                </StarButton>
               ) : (
                 <button disabled className="w-full py-3.5 rounded-xl font-bold text-sm cursor-not-allowed" style={{ background: "#F8FAFC", color: "#94A3B8", border: "1px solid #E2E8F0" }}>
                   {isSoldOut ? "Registrations Sold Out" : isClosed ? "Registrations Closed" : "Event Completed"}

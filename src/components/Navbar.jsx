@@ -130,13 +130,14 @@ export default function Navbar() {
                 className="flex items-center gap-3 ml-3 pl-3"
                 style={{ borderLeft: "2px solid #EAE3D9" }}
               >
-                <button
+                <StarButton
                   onClick={handleLogout}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-200 bg-rose-600 hover:bg-rose-700 text-white shadow-sm"
+                  variant="rose"
+                  className="flex items-center gap-1.5 font-black uppercase text-xs"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   Sign Out
-                </button>
+                </StarButton>
               </div>
             )}
           </div>
@@ -180,12 +181,15 @@ export default function Navbar() {
               ))}
 
               {adminUser && (
-                <button
-                  onClick={handleLogout}
-                  className="w-full mt-4 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-wider bg-rose-600 text-white shadow-sm"
-                >
-                  <LogOut className="w-4 h-4" /> Sign Out
-                </button>
+                <div className="pt-2">
+                  <StarButton
+                    onClick={handleLogout}
+                    variant="rose"
+                    className="w-full flex items-center justify-center gap-2 font-black uppercase text-xs"
+                  >
+                    <LogOut className="w-4 h-4" /> Sign Out
+                  </StarButton>
+                </div>
               )}
             </div>
           </motion.div>

@@ -22,6 +22,7 @@ import {
 import { useToast } from "../context/ToastContext";
 import Card3D from "../components/ui/Card3D";
 import Icon3D from "../components/ui/Icon3D";
+import StarButton from "../components/ui/StarButton";
 import logoImg from "../assets/logo.png";
 
 export default function AdminLogin() {
@@ -249,23 +250,24 @@ export default function AdminLogin() {
               )}
 
               {/* Submit Button */}
-              <button
+              <StarButton
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#FFDBBB] hover:bg-white text-[#664930] font-extrabold text-sm shadow-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 hover:scale-[1.02] active:scale-[0.98]"
+                variant="gold"
+                className="w-full py-3 px-6 text-sm font-extrabold shadow-xl flex items-center justify-center gap-2"
               >
                 {submitting ? (
                   <span className="flex items-center gap-2">
-                    <span className="w-4 h-4 rounded-full border-2 border-[#664930]/30 border-t-[#664930] animate-spin" />
+                    <span className="w-4 h-4 rounded-full border-2 border-[#3D2918]/30 border-t-[#3D2918] animate-spin" />
                     Authenticating...
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
                     {isAdminSetup ? "Create Admin Account" : "Sign In to Admin Console"}
-                    <ArrowRight className="w-4 h-4 text-[#664930]" />
+                    <ArrowRight className="w-4 h-4 text-[#3D2918]" />
                   </span>
                 )}
-              </button>
+              </StarButton>
 
               {/* Quick Fill Demo Credentials */}
               {!isAdminSetup && (
