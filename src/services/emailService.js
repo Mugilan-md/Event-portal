@@ -76,10 +76,8 @@ export const sendConfirmationEmail = async (details, event) => {
  */
 export const sendQueryResponseEmail = async (queryDetails, responseMessage) => {
   const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const templateId = import.meta.env.VITE_EMAILJS_QUERY_TEMPLATE_ID || import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const queryTemplateId = import.meta.env.VITE_EMAILJS_QUERY_TEMPLATE_ID;
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-  const formattedDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
   const templateParams = {
     // Recipient & Participant Name aliases
@@ -101,42 +99,38 @@ export const sendQueryResponseEmail = async (queryDetails, responseMessage) => {
     message: responseMessage,
     details: `Inquiry: "${queryDetails.message}"\n\nAdmin Response:\n${responseMessage}`,
 
-    // Event & Registration field fallbacks in case single template is used in EmailJS
-    event_name: `Response to ${queryDetails.queryType || "Inquiry"}`,
-    registration_id: "QUERY-RESPONSE",
-    event_date: formattedDate,
-    event_venue: "Online Support Desk",
-    college_name: queryDetails.college || "VSB Engineering College",
-    department: "Support & Coordination Desk",
-    phone_number: queryDetails.phone || "N/A",
-    
     from_name: "VSB Event Portal Coordination Team",
     reply_to: "events@vsb.ac.in"
   };
 
-  // Try EmailJS dispatch if credentials exist
+  const registrationTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+  // Dispatch via EmailJS ONLY IF a distinct VITE_EMAILJS_QUERY_TEMPLATE_ID is explicitly configured.
+  // Never use the registration template ID (VITE_EMAILJS_TEMPLATE_ID) for query responses!
   if (
     serviceId &&
-    templateId &&
+    queryTemplateId &&
     publicKey &&
+    queryTemplateId !== registrationTemplateId &&
     !serviceId.includes("PLACEHOLDER") &&
-    !templateId.includes("PLACEHOLDER") &&
+    !queryTemplateId.includes("PLACEHOLDER") &&
     !publicKey.includes("PLACEHOLDER")
   ) {
     try {
-      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      const response = await emailjs.send(serviceId, queryTemplateId, templateParams, publicKey);
       console.log("EmailJS: Query response email sent successfully!", response.status, response.text);
       return { success: true, method: "emailjs" };
     } catch (err) {
-      console.warn("EmailJS send failed, triggering mailto fallback launcher:", err);
+      console.warn("EmailJS query template dispatch failed, triggering mailto fallback launcher:", err);
     }
   }
 
-  // Fallback: launch mailto link if EmailJS is not configured or failed
+  // Direct Mail Client (mailto) Launcher if VITE_EMAILJS_QUERY_TEMPLATE_ID is missing or fails.
+  // This guarantees the recipient receives the proper inquiry response instead of a registration format!
   const subject = encodeURIComponent(`[VSB Event Portal] Response to your inquiry: ${queryDetails.queryType || 'General Inquiry'}`);
   const body = encodeURIComponent(
     `Dear ${queryDetails.name},\n\nThank you for reaching out to the VSB Event Portal team.\n\n` +
-    `--- Your Original Inquiry ---\n"${queryDetails.message}"\n\n` +
+    `--- Your Original Inquiry (${queryDetails.queryType || 'General Inquiry'}) ---\n"${queryDetails.message}"\n\n` +
     `--- Admin Response ---\n${responseMessage}\n\n` +
     `Best regards,\nVSB Event Portal Coordination Team\nVSB Engineering College, Karur\nevents@vsb.ac.in`
   );
@@ -145,5 +139,5 @@ export const sendQueryResponseEmail = async (queryDetails, responseMessage) => {
     window.location.href = `mailto:${queryDetails.email}?subject=${subject}&body=${body}`;
   }, 300);
 
-  return { success: true, method: "mailto" };
+  return { success: true, method: "mailto", reason: "missing_query_template" };
 };

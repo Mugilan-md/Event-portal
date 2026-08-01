@@ -574,4 +574,64 @@ footer.relative {
   font-family: "JetBrains Mono", monospace !important;
 }
 
+/* ─────────────────────────────────────────────
+   MOBILE HIGH-FPS & LAG-FREE PERFORMANCE OPTIMIZATIONS
+   ───────────────────────────────────────────── */
+html, body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Eliminate 300ms tap delay & optimize touch feedback on mobile */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* GPU Hardware Acceleration Helper */
+.gpu-layer {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Mobile viewport blur & shadow scaling for 60-120 FPS */
+@media (max-width: 768px) {
+  /* Reduce heavy backdrop blurs on mobile screens to prevent GPU compositor scroll stutter */
+  .backdrop-blur-3xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-xl {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+  
+  .backdrop-blur-lg,
+  .backdrop-blur-md {
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+  }
+
+  .glass-panel-3d {
+    backdrop-filter: blur(10px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(140%) !important;
+  }
+
+  .glass-panel-light-3d {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+
+  /* Simplify intense hover shadows on mobile touch screens */
+  .shadow-2xl, .shadow-xl {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  /* Prevent horizontal overflow lag on mobile */
+  body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+}
+
+
 

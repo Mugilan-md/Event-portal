@@ -61,25 +61,43 @@ export default function ManageQueries() {
     }
   };
 
-  const handleSendReply = async (e) => {
-    e.preventDefault();
+  const handleSendReply = async (e, forceMailto = false) => {
+    if (e) e.preventDefault();
     if (!replyText.trim() || !selectedQuery) {
       showToast("Please enter a response message.", "error");
       return;
     }
     try {
       setSendingReply(true);
-      // 1. Send Email to participant
-      await sendQueryResponseEmail(selectedQuery, replyText.trim());
 
-      // 2. Update Database Record
+      let result;
+      if (forceMailto) {
+        const subject = encodeURIComponent(`[VSB Event Portal] Response to your inquiry: ${selectedQuery.queryType || 'General Inquiry'}`);
+        const body = encodeURIComponent(
+          `Dear ${selectedQuery.name},\n\nThank you for reaching out to the VSB Event Portal team.\n\n` +
+          `--- Your Original Inquiry (${selectedQuery.queryType || 'General Inquiry'}) ---\n"${selectedQuery.message}"\n\n` +
+          `--- Admin Response ---\n${replyText.trim()}\n\n` +
+          `Best regards,\nVSB Event Portal Coordination Team\nVSB Engineering College, Karur\nevents@vsb.ac.in`
+        );
+        window.location.href = `mailto:${selectedQuery.email}?subject=${subject}&body=${body}`;
+        result = { success: true, method: "mailto" };
+      } else {
+        result = await sendQueryResponseEmail(selectedQuery, replyText.trim());
+      }
+
+      // Update Database Record in Firebase
       await updateContactQuery(selectedQuery.id, {
         replyMessage: replyText.trim(),
         status: "Responded",
         repliedAt: new Date().toISOString()
       });
 
-      showToast(`Response dispatched to ${selectedQuery.email} successfully!`, "success");
+      if (result?.method === "emailjs") {
+        showToast(`Response email sent to ${selectedQuery.email} via EmailJS!`, "success");
+      } else {
+        showToast(`Opened email composer for ${selectedQuery.email}! Query status marked as Responded.`, "info");
+      }
+
       setSelectedQuery(null);
       setReplyText("");
       fetchQueries();
@@ -335,7 +353,7 @@ export default function ManageQueries() {
                   />
                 </div>
 
-                <div className="flex items-center justify-end gap-3 pt-2">
+                <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
                   <button
                     type="button"
                     onClick={() => setSelectedQuery(null)}
@@ -343,13 +361,24 @@ export default function ManageQueries() {
                   >
                     Cancel
                   </button>
+                  
+                  <button
+                    type="button"
+                    onClick={() => handleSendReply(null, true)}
+                    disabled={sendingReply}
+                    className="px-4 py-2.5 rounded-xl text-xs font-extrabold bg-[#3D2918] hover:bg-[#664930] text-[#FFDBBB] border border-[#FFDBBB]/30 transition-all flex items-center gap-1.5"
+                    title="Opens your desktop/phone email client with prefilled response"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-[#FFDBBB]" /> Open in Mail App
+                  </button>
+
                   <button
                     type="submit"
                     disabled={sendingReply}
                     className="px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg flex items-center gap-2 transition-all"
                   >
                     <Send className="w-4 h-4" />
-                    {sendingReply ? "Sending Email..." : "Send Response to Participant"}
+                    {sendingReply ? "Sending..." : "Send Response"}
                   </button>
                 </div>
               </form>

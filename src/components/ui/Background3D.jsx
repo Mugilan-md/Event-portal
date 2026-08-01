@@ -45,28 +45,52 @@ export default function Background3D() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
     let animationFrameId;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+
+    // Detect mobile device or small screen for aggressive performance tuning
+    const isMobile =
+      typeof window !== "undefined" &&
+      (window.innerWidth < 768 ||
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+    
+    // Cap DPR on mobile to 1.0 (or max 1.5 on desktop) to prevent heavy pixel rasterization overhead
+    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
+
+    let displayWidth = window.innerWidth;
+    let displayHeight = window.innerHeight;
+    let width = (canvas.width = Math.floor(displayWidth * dpr));
+    let height = (canvas.height = Math.floor(displayHeight * dpr));
 
     const handleResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      displayWidth = window.innerWidth;
+      displayHeight = window.innerHeight;
+      width = canvas.width = Math.floor(displayWidth * dpr);
+      height = canvas.height = Math.floor(displayHeight * dpr);
     };
-    window.addEventListener("resize", handleResize);
 
-    const mouse = { x: width / 2, y: height / 2, targetX: width / 2, targetY: height / 2 };
+    window.addEventListener("resize", handleResize, { passive: true });
 
+    const mouse = {
+      x: width / 2,
+      y: height / 2,
+      targetX: width / 2,
+      targetY: height / 2
+    };
+
+    // Only attach mousemove on non-mobile devices to save CPU cycles
     const handleMouseMove = (e) => {
-      mouse.targetX = e.clientX;
-      mouse.targetY = e.clientY;
+      mouse.targetX = e.clientX * dpr;
+      mouse.targetY = e.clientY * dpr;
     };
-    window.addEventListener("mousemove", handleMouseMove);
 
-    // Create 3D Floating Geometric Polyhedrons
+    if (!isMobile) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    }
+
+    // 3D Floating Polyhedron Class
     class Polyhedron3D {
       constructor() {
         this.reset();
@@ -75,25 +99,21 @@ export default function Background3D() {
       reset() {
         this.x = (Math.random() - 0.5) * width * 1.5;
         this.y = (Math.random() - 0.5) * height * 1.5;
-        this.z = Math.random() * 800 + 200; // Depth Z
-        this.size = Math.random() * 40 + 20;
+        this.z = Math.random() * 800 + 200;
+        this.size = (Math.random() * 35 + 18) * dpr;
 
-        // Rotation angles
         this.rx = Math.random() * Math.PI * 2;
         this.ry = Math.random() * Math.PI * 2;
         this.rz = Math.random() * Math.PI * 2;
 
-        // Rotation speeds
-        this.drx = (Math.random() - 0.5) * 0.015;
-        this.dry = (Math.random() - 0.5) * 0.015;
-        this.drz = (Math.random() - 0.5) * 0.01;
+        this.drx = (Math.random() - 0.5) * (isMobile ? 0.008 : 0.015);
+        this.dry = (Math.random() - 0.5) * (isMobile ? 0.008 : 0.015);
+        this.drz = (Math.random() - 0.5) * (isMobile ? 0.006 : 0.01);
 
-        // Velocities
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
+        this.vx = (Math.random() - 0.5) * (isMobile ? 0.25 : 0.4);
+        this.vy = (Math.random() - 0.5) * (isMobile ? 0.25 : 0.4);
         this.vz = (Math.random() - 0.5) * 0.3;
 
-        // Shape type: 0 = Icosahedron/Octahedron, 1 = Cube, 2 = Pyramid
         this.type = Math.floor(Math.random() * 3);
         this.vertices = this.generateVertices();
         this.edges = this.generateEdges();
@@ -102,19 +122,16 @@ export default function Background3D() {
       generateVertices() {
         const s = this.size;
         if (this.type === 1) {
-          // Cube
           return [
             [-s, -s, -s], [s, -s, -s], [s, s, -s], [-s, s, -s],
             [-s, -s, s], [s, -s, s], [s, s, s], [-s, s, s]
           ];
         } else if (this.type === 2) {
-          // Pyramid
           return [
             [0, -s * 1.2, 0],
             [-s, s, -s], [s, s, -s], [s, s, s], [-s, s, s]
           ];
         } else {
-          // Octahedron / Diamond
           return [
             [0, -s * 1.3, 0], [0, s * 1.3, 0],
             [-s, 0, -s], [s, 0, -s], [s, 0, s], [-s, 0, s]
@@ -152,36 +169,31 @@ export default function Background3D() {
         this.y += this.vy + parallaxY * 0.05;
         this.z += this.vz;
 
-        // Wrap around bounds
         if (this.z < 50 || this.z > 1200) this.reset();
         if (Math.abs(this.x) > width) this.reset();
         if (Math.abs(this.y) > height) this.reset();
       }
 
       draw(ctx, fov, strokeStyle) {
-        // Project 3D to 2D
         const projected = [];
         const cosX = Math.cos(this.rx), sinX = Math.sin(this.rx);
         const cosY = Math.cos(this.ry), sinY = Math.sin(this.ry);
         const cosZ = Math.cos(this.rz), sinZ = Math.sin(this.rz);
 
-        for (let v of this.vertices) {
-          // Rotation X
+        for (let i = 0; i < this.vertices.length; i++) {
+          const v = this.vertices[i];
           let y1 = v[1] * cosX - v[2] * sinX;
           let z1 = v[1] * sinX + v[2] * cosX;
           let x1 = v[0];
 
-          // Rotation Y
           let x2 = x1 * cosY + z1 * sinY;
           let z2 = -x1 * sinY + z1 * cosY;
           let y2 = y1;
 
-          // Rotation Z
           let x3 = x2 * cosZ - y2 * sinZ;
           let y3 = x2 * sinZ + y2 * cosZ;
           let z3 = z2 + this.z;
 
-          // Perspective Projection
           const scale = fov / (fov + z3);
           const px = (x3 + this.x) * scale + width / 2;
           const py = (y3 + this.y) * scale + height / 2;
@@ -189,54 +201,74 @@ export default function Background3D() {
           projected.push({ x: px, y: py, scale });
         }
 
-        // Draw edges
-        ctx.save();
         ctx.beginPath();
-        for (let edge of this.edges) {
+        for (let i = 0; i < this.edges.length; i++) {
+          const edge = this.edges[i];
           const p1 = projected[edge[0]];
           const p2 = projected[edge[1]];
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
         }
         ctx.strokeStyle = strokeStyle;
-        ctx.lineWidth = Math.max(0.6, 1.8 * projected[0].scale);
-        ctx.shadowColor = strokeStyle;
-        ctx.shadowBlur = 10 * projected[0].scale;
+        ctx.lineWidth = Math.max(0.6 * dpr, 1.8 * projected[0].scale * dpr);
+
+        // CRITICAL PERFORMANCE FIX: Disable heavy canvas shadowBlur on mobile!
+        if (!isMobile) {
+          ctx.shadowColor = strokeStyle;
+          ctx.shadowBlur = 6 * projected[0].scale * dpr;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+
         ctx.stroke();
-        ctx.restore();
       }
     }
 
-    // Create Polyhedra & Ambient Orbs
-    const numPoly = 22;
+    // Adaptive object counts for high FPS performance
+    const numPoly = isMobile ? 7 : 18;
     const polyhedra = Array.from({ length: numPoly }, () => new Polyhedron3D());
 
-    const orbs = [
-      { x: width * 0.2, y: height * 0.25, r: 350, vx: 0.3, vy: 0.2 },
-      { x: width * 0.8, y: height * 0.35, r: 420, vx: -0.2, vy: 0.4 },
-      { x: width * 0.5, y: height * 0.75, r: 380, vx: 0.4, vy: -0.3 },
-      { x: width * 0.15, y: height * 0.85, r: 300, vx: -0.3, vy: -0.2 }
+    const numOrbs = isMobile ? 2 : 4;
+    const allOrbs = [
+      { x: width * 0.2, y: height * 0.25, r: 350 * dpr, vx: 0.2, vy: 0.15 },
+      { x: width * 0.8, y: height * 0.35, r: 400 * dpr, vx: -0.15, vy: 0.25 },
+      { x: width * 0.5, y: height * 0.75, r: 360 * dpr, vx: 0.25, vy: -0.2 },
+      { x: width * 0.15, y: height * 0.85, r: 280 * dpr, vx: -0.2, vy: -0.15 }
     ];
+    const orbs = allOrbs.slice(0, numOrbs);
 
-    const fov = 400;
+    const fov = 400 * dpr;
+    let isTabVisible = true;
+
+    const handleVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+      if (isTabVisible && !animationFrameId) {
+        animationFrameId = requestAnimationFrame(render);
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     const render = () => {
-      // Smooth mouse interpolation
-      mouse.x += (mouse.targetX - mouse.x) * 0.05;
-      mouse.y += (mouse.targetY - mouse.y) * 0.05;
+      if (!isTabVisible) return;
+
+      if (!isMobile) {
+        mouse.x += (mouse.targetX - mouse.x) * 0.05;
+        mouse.y += (mouse.targetY - mouse.y) * 0.05;
+      }
       const parallaxX = (mouse.x - width / 2) / (width / 2);
       const parallaxY = (mouse.y - height / 2) / (height / 2);
 
       const active = PALETTES[currentPalette] || PALETTES.sapphire;
 
-      // Draw background
+      // Draw background fill
       ctx.fillStyle = active.bg;
       ctx.fillRect(0, 0, width, height);
 
       // Render glowing dynamic color orbs
-      orbs.forEach((orb, i) => {
-        orb.x += orb.vx + parallaxX * 0.2;
-        orb.y += orb.vy + parallaxY * 0.2;
+      for (let i = 0; i < orbs.length; i++) {
+        const orb = orbs[i];
+        orb.x += orb.vx + parallaxX * 0.1;
+        orb.y += orb.vy + parallaxY * 0.1;
 
         if (orb.x < -100 || orb.x > width + 100) orb.vx *= -1;
         if (orb.y < -100 || orb.y > height + 100) orb.vy *= -1;
@@ -244,20 +276,21 @@ export default function Background3D() {
         const orbColor = active.orbs[i % active.orbs.length];
         const grad = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r);
         grad.addColorStop(0, orbColor);
-        grad.addColorStop(0.6, orbColor.replace(/0\.\d+\)/, "0.15)"));
+        grad.addColorStop(0.6, orbColor.replace(/0\.\d+\)/, "0.12)"));
         grad.addColorStop(1, "transparent");
 
         ctx.fillStyle = grad;
         ctx.beginPath();
         ctx.arc(orb.x, orb.y, orb.r, 0, Math.PI * 2);
         ctx.fill();
-      });
+      }
 
       // Render 3D Polyhedra
-      polyhedra.forEach(p => {
+      for (let i = 0; i < polyhedra.length; i++) {
+        const p = polyhedra[i];
         p.update(parallaxX, parallaxY);
         p.draw(ctx, fov, active.poly);
-      });
+      }
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -267,7 +300,8 @@ export default function Background3D() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
+      if (!isMobile) window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [currentPalette]);
 
